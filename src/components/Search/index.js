@@ -4,14 +4,16 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 
 export default class Search extends Component {
   render() {
+    const { onLocationSelected } = this.props
+
     return (
       <GooglePlacesAutocomplete
         placeholder="Where do you want to park?"
         placeholderTextColor="#333"
-        onPress={() => { }}
+        onPress={onLocationSelected}
         query={{
           key: "AIzaSyAbE_uxNFwH3bHysGhNhWVhrGTHpsDHpxc",
-          language: 'pt',
+          language: 'en',
         }}
         textInputProps={{
           autoCapitalize: "none",
@@ -39,8 +41,8 @@ export default class Search extends Component {
             borderRadius: 0,
             paddingTop: 0,
             paddingBottom: 0,
-            paddingLeft: 0,
-            paddingRight: 0,
+            paddingLeft: 20,
+            paddingRight: 20,
             padding: 0,
             marginTop: 0,
             marginBottom: 0,
@@ -54,7 +56,25 @@ export default class Search extends Component {
             borderWidth: 1,
             borderColor: '#DDD',
             fontSize: 18
-
+          },
+          listView: {
+            borderWidth: 1,
+            borderColor: '#DDD',
+            backgroundColor: '#FFF',
+            marginHorizontal: 20,
+            elevation: 5,
+            shadowColor: '#000',
+            shadowOpacity: 0.1,
+            shadowOffset: { x: 0, y: 0 },
+            shadowRadius: 15,
+            marginTop: 10,
+          },
+          description: {
+            fontSize: 16
+          },
+          row: {
+            padding: 20,
+            height: 58
           }
         }}
       />
