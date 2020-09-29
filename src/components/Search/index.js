@@ -7,7 +7,6 @@ export default class Search extends Component {
     searchFocused: false
   }
 
-
   render() {
     const { onLocationSelected } = this.props
     const { searchFocused } = this.props
