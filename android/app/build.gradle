@@ -181,6 +181,13 @@ android {
 }
 
 dependencies {
+    implementation( project(':react-native-maps')){
+        exclude group: 'com.google.android.gsm', module: 'play-services-base'
+        exclude group: 'com.google.android.gsm', module: 'play-services-maps'
+    }
+    implementation 'com.google.android.gms', module: 'play-services-base:15.0.1'
+    implementation 'com.google.android.gms', module: 'play-services-maps:15.0.1'
+
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules

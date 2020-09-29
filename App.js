@@ -27,6 +27,7 @@ import {
 import Homepage from "./src/scenes/Homepage";
 import Settingspage from "./src/scenes/Settingspage.js";
 
+
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 const Tab = createBottomTabNavigator();
