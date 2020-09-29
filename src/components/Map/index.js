@@ -5,7 +5,7 @@ import {
   View
 } from 'react-native';
 
-import MapView from 'react-native-maps'; //PROVIDER_DEFAULT uses Apple's map
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps'; //PROVIDER_DEFAULT uses Apple's map
 import Geolocation from '@react-native-community/geolocation';
 
 import Search from '../Search'
@@ -56,17 +56,26 @@ export default class Map extends Component {
     return (
       <View style={{ flex: 1 }}>
         <MapView
+          provider={PROVIDER_GOOGLE}
           style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
           initialRegion={region}
           showsUserLocation
           loadingEnabled
+          ref={el => this.mapView = el}
         >
           {destination && (
             <Directions
               origin={region}
               destination={destination}
-              onReady={() => {
-
+              onReady={(result) => {
+                this.mapView.fitToCoordinates(result.coordinates, {
+                  edgePadding: {
+                    right: 50,
+                    left: 50,
+                    top: 50,
+                    bottom: 50
+                  }
+                })
               }}
             />
           )}
