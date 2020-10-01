@@ -1,4 +1,5 @@
 import React from 'react';
+import { UserContext } from '../navigation/AuthProvider'
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,6 +7,7 @@ import {
   View,
   Text,
   StatusBar,
+  Button
 } from 'react-native';
 
 import {
@@ -18,9 +20,17 @@ import {
 
 const Settingspage = () => {
   return (
-    <View>
-      <Text>Hello</Text>
-    </View>
+    <UserContext.Consumer>
+      {user =>
+        <SafeAreaView>
+          <View>
+            <Button title={"logout"} onPress={user.logOut} />
+          </View>
+        </SafeAreaView>
+      }
+    </UserContext.Consumer>
+
+
   );
 };
 

@@ -77,9 +77,7 @@ const Details = (props) => {
       onConfirm={handleConfirmCheckOut}
       onCancel={hideDatePickerCheckOut}
     />
-
-
-    <RequestButton onPress={() => { }}>
+    <RequestButton onPress={() => { props.handleBack() }}>
       <RequestButtonText>Book</RequestButtonText>
     </RequestButton>
   </Container>

@@ -19,6 +19,7 @@ import {
   LocationTimeBox,
   LocationTimeTextSmall,
   LocationTimeText
+
 } from './style'
 
 export default class Map extends Component {
@@ -50,6 +51,11 @@ export default class Map extends Component {
   }
 
   handleBack = () => {
+    this.setState({ destination: null })
+  }
+
+  bookedArea = () => {
+    alert("Booked!")
     this.setState({ destination: null })
   }
 
@@ -121,14 +127,12 @@ export default class Map extends Component {
             <Back onPress={this.handleBack}>
               <Image source={backImage} />
             </Back>
-            <Details parkName={destination.title} />
+            <Details parkName={destination.title} handleBack={this.bookedArea} />
           </Fragment>
 
         ) : (
             <Search onLocationSelected={this.handleLocationSelected} />
           )}
-
-
       </View >
     );
   }

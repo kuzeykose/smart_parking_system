@@ -36,7 +36,7 @@ const LoginPage = ({ navigation }) => {
                   <EmailInput
                     placeholder="Email"
                     value={user.email}
-                    onChange={text => user.setEmail(text)}
+                    onChange={text => user.setEmail(text.nativeEvent.text)}
                   />
                 </View>
                 <View>
@@ -45,11 +45,11 @@ const LoginPage = ({ navigation }) => {
                     secureTextEntry
                     placeholder="Password"
                     value={user.password}
-                    onChange={(e) => user.setPassword(e.text)}
+                    onChange={(e) => user.setPassword(e.nativeEvent.text)}
                   />
                 </View>
               </View>
-              <SignInButton onPress={() => { }}>
+              <SignInButton onPress={() => { user.signInFunc(user.email, user.password) }}>
                 <SignInText>Sign in</SignInText>
               </SignInButton>
             </View>
