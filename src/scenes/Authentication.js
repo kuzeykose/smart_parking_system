@@ -7,10 +7,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
 
-
 import Login from "../components/Login"
 import Register from "../components/Register"
-
 
 const Authentication = () => {
   return (

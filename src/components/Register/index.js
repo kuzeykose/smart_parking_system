@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Text,
   View
 } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { UserContext } from '../../navigation/AuthProvider'
 
 import {
   CustomText,
@@ -16,58 +16,61 @@ import {
   SignInText
 } from './style'
 
-const Register = () => {
-  const [plaque, setPlaque] = useState();
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [password, setPassword] = useState();
+const Register = (props) => {
+  // const [plaque, setPlaque] = useState();
+  // const [name, setName] = useState();
+  // const [email, setEmail] = useState();
+  // const [password, setPassword] = useState();
 
   return (
-    <Container>
-      <View>
-        <HelloText>Welcome!</HelloText>
-        <HelloTextSmall>Sign up to get start</HelloTextSmall>
-      </View>
-      <View style={{ marginTop: 50 }}>
-        <View>
-          <View>
-            <CustomText>Name</CustomText>
-            <EmailInput
-              value={email}
-              onChange={emailText => setEmail(emailText)}
-            />
-          </View>
-          <View>
-            <CustomText>Plaque</CustomText>
-            <EmailInput
-              value={email}
-              onChange={emailText => setEmail(emailText)}
-            />
-          </View>
-          <View>
-            <CustomText>Email</CustomText>
-            <EmailInput
-              value={email}
-              onChange={emailText => setEmail(emailText)}
-            />
-          </View>
-          <View>
-            <CustomText>Password</CustomText>
-            <PasswordInput
-              secureTextEntry
-              value={password}
-              onChange={passwordText => setPassword(passwordText)}
-            />
-          </View>
-        </View>
-        <SignInButton>
-          <SignInText>Sign up</SignInText>
-        </SignInButton>
-      </View>
+    <UserContext.Consumer>
+      {
+        user =>
+          <Container>
+            <View>
+              <HelloText>Welcome!</HelloText>
+              <HelloTextSmall>Sign up to get start</HelloTextSmall>
+            </View>
+            <View style={{ marginTop: 50 }}>
+              <View>
+                <View>
+                  <CustomText>Name</CustomText>
+                  <EmailInput
+                    value={user.email}
+                    onChange={() => { }}
+                  />
+                </View>
+                <View>
+                  <CustomText>License Plate</CustomText>
+                  <EmailInput
+                    value={user.email}
+                    onChange={() => { }}
+                  />
+                </View>
+                <View>
+                  <CustomText>Email</CustomText>
+                  <EmailInput
+                    value={user.email}
+                    onChange={(e) => user.setEmail(e.text)}
+                  />
+                </View>
+                <View>
+                  <CustomText>Password</CustomText>
+                  <PasswordInput
+                    secureTextEntry
+                    value={user.password}
+                    onChange={(e) => user.setPassword(e.text)}
+                  />
+                </View>
+              </View>
+              <SignInButton onPress={() => { }}>
+                <SignInText>Sign up</SignInText>
+              </SignInButton>
+            </View>
+          </Container >
+      }
 
-
-
-    </Container >
+    </UserContext.Consumer>
   );
 };
 

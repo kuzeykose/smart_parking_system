@@ -32,8 +32,8 @@ static void InitializeFlipper(UIApplication *application) {
 {
   //firebase key
   if ([FIRApp defaultApp] == nil) {
-      [FIRApp configure];
-    }
+    [FIRApp configure];
+  }
   
   //google maps key
   [GMSServices provideAPIKey:@"AIzaSyAbE_uxNFwH3bHysGhNhWVhrGTHpsDHpxc"];

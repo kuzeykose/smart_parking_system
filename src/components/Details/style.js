@@ -24,6 +24,12 @@ export const TypeDescription = styled.Text`
 color: #666;
 font-size: 14px;
 `
+export const SettedText = styled.Text`
+color: #666;
+font-size: 20px;
+margin-top:5px
+margin-bottom:8px
+`
 
 export const RequestButton = styled.TouchableOpacity`
 background: #222;
