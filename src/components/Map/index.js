@@ -61,12 +61,11 @@ export default class Map extends Component {
 
   handleLocationSelected = (data, { geometry }) => {
     const { location: { lat: latitude, lng: longitude } } = geometry
-
     this.setState({
       destination: {
         latitude,
         longitude,
-        title: data.structured_formatting.main_text
+        title: data.description
       }
     })
   }

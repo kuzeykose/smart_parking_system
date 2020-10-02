@@ -9,19 +9,14 @@ import {
   CustomText,
   PasswordInput,
   Container,
-  EmailInput,
+  CustomInput,
   HelloText,
   HelloTextSmall,
-  SignInButton,
-  SignInText
+  SignUpButton,
+  SignUpText
 } from './style'
 
 const Register = (props) => {
-  // const [plaque, setPlaque] = useState();
-  // const [name, setName] = useState();
-  // const [email, setEmail] = useState();
-  // const [password, setPassword] = useState();
-
   return (
     <UserContext.Consumer>
       {
@@ -34,24 +29,24 @@ const Register = (props) => {
             <View style={{ marginTop: 50 }}>
               <View>
                 <View>
-                  <CustomText>Name</CustomText>
-                  <EmailInput
-                    value={user.email}
-                    onChange={() => { }}
+                  <CustomText>Full Name</CustomText>
+                  <CustomInput
+                    value={user.fullName}
+                    onChange={text => user.setFullName(text.nativeEvent.text)}
                   />
                 </View>
                 <View>
                   <CustomText>License Plate</CustomText>
-                  <EmailInput
-                    value={user.email}
-                    onChange={() => { }}
+                  <CustomInput
+                    value={user.licensePlate}
+                    onChange={text => user.setLicensePlate(text.nativeEvent.text)}
                   />
                 </View>
                 <View>
                   <CustomText>Email</CustomText>
-                  <EmailInput
+                  <CustomInput
                     value={user.email}
-                    onChange={(e) => user.setEmail(e.text)}
+                    onChange={text => user.setEmail(text.nativeEvent.text)}
                   />
                 </View>
                 <View>
@@ -59,13 +54,13 @@ const Register = (props) => {
                   <PasswordInput
                     secureTextEntry
                     value={user.password}
-                    onChange={(e) => user.setPassword(e.text)}
+                    onChange={text => user.setPassword(text.nativeEvent.text)}
                   />
                 </View>
               </View>
-              <SignInButton onPress={() => { }}>
-                <SignInText>Sign up</SignInText>
-              </SignInButton>
+              <SignUpButton onPress={() => { user.register(user.fullName, user.licensePlate, user.email, user.password) }}>
+                <SignUpText>Sign up</SignUpText>
+              </SignUpButton>
             </View>
           </Container >
       }

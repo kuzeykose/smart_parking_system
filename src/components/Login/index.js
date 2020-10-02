@@ -49,7 +49,7 @@ const LoginPage = ({ navigation }) => {
                   />
                 </View>
               </View>
-              <SignInButton onPress={() => { user.signInFunc(user.email, user.password) }}>
+              <SignInButton onPress={() => { user.signIn(user.email, user.password) }}>
                 <SignInText>Sign in</SignInText>
               </SignInButton>
             </View>

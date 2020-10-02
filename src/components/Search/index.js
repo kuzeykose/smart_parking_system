@@ -2,6 +2,15 @@ import React, { Component } from 'react'
 import { Platform } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 
+const bilgiUniversitySantral = {
+  description: 'Bilgi University - Santral',
+  geometry: { location: { lat: 41.0657524, lng: 28.946341 } },
+};
+const bilgiUniversityDolapdere = {
+  description: 'Bilgi University - Dolapdere',
+  geometry: { location: { lat: 41.038853, lng: 28.9737589999999 } },
+};
+
 export default class Search extends Component {
   state = {
     searchFocused: false
@@ -19,6 +28,7 @@ export default class Search extends Component {
         query={{
           key: "AIzaSyAbE_uxNFwH3bHysGhNhWVhrGTHpsDHpxc",
           language: 'en',
+          types: 'Bilgi'
         }}
         textInputProps={{
           onFocus: () => { this.setState({ searchFocused: true }) },
@@ -26,6 +36,7 @@ export default class Search extends Component {
           autoCapitalize: "none",
           autoCorrect: false
         }}
+        predefinedPlaces={[bilgiUniversitySantral, bilgiUniversityDolapdere]}
         listViewDisplayed={searchFocused}
         fetchDetails
         enablePoweredByContainer={false}

@@ -1,13 +1,17 @@
 import React, { createContext, useState } from 'react';
-import auth from '@react-native-firebase/auth';
+import Auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 const UserContext = React.createContext()
+
 const AuthProvider = (props) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+  const [fullName, setFullName] = useState("")
+  const [licensePlate, setLicensePlate] = useState("")
 
-  const signInFunc = (email, password) => {
-    auth()
+  const signIn = (email, password) => {
+    Auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
         console.log('User account created & signed in!');
@@ -25,8 +29,36 @@ const AuthProvider = (props) => {
       });
   }
 
+  const register = (fullName, licensePlate, email, password) => {
+    Auth()
+      .createUserWithEmailAndPassword(email, password)
+      .then(cred => {
+
+        let userUid = cred.user.uid
+        const users = firestore().collection("users")
+
+        users.add({
+          name: fullName,
+          licensePlate: licensePlate,
+          email: email,
+          userUid: userUid
+        })
+      })
+      .catch(error => {
+        if (error.code === 'auth/email-already-in-use') {
+          console.log('That email address is already in use!');
+        }
+
+        if (error.code === 'auth/invalid-email') {
+          console.log('That email address is invalid!');
+        }
+
+        console.error(error);
+      });
+  }
+
   const logOut = () => {
-    auth()
+    Auth()
       .signOut()
       .then(() => console.log('User signed out!'));
   }
@@ -36,10 +68,16 @@ const AuthProvider = (props) => {
       value={{
         email: email,
         password: password,
+        fullName: fullName,
+        licensePlate: licensePlate,
         setEmail: setEmail,
         setPassword: setPassword,
-        signInFunc: signInFunc,
-        logOut: logOut
+        setFullName: setFullName,
+        setLicensePlate: setLicensePlate,
+        setPassword: setPassword,
+        signIn: signIn,
+        logOut: logOut,
+        register: register
       }}
     >
       {props.children}

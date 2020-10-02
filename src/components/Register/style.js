@@ -26,7 +26,7 @@ export const CustomText = styled.Text`
 `
 
 //TEXTINPUT
-export const EmailInput = styled.TextInput`
+export const CustomInput = styled.TextInput`
   border: 1px;
   border-radius: 4px;
   height: 40px;
@@ -47,7 +47,7 @@ export const PasswordInput = styled.TextInput`
 `
 
 //BUTTON
-export const SignInButton = styled.TouchableOpacity`
+export const SignUpButton = styled.TouchableOpacity`
   margin-top: 30px;
   background: #4AFF95;
   align-items: center;
@@ -57,7 +57,7 @@ export const SignInButton = styled.TouchableOpacity`
   border-radius: 4px;
 `
 
-export const SignInText = styled.Text`
+export const SignUpText = styled.Text`
   font-size: 18px;
 `
 

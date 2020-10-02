@@ -1,23 +1,25 @@
 import React, { Component, useState } from 'react'
 import { Text, View, Button } from 'react-native'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import DateTimePicker from '@react-native-community/datetimepicker';
+import moment from "moment"
+
+import firestore from '@react-native-firebase/firestore';
 
 import {
   Container,
   TypeTitle,
-  TypeDescription,
   RequestButton,
   RequestButtonText,
   SettedText
 } from './style'
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import moment from "moment"
 
 const Details = (props) => {
-
   const [isDatePickerVisibleCheckOut, setDatePickerVisibilityCheckOut] = useState(false);
   const [isDatePickerVisibleCheckIn, setDatePickerVisibilityCheckIn] = useState(false);
   const [checkInDate, setCheckInDate] = useState("check in Date")
   const [checkOutDate, setCheckOutDate] = useState("check out Date")
+
 
   const showDatePickerCheckIn = () => {
     setDatePickerVisibilityCheckIn(true);
@@ -70,6 +72,7 @@ const Details = (props) => {
       onConfirm={handleConfirmCheckIn}
       onCancel={hideDatePickerCheckIn}
     />
+
     <DateTimePickerModal
       isVisible={isDatePickerVisibleCheckOut}
       mode="datetime"
@@ -77,14 +80,47 @@ const Details = (props) => {
       onConfirm={handleConfirmCheckOut}
       onCancel={hideDatePickerCheckOut}
     />
-    <RequestButton onPress={() => { props.handleBack() }}>
+
+    <RequestButton onPress={() => {
+      const userDocument = firestore()
+        .collection('car-parks')
+        .doc('BilgiUniversitySantralCarPark')
+      userDocument.get().then(function (doc) {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      }).catch(function (error) {
+        console.log("Error getting document:", error);
+      });
+
+
+
+    }}>
       <RequestButtonText>Book</RequestButtonText>
     </RequestButton>
   </Container>
-
 }
 
 export default Details
 
 //<TypeDescription>loremimpus sit amet del lacorinato lo simicarda</TypeDescription>
 //<TypeDescription>price</TypeDescription>
+
+
+// firestore()
+//   .collection('car-parks')
+//   .doc('BilgiUniversitySantralCarPark')
+//   .collection('parking-slots')
+//   .doc('A01')
+//   .collection('checks')
+//   .add({
+//     userId: "",
+//     checkIn: checkInDate,
+//     checkOutDate: checkOutDate
+//   })
+//   .then(() => {
+//     console.log('User added!');
+//   });
