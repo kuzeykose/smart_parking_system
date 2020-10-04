@@ -5,6 +5,7 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import moment from "moment"
 
 import firestore from '@react-native-firebase/firestore';
+import { FirebaseContext } from '../../provider/FirebaseProvider'
 
 import {
   Container,
@@ -15,6 +16,8 @@ import {
 } from './style'
 
 const Details = (props) => {
+
+  // date picker variables -> user pick checkIn checkOut date and time
   const [isDatePickerVisibleCheckOut, setDatePickerVisibilityCheckOut] = useState(false);
   const [isDatePickerVisibleCheckIn, setDatePickerVisibilityCheckIn] = useState(false);
   const [checkInDate, setCheckInDate] = useState("check in Date")
@@ -51,57 +54,49 @@ const Details = (props) => {
     hideDatePickerCheckOut();
   };
 
-  return <Container>
-    <TypeTitle>{props.parkName} </TypeTitle>
-    <View style={{ flexDirection: "row", alignItems: "center" }}>
-      <View style={{ flexDirection: "column" }}>
-        <Button title={"checkInDate"} onPress={showDatePickerCheckIn} />
-        <Button title={"checkOutDate"} onPress={showDatePickerCheckOut} />
-      </View>
-      <View>
-        <View style={{ flexDirection: "column" }}>
-          <SettedText>{checkInDate}</SettedText>
-          <SettedText>{checkOutDate}</SettedText>
-        </View>
-      </View>
-    </View>
-    <DateTimePickerModal
-      isVisible={isDatePickerVisibleCheckIn}
-      mode="datetime"
-      date={new Date()}
-      onConfirm={handleConfirmCheckIn}
-      onCancel={hideDatePickerCheckIn}
-    />
+  return (
+    <FirebaseContext.Consumer>
+      { Firebase =>
+        <Container>
+          <TypeTitle>{props.parkName} </TypeTitle>
+          <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flexDirection: "column" }}>
+              <Button title={"checkInDate"} onPress={showDatePickerCheckIn} />
+              <Button title={"checkOutDate"} onPress={showDatePickerCheckOut} />
+            </View>
+            <View>
+              <View style={{ flexDirection: "column" }}>
+                <SettedText>{checkInDate}</SettedText>
+                <SettedText>{checkOutDate}</SettedText>
+              </View>
+            </View>
+          </View>
+          <DateTimePickerModal
+            isVisible={isDatePickerVisibleCheckIn}
+            mode="datetime"
+            date={new Date()}
+            onConfirm={handleConfirmCheckIn}
+            onCancel={hideDatePickerCheckIn}
+          />
 
-    <DateTimePickerModal
-      isVisible={isDatePickerVisibleCheckOut}
-      mode="datetime"
-      date={new Date()}
-      onConfirm={handleConfirmCheckOut}
-      onCancel={hideDatePickerCheckOut}
-    />
+          <DateTimePickerModal
+            isVisible={isDatePickerVisibleCheckOut}
+            mode="datetime"
+            date={new Date()}
+            onConfirm={handleConfirmCheckOut}
+            onCancel={hideDatePickerCheckOut}
+          />
 
-    <RequestButton onPress={() => {
-      const userDocument = firestore()
-        .collection('car-parks')
-        .doc('BilgiUniversitySantralCarPark')
-      userDocument.get().then(function (doc) {
-        if (doc.exists) {
-          console.log("Document data:", doc.data());
-        } else {
-          // doc.data() will be undefined in this case
-          console.log("No such document!");
-        }
-      }).catch(function (error) {
-        console.log("Error getting document:", error);
-      });
-
-
-
-    }}>
-      <RequestButtonText>Book</RequestButtonText>
-    </RequestButton>
-  </Container>
+          <RequestButton onPress={() => {
+            Firebase.setParkId(props.parkId)
+            Firebase.setFirebaseUserBook(Firebase.parkId)
+          }
+          }>
+            <RequestButtonText>Book</RequestButtonText>
+          </RequestButton>
+        </Container>}
+    </FirebaseContext.Consumer >
+  )
 }
 
 export default Details

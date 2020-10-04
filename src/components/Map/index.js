@@ -26,7 +26,8 @@ export default class Map extends Component {
   state = {
     region: null,
     destination: null,
-    duration: null
+    duration: null,
+    carParkId: null
   }
 
   async componentDidMount() {
@@ -65,7 +66,8 @@ export default class Map extends Component {
       destination: {
         latitude,
         longitude,
-        title: data.description
+        title: data.description,
+        parkId: data.id
       }
     })
   }
@@ -126,7 +128,7 @@ export default class Map extends Component {
             <Back onPress={this.handleBack}>
               <Image source={backImage} />
             </Back>
-            <Details parkName={destination.title} handleBack={this.bookedArea} />
+            <Details parkName={destination.title} parkId={destination.parkId} handleBack={this.bookedArea} />
           </Fragment>
 
         ) : (

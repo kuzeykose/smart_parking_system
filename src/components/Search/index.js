@@ -5,10 +5,12 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 const bilgiUniversitySantral = {
   description: 'Bilgi University - Santral',
   geometry: { location: { lat: 41.0657524, lng: 28.946341 } },
+  id: 'BilgiUniversitySantralCarPark'
 };
 const bilgiUniversityDolapdere = {
   description: 'Bilgi University - Dolapdere',
   geometry: { location: { lat: 41.038853, lng: 28.9737589999999 } },
+  id: 'BilgiUniversityDolapdereCarPark'
 };
 
 export default class Search extends Component {
