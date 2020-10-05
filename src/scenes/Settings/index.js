@@ -26,13 +26,13 @@ const Settings = () => {
           <Container>
             <View>
               <UserInformationText>
-                Name: {}
+                Name: {user.currentUserName}
               </UserInformationText>
               <UserInformationText>
-                Email: {}
+                Email: {user.currentUserEmail}
               </UserInformationText>
               <UserInformationText>
-                UserId: {}
+                UserId: {user.currentUserUid}
               </UserInformationText>
             </View>
             <LogOutButton title={"logout"} onPress={user.logOut}>

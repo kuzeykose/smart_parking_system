@@ -26,5 +26,5 @@ font-size: 18px;
 
 export const UserInformationText = styled.Text`
 margin-top: 10px;
-font-size: 24px;
+font-size: 20px;
 `

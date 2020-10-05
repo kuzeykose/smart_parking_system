@@ -1,14 +1,31 @@
-import React, { createContext, useState } from 'react';
+import React, { useEffect, createContext, useState } from 'react';
 import Auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 const UserContext = React.createContext()
 
 const AuthProvider = (props) => {
+
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [fullName, setFullName] = useState("")
   const [licensePlate, setLicensePlate] = useState("")
+  const [userInformation, setUserInformation] = useState({})
+
+  const currentUserUid = Auth().currentUser.uid
+
+  // get userInfotmation from users collection to set information settings page
+  useEffect(() => {
+    firestore()
+      .collection('users')
+      .doc(currentUserUid)
+      .get()
+      .then(documentSnapshot => {
+        setUserInformation(documentSnapshot.data())
+      });
+  }), [];
+
+
 
   const signIn = (email, password) => {
     Auth()
@@ -33,11 +50,9 @@ const AuthProvider = (props) => {
     Auth()
       .createUserWithEmailAndPassword(email, password)
       .then(cred => {
-
         let userUid = cred.user.uid
-        const users = firestore().collection("users")
-
-        users.add({
+        const users = firestore().collection("users").doc(userUid)
+        users.set({
           name: fullName,
           licensePlate: licensePlate,
           email: email,
@@ -77,7 +92,10 @@ const AuthProvider = (props) => {
         setPassword: setPassword,
         signIn: signIn,
         logOut: logOut,
-        register: register
+        register: register,
+        currentUserName: userInformation.name,
+        currentUserEmail: userInformation.email,
+        currentUserUid: userInformation.userUid
       }}
     >
       {props.children}
