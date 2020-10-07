@@ -1,35 +1,35 @@
-import React from 'react';
-import { UserContext } from '../../navigation/AuthProvider'
-import {
-  Text,
-  SafeAreaView
-} from 'react-native';
+import React, { useEffect, useState, useContext } from 'react';
+import { FirebaseContext } from '../../provider/FirebaseProvider'
 
-import {
-  Container,
-  Card,
-  CardText
-} from './style'
+import Auth from '@react-native-firebase/auth';
+import Ticket from '../../components/Ticket'
 
-const Settings = () => {
+import { Container } from './style'
+
+import { SafeAreaView, ScrollView } from 'react-native';
+
+const Tickets = () => {
+  const value = useContext(FirebaseContext);
+  const allTickets = value.bookedParkHistory.map((inf, index) => {
+    return <Ticket
+      parkName={inf.parkName}
+      date={inf.checkInDate}
+      time={inf.checkInTime + " - " + inf.checkOutTime}
+      parkSlotName={inf.parkSlot}
+      key={index}
+    />
+  }
+  );
+
   return (
     <SafeAreaView>
-      <Container>
-        <Card>
-          <CardText>Bilgi University Santral</CardText>
-          <CardText>08/09/2020</CardText>
-          <CardText>17:00 -  19:00</CardText>
-          <CardText>A02</CardText>
-        </Card>
-        <Card>
-          <CardText>Bilgi University Santral</CardText>
-          <CardText>03/10/2020</CardText>
-          <CardText>17:00 -  19:00</CardText>
-          <CardText>B03</CardText>
-        </Card>
-      </Container>
+      <ScrollView>
+        <Container>
+          {allTickets}
+        </Container>
+      </ScrollView>
     </SafeAreaView>
   );
 };
 
-export default Settings;
+export default Tickets;

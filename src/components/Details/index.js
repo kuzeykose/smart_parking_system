@@ -90,6 +90,7 @@ const Details = (props) => {
           <RequestButton onPress={() => {
             Firebase.setParkId(props.parkId)
             Firebase.setFirebaseUserBook(Firebase.parkId)
+            props.handleBack()
           }
           }>
             <RequestButtonText>Book</RequestButtonText>

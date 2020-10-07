@@ -11,20 +11,9 @@ const AuthProvider = (props) => {
   const [fullName, setFullName] = useState("")
   const [licensePlate, setLicensePlate] = useState("")
   const [userInformation, setUserInformation] = useState({})
+  const [userParkData, setUserParkData] = useState([])
 
   const currentUserUid = Auth().currentUser.uid
-
-  // get userInfotmation from users collection to set information settings page
-  useEffect(() => {
-    firestore()
-      .collection('users')
-      .doc(currentUserUid)
-      .get()
-      .then(documentSnapshot => {
-        setUserInformation(documentSnapshot.data())
-      });
-  }), [];
-
 
 
   const signIn = (email, password) => {
@@ -92,10 +81,7 @@ const AuthProvider = (props) => {
         setPassword: setPassword,
         signIn: signIn,
         logOut: logOut,
-        register: register,
-        currentUserName: userInformation.name,
-        currentUserEmail: userInformation.email,
-        currentUserUid: userInformation.userUid
+        register: register
       }}
     >
       {props.children}

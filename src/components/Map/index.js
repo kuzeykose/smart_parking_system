@@ -130,7 +130,6 @@ export default class Map extends Component {
             </Back>
             <Details parkName={destination.title} parkId={destination.parkId} handleBack={this.bookedArea} />
           </Fragment>
-
         ) : (
             <Search onLocationSelected={this.handleLocationSelected} />
           )}
