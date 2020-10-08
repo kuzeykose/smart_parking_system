@@ -13,24 +13,19 @@ export const Container = styled.View`
   border: 1px solid #DDD;
   align-items: center;
   padding: 20px;
-`
-
-export const TypeTitle = styled.Text`
-  font-size: 20px;
-  color: #222;
+  
 `
 
 export const TypeDescription = styled.Text`
-color: #666;
+color: #222;
 font-size: 14px;
 `
-export const SettedText = styled.Text`
-color: #666;
+export const DateTimeSelectText = styled.Text`
+color: #292929;
 font-size: 20px;
 margin-top:5px
 margin-bottom:8px
 `
-
 
 export const RequestButton = styled.TouchableOpacity`
 background: #222;
@@ -45,4 +40,16 @@ export const RequestButtonText = styled.Text`
   color: #fff;
   font-weight: bold;
   font-size: 18px;
+`
+
+export const CheckContainer = styled.View`
+width: 90%;
+`
+
+export const CheckView = styled.View`
+margin-top: 10px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
 `

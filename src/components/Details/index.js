@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState, useContext } from 'react'
 import { Text, View, Button } from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -9,94 +9,74 @@ import { FirebaseContext } from '../../provider/FirebaseProvider'
 
 import {
   Container,
-  TypeTitle,
   RequestButton,
   RequestButtonText,
-  SettedText
+  DateTimeSelectText,
+  CheckView,
+  CheckContainer
 } from './style'
 
 const Details = (props) => {
-
-  // date picker variables -> user pick checkIn checkOut date and time
-  const [isDatePickerVisibleCheckOut, setDatePickerVisibilityCheckOut] = useState(false);
-  const [isDatePickerVisibleCheckIn, setDatePickerVisibilityCheckIn] = useState(false);
-  const [checkInDate, setCheckInDate] = useState("check in Date")
-  const [checkOutDate, setCheckOutDate] = useState("check out Date")
-
-
-  const showDatePickerCheckIn = () => {
-    setDatePickerVisibilityCheckIn(true);
-  };
-
-  const showDatePickerCheckOut = () => {
-    setDatePickerVisibilityCheckOut(true);
-  };
-
-
-  const hideDatePickerCheckIn = () => {
-    setDatePickerVisibilityCheckIn(false);
-  };
-
-  const hideDatePickerCheckOut = () => {
-    setDatePickerVisibilityCheckOut(false);
-  };
-
-
-  const handleConfirmCheckIn = (date) => {
-    let time = moment(date).format("MMMM, Do YYYY HH:mm")
-    setCheckInDate(time)
-    hideDatePickerCheckIn();
-  };
-
-  const handleConfirmCheckOut = (date2) => {
-    let time2 = moment(date2).format("MMMM, Do YYYY HH:mm")
-    setCheckOutDate(time2)
-    hideDatePickerCheckOut();
-  };
+  const firebaseContext = useContext(FirebaseContext);
 
   return (
-    <FirebaseContext.Consumer>
-      { Firebase =>
-        <Container>
-          <TypeTitle>{props.parkName} </TypeTitle>
-          <View style={{ flexDirection: "row", alignItems: "center" }}>
-            <View style={{ flexDirection: "column" }}>
-              <Button title={"checkInDate"} onPress={showDatePickerCheckIn} />
-              <Button title={"checkOutDate"} onPress={showDatePickerCheckOut} />
-            </View>
-            <View>
-              <View style={{ flexDirection: "column" }}>
-                <SettedText>{checkInDate}</SettedText>
-                <SettedText>{checkOutDate}</SettedText>
-              </View>
-            </View>
-          </View>
-          <DateTimePickerModal
-            isVisible={isDatePickerVisibleCheckIn}
-            mode="datetime"
-            date={new Date()}
-            onConfirm={handleConfirmCheckIn}
-            onCancel={hideDatePickerCheckIn}
+    <Container>
+      <CheckContainer>
+        <CheckView>
+          <DateTimeSelectText>Select parking date!</DateTimeSelectText>
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={firebaseContext.checkInDate}
+            mode={'date'}
+            is24Hour={true}
+            display="default"
+            onChange={firebaseContext.onChangeCheckInDate}
+            style={{ width: 120 }}
           />
-
-          <DateTimePickerModal
-            isVisible={isDatePickerVisibleCheckOut}
-            mode="datetime"
-            date={new Date()}
-            onConfirm={handleConfirmCheckOut}
-            onCancel={hideDatePickerCheckOut}
+        </CheckView>
+        <CheckView >
+          <DateTimeSelectText>Select Check In Time</DateTimeSelectText>
+          <DateTimePicker
+            value={firebaseContext.checkInTime}
+            mode="time"
+            is24Hour={true}
+            minuteInterval={15}
+            display="inline"
+            onChange={firebaseContext.onChangeCheckInTime}
+            locale="tr"
+            style={{ width: 100 }}
           />
+        </CheckView>
 
-          <RequestButton onPress={() => {
-            Firebase.setParkId(props.parkId)
-            Firebase.setFirebaseUserBook(Firebase.parkId)
-            props.handleBack()
-          }
-          }>
-            <RequestButtonText>Book</RequestButtonText>
-          </RequestButton>
-        </Container>}
-    </FirebaseContext.Consumer >
+        <CheckView>
+          <DateTimeSelectText>Select Check Out Time</DateTimeSelectText>
+          <DateTimePicker
+            testID="dateTimePicker"
+            value={firebaseContext.checkOutTime}
+            mode={'time'}
+            is24Hour={true}
+            display="inline"
+            minuteInterval={15}
+            onChange={firebaseContext.onChangeCheckOutTime}
+            locale="tr"
+            style={{ width: 100 }}
+          />
+        </CheckView>
+      </CheckContainer>
+
+
+      <RequestButton onPress={() => {
+        // console.log(firebaseContext.checkInTime.toLocaleTimeString('tr'));
+        // console.log(firebaseContext.checkOutTime.toLocaleTimeString('tr'));
+
+        firebaseContext.setParkId(props.parkId)
+        firebaseContext.setFirebaseUserBook(firebaseContext.parkId)
+        // props.handleBack()
+      }
+      }>
+        <RequestButtonText>Book</RequestButtonText>
+      </RequestButton>
+    </Container >
   )
 }
 

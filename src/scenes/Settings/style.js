@@ -4,9 +4,9 @@ export const Container = styled.View`
   background: #FFF;
   height: 100%;
   width: 100%;
-  align-items: center;
+
   justify-content: space-between;
-  padding: 60px;
+  padding: 20px;
 `
 
 export const LogOutButton = styled.TouchableOpacity`
@@ -24,7 +24,26 @@ font-weight: bold;
 font-size: 18px;
 `
 
+export const Description = styled.View`
+  margin-top: 30px;
+  width: 100%;
+`
+
+export const InitialInformationText = styled.Text`
+margin-top: 10px;
+font-size: 24px;
+margin-left:20px;
+`
+
 export const UserInformationText = styled.Text`
 margin-top: 10px;
-font-size: 20px;
+font-size: 24px;
+margin-left: 10px;
+color:#3b3b3b;
+`
+
+export const UserIdText = styled.Text`
+text-align: center;
+font-size: 22px;
+margin-left: 10px;
 `

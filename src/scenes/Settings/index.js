@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { UserContext } from '../../navigation/AuthProvider'
 
 import {
   Container,
   LogOutButton,
   LogOutText,
-  UserInformationText
+  UserInformationText,
+  Description,
+  InitialInformationText,
+  UserIdText
 } from './style'
 
 import {
@@ -19,31 +22,36 @@ import {
 } from 'react-native';
 
 const Settings = () => {
+  const value = useContext(UserContext);
+  // Name: {value.userInformation.name}
   return (
-    <UserContext.Consumer>
-      {user =>
-        <SafeAreaView>
-          <Container>
-            <View>
-              <UserInformationText>
-                Name: {user.currentUserName}
-              </UserInformationText>
-              <UserInformationText>
-                Email: {user.currentUserEmail}
-              </UserInformationText>
-              <UserInformationText>
-                UserId: {user.currentUserUid}
-              </UserInformationText>
-            </View>
-            <LogOutButton title={"logout"} onPress={user.logOut}>
-              <LogOutText>Log Out</LogOutText>
-            </LogOutButton>
-          </Container>
-        </SafeAreaView>
-      }
-    </UserContext.Consumer>
-
-
+    <SafeAreaView>
+      <Container>
+        <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
+          <Description>
+            <UserInformationText>Name:</UserInformationText>
+            <InitialInformationText>{value.userInformation.name}</InitialInformationText>
+          </Description>
+          <Description>
+            <UserInformationText>Email:</UserInformationText>
+            <InitialInformationText>{value.userInformation.email}</InitialInformationText>
+          </Description>
+          <Description>
+            <UserInformationText>License Plate:</UserInformationText>
+            <InitialInformationText>{value.userInformation.licensePlate}</InitialInformationText>
+          </Description>
+        </View>
+        <View>
+          <Description style={{ marginBottom: 20 }}>
+            <UserInformationText>User id:</UserInformationText>
+            <UserIdText>{value.userInformation.userUid}</UserIdText>
+          </Description>
+          <LogOutButton title={"logout"} onPress={value.logOut}>
+            <LogOutText>Log Out</LogOutText>
+          </LogOutButton>
+        </View>
+      </Container>
+    </SafeAreaView>
   );
 };
 

@@ -18,7 +18,6 @@ const Authentication = () => {
         <Stack.Screen name="Register" component={Register} />
       </Stack.Navigator>
     </NavigationContainer>
-
   );
 }
 
