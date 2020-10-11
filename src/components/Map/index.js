@@ -60,6 +60,11 @@ export default class Map extends Component {
     this.setState({ destination: null })
   }
 
+  bookedAreaNotAvailable = () => {
+    alert("Not Available!")
+
+  }
+
   handleLocationSelected = (data, { geometry }) => {
     const { location: { lat: latitude, lng: longitude } } = geometry
     this.setState({
@@ -128,7 +133,7 @@ export default class Map extends Component {
             <Back onPress={this.handleBack}>
               <Image source={backImage} />
             </Back>
-            <Details parkName={destination.title} parkId={destination.parkId} handleBack={this.bookedArea} />
+            <Details parkName={destination.title} parkId={destination.parkId} bookedArea={this.bookedArea} bookedAreaNotAvailable={this.bookedAreaNotAvailable} />
           </Fragment>
         ) : (
             <Search onLocationSelected={this.handleLocationSelected} />

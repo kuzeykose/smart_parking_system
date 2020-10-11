@@ -20,9 +20,10 @@ import {
   StatusBar,
   Button
 } from 'react-native';
+import { FirebaseContext } from '../../provider/FirebaseProvider';
 
 const Settings = () => {
-  const value = useContext(UserContext);
+  const value = useContext(FirebaseContext);
   // Name: {value.userInformation.name}
   return (
     <SafeAreaView>

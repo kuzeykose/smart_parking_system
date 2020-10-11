@@ -2,8 +2,6 @@ import React, { useContext, useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import firebase from '@react-native-firebase/app';
 
-import { FirebaseProvider } from '../provider/FirebaseProvider'
-
 import AuthStack from './AuthStack';
 import AppStack from './AppStack';
 
@@ -25,9 +23,7 @@ const Routes = () => {
 
   return (
     <NavigationContainer>
-      <FirebaseProvider>
-        {user ? <AppStack /> : <AuthStack />}
-      </FirebaseProvider>
+      {user ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };

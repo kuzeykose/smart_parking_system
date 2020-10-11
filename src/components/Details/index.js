@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext } from 'react'
+import React, { Component, useEffect, useState, useContext } from 'react'
 import { Text, View, Button } from 'react-native'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import DateTimePicker from '@react-native-community/datetimepicker';
@@ -32,6 +32,7 @@ const Details = (props) => {
             display="default"
             onChange={firebaseContext.onChangeCheckInDate}
             style={{ width: 120 }}
+            minimumDate={new Date()}
           />
         </CheckView>
         <CheckView >
@@ -66,12 +67,9 @@ const Details = (props) => {
 
 
       <RequestButton onPress={() => {
-        // console.log(firebaseContext.checkInTime.toLocaleTimeString('tr'));
-        // console.log(firebaseContext.checkOutTime.toLocaleTimeString('tr'));
-
         firebaseContext.setParkId(props.parkId)
         firebaseContext.setFirebaseUserBook(firebaseContext.parkId)
-        // props.handleBack()
+        props.bookedArea()
       }
       }>
         <RequestButtonText>Book</RequestButtonText>

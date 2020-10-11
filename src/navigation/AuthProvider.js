@@ -10,17 +10,6 @@ const AuthProvider = (props) => {
   const [password, setPassword] = useState("")
   const [fullName, setFullName] = useState("")
   const [licensePlate, setLicensePlate] = useState("")
-  const [userInformation, setUserInformation] = useState({})
-
-  const currentUserUid = Auth().currentUser.uid
-
-  useEffect(() => {
-    firestore().collection('users').doc(`${currentUserUid}`)
-      .get()
-      .then(snapShot => {
-        setUserInformation(snapShot.data())
-      })
-  })
 
 
   const signIn = (email, password) => {
@@ -68,11 +57,6 @@ const AuthProvider = (props) => {
       });
   }
 
-  const logOut = () => {
-    Auth()
-      .signOut()
-      .then(() => console.log('User signed out!'));
-  }
 
   return (
     <UserContext.Provider
@@ -87,9 +71,7 @@ const AuthProvider = (props) => {
         setLicensePlate: setLicensePlate,
         setPassword: setPassword,
         signIn: signIn,
-        logOut: logOut,
         register: register,
-        userInformation: userInformation
       }}
     >
       {props.children}

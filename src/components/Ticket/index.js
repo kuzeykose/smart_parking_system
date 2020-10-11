@@ -2,7 +2,8 @@ import React from 'react';
 import {
   Container,
   Card,
-  CardText
+  CardText,
+  CustomButton
 } from './style'
 
 const Tickets = (props) => {
@@ -12,6 +13,7 @@ const Tickets = (props) => {
       <CardText>{props.date}</CardText>
       <CardText>{props.time}</CardText>
       <CardText>{props.parkSlotName}</CardText>
+
     </Card>
   );
 };
