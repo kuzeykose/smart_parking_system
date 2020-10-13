@@ -1,10 +1,6 @@
-import React, { Component, useEffect, useState, useContext } from 'react'
-import { Text, View, Button } from 'react-native'
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import DateTimePicker from '@react-native-community/datetimepicker';
-import moment from "moment"
+import React, { useContext } from 'react'
 
-import firestore from '@react-native-firebase/firestore';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 
 import {
@@ -68,6 +64,7 @@ const Details = (props) => {
 
       <RequestButton onPress={() => {
         firebaseContext.setParkId(props.parkId)
+
         firebaseContext.setFirebaseUserBook(firebaseContext.parkId)
         props.bookedArea()
       }
@@ -79,22 +76,3 @@ const Details = (props) => {
 }
 
 export default Details
-
-//<TypeDescription>loremimpus sit amet del lacorinato lo simicarda</TypeDescription>
-//<TypeDescription>price</TypeDescription>
-
-
-// firestore()
-//   .collection('car-parks')
-//   .doc('BilgiUniversitySantralCarPark')
-//   .collection('parking-slots')
-//   .doc('A01')
-//   .collection('checks')
-//   .add({
-//     userId: "",
-//     checkIn: checkInDate,
-//     checkOutDate: checkOutDate
-//   })
-//   .then(() => {
-//     console.log('User added!');
-//   });
