@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 
@@ -14,6 +13,7 @@ import {
 
 const Details = (props) => {
   const firebaseContext = useContext(FirebaseContext);
+  const selectedParkId = props.parkId;
 
   return (
     <Container>
@@ -61,14 +61,11 @@ const Details = (props) => {
         </CheckView>
       </CheckContainer>
 
-
       <RequestButton onPress={() => {
-        firebaseContext.setParkId(props.parkId)
+        let returnsom = firebaseContext.writeFirebaseUserBook(selectedParkId)
+        console.log(returnsom);
 
-        firebaseContext.setFirebaseUserBook(firebaseContext.parkId)
-        props.bookedArea()
-      }
-      }>
+      }}>
         <RequestButtonText>Book</RequestButtonText>
       </RequestButton>
     </Container >

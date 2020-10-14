@@ -1,4 +1,4 @@
-// try to define is empty/available/notAvailable
+// try to define is empty/available(undefined)/notAvailable
 function checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate) {
   const parkSlotData = doc.data()
   var date = checkInDate.toLocaleDateString().split("/")
