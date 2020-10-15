@@ -47,10 +47,12 @@ const FirebaseProvider = (props) => {
     var date = checkInDate.toLocaleDateString().split("/")
     var myCheckOutDate = date.join("-")
     //get document in firebase and set slotAvaliblity with empty/available/notAvailable
-    userDocument.get().then(querySnapshot => {
+    const hello = userDocument.get().then(querySnapshot => {
       var slotAvaliblity = querySnapshot.docs.map(doc => {
         return checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate)
       })
+
+      const allEqual = slotAvaliblity => slotAvaliblity.every(v => v === "notAvailable");
 
       for (let i = 0; i < slotAvaliblity.length; i++) {
         if (slotAvaliblity[i] === undefined || slotAvaliblity[i] === 'empty') {
@@ -59,10 +61,11 @@ const FirebaseProvider = (props) => {
         }
       }
 
+      return allEqual
     }).catch(function (error) {
       console.log("Error getting document:", error);
     })
-    return "oldu"
+    console.log(hello);
   }
 
   const logOut = () => {

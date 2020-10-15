@@ -181,6 +181,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-maps')
+
     implementation( project(':react-native-maps')){
         exclude group: 'com.google.android.gsm', module: 'play-services-base'
         exclude group: 'com.google.android.gsm', module: 'play-services-maps'
