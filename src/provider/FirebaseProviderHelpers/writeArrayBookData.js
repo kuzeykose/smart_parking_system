@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 
-function writeArrayBookData(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, docNumberToChange, querySnapshot) {
+function writeArrayBookDataAvailable(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, docNumberToChange, querySnapshot) {
   let activeDoc = { // for user active data
     "parkSlot": "",
     "parkName": "",
@@ -20,9 +20,11 @@ function writeArrayBookData(userDocument, myCheckOutDate, checkInTime, checkOutT
   //parking slot doc
   userDocument.doc(querySnapshot.docs[docNumberToChange].id).get().then(snap => {
     var okeyTime = snap.data() //get document
-    var times = okeyTime[myCheckOutDate] // get array which date 
+    var times = okeyTime[myCheckOutDate] // get array which name is selected date 
+    console.log(okeyTime);
     var myNewTime = [...times] // copy array
-    myNewTime.push(bookData) // push inside the checkIn checkOut
+    myNewTime.push(bookData) // push inside, checkIn checkOut
+
 
     let mylastObject = { //write in object
       [myCheckOutDate]: myNewTime
@@ -34,9 +36,24 @@ function writeArrayBookData(userDocument, myCheckOutDate, checkInTime, checkOutT
     //user doc
     firestore().collection('users').doc(`${currentUserUid}`).collection('activeBookedPark').add(activeDoc)
   })
+}
+
+
+function writeArrayBookDataEmpty(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, i, querySnapshot) {
+  let bookDataIfNotSameTime = { // empty uses because creating date at the same time
+    [myCheckOutDate]: [
+      {
+        "checkInTime": checkInTime.toLocaleTimeString('tr'),
+        "checkOutTime": checkOutTime.toLocaleTimeString('tr'),
+        "userId": currentUserUid
+      }
+    ]
+  }
+
+  userDocument.doc(querySnapshot.docs[i].id)
+    .set(bookDataIfNotSameTime, { merge: true }).then(() => { console.log("Document successfully written!") });
 
 }
 
-export { writeArrayBookData }
 
-
+export { writeArrayBookDataAvailable, writeArrayBookDataEmpty }

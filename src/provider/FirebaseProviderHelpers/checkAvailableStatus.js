@@ -24,7 +24,7 @@ function checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate) {
 
   for (let i = 0; i < dataFromSlot.length; i++) {
     if (checkArray[i] === "notAvailable") {
-      return "NotAvailable"
+      return "notAvailable"
     }
   }
 }

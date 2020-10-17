@@ -62,8 +62,8 @@ const Details = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
-        let returnsom = firebaseContext.writeFirebaseUserBook(selectedParkId)
-        console.log(returnsom);
+        firebaseContext.writeFirebaseUserBook(selectedParkId)
+
 
       }}>
         <RequestButtonText>Book</RequestButtonText>

@@ -3,7 +3,7 @@ import Auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 import { checkAvailableStatus } from './FirebaseProviderHelpers/checkAvailableStatus'
-import { writeArrayBookData } from './FirebaseProviderHelpers/writeArrayBookData'
+import { writeArrayBookDataAvailable, writeArrayBookDataEmpty } from './FirebaseProviderHelpers/writeArrayBookData'
 
 const FirebaseContext = createContext(null)
 
@@ -33,6 +33,8 @@ const FirebaseProvider = (props) => {
     setCheckInDate(currentDate);
   }
 
+  const allNotAvailable = arr => arr.every(v => v === "notAvailable") // check all element in slotAvaliblity are they notAvailable?
+
   useEffect(() => {
     firestore().collection('users').doc(`${currentUserUid}`)
       .get()
@@ -47,25 +49,30 @@ const FirebaseProvider = (props) => {
     var date = checkInDate.toLocaleDateString().split("/")
     var myCheckOutDate = date.join("-")
     //get document in firebase and set slotAvaliblity with empty/available/notAvailable
-    const hello = userDocument.get().then(querySnapshot => {
+    userDocument.get().then(querySnapshot => {
       var slotAvaliblity = querySnapshot.docs.map(doc => {
         return checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate)
       })
-
-      const allEqual = slotAvaliblity => slotAvaliblity.every(v => v === "notAvailable");
+      console.log(slotAvaliblity);
 
       for (let i = 0; i < slotAvaliblity.length; i++) {
-        if (slotAvaliblity[i] === undefined || slotAvaliblity[i] === 'empty') {
-          writeArrayBookData(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, i, querySnapshot) //write firebase
+        if (slotAvaliblity[i] === undefined) {
+          writeArrayBookDataAvailable(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, i, querySnapshot) //write firebase
+          break
+        } else if (slotAvaliblity[i] === 'empty') {
+          writeArrayBookDataEmpty(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, i, querySnapshot)
           break
         }
       }
 
-      return allEqual
+      if (allNotAvailable(slotAvaliblity)) {
+        console.log("sorry no available");
+      }
+
     }).catch(function (error) {
       console.log("Error getting document:", error);
     })
-    console.log(hello);
+
   }
 
   const logOut = () => {

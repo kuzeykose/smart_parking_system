@@ -85,7 +85,7 @@ export default class Map extends Component {
           provider={PROVIDER_DEFAULT}
           style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
           initialRegion={region}
-          showsUserLocation
+          showsUserLocation={true}
           loadingEnabled
           ref={el => this.mapView = el}
         >
