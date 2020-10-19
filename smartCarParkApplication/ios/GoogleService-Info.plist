@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>525365274811-dumuu01rkmhupdelepln8rhn6h9iesfe.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.525365274811-dumuu01rkmhupdelepln8rhn6h9iesfe</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBZnym9KTCBaz8kea_Ts6CQtdCoJw-_zvU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>525365274811</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>kuzey.parking-system</string>
+	<key>PROJECT_ID</key>
+	<string>parking-policy</string>
+	<key>STORAGE_BUCKET</key>
+	<string>parking-policy.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:525365274811:ios:b3c9da8d446a61b058e19e</string>
+	<key>DATABASE_URL</key>
+	<string>https://parking-policy.firebaseio.com</string>
+</dict>
+</plist>
