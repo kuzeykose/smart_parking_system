@@ -3,8 +3,8 @@ import { Component, Fragment } from 'react';
 import { View, Image } from 'react-native';
 
 import Geolocation from '@react-native-community/geolocation';
-import MapView, { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps'; //PROVIDER_DEFAULT uses Apple's map
-
+import { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps'; //PROVIDER_DEFAULT uses Apple's map
+import MapView from 'react-native-maps';
 import { getPixelSize } from '../../utils'
 import Search from '../Search'
 import Directions from '../Directions'
@@ -37,8 +37,8 @@ export default class Map extends Component {
           region: {
             latitude,
             longitude,
-            latitudeDelta: 0.003,
-            longitudeDelta: 0.004
+            latitudeDelta: 0.0143,
+            longitudeDelta: 0.0143
           }
         })
       },

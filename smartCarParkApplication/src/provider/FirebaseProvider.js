@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from 'react';
 import Auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import axios from 'axios'
 
 import { checkAvailableStatus } from './FirebaseProviderHelpers/checkAvailableStatus'
 import { writeArrayBookDataAvailable, writeArrayBookDataEmpty } from './FirebaseProviderHelpers/writeArrayBookData'
@@ -42,6 +43,18 @@ const FirebaseProvider = (props) => {
         setUserInformation(snapShot.data())
       })
   })
+
+
+  // useEffect(() => {
+  //   axios.post('http://localhost:3000/', {
+  //     currentUserUid
+  //   }).then(res => {
+  //     console.log(res);
+  //   }).catch(function (error) {
+  //     console.log(error);
+  //   })
+  // }, [currentUserUid])
+
 
   // set Firebase car - parks slots from taking data from user -> (car - parks / { parkId } / parking - slot)
   const writeFirebaseUserBook = (parkId) => {
