@@ -66,6 +66,7 @@ export default class Map extends Component {
   }
 
   handleLocationSelected = (data, { geometry }) => {
+    console.log(geometry);
     const { location: { lat: latitude, lng: longitude } } = geometry
     this.setState({
       destination: {
@@ -82,7 +83,7 @@ export default class Map extends Component {
     return (
       <View style={{ flex: 1 }}>
         <MapView
-          provider={PROVIDER_DEFAULT}
+          provider={PROVIDER_GOOGLE}
           style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
           initialRegion={region}
           showsUserLocation={true}
@@ -91,7 +92,7 @@ export default class Map extends Component {
         >
           {destination && (
             <Fragment>
-              < Directions
+              <Directions
                 origin={region}
                 destination={destination}
                 onReady={(result) => {
@@ -138,6 +139,7 @@ export default class Map extends Component {
         ) : (
             <Search onLocationSelected={this.handleLocationSelected} />
           )}
+        {/* <Search onLocationSelected={this.handleLocationSelected} /> */}
       </View >
     );
   }

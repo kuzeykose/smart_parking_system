@@ -3,6 +3,7 @@ import React from "react";
 import MapViewDirections from "react-native-maps-directions";
 
 const Directions = ({ destination, origin, onReady }) => (
+
   <MapViewDirections
     destination={destination}
     origin={origin}
