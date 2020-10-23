@@ -29,12 +29,26 @@ app.get('/A01', (req, res) => {
   })
 });
 
-
-
-app.post('/', (req, res) => {
-  console.log(req.body.currentUserUid);
-  // res.send('this is the server response');
+app.post('/user', (req, res) => {
+  const docRef = db.collection("users");
+  docRef.doc(req.body.currentUserUid).get().then((data) => {
+    if (data && data.exists) {
+      const responseData = data.data();
+      res.send(JSON.stringify(responseData, null, "  "));
+    }
+  })
 });
+
+app.post('/user/ticket', (req, res) => {
+  const docRef = db.collection("users");
+  docRef.doc(req.body.currentUserUid).collection("bookedParkHistory").get().then(objects => {
+    var mydata = objects.docs.map(object => {
+      return object.data()
+    })
+    res.send(JSON.stringify(mydata, null, "  "));
+  })
+});
+
 
 // app.post('/A01firebase', (req, res) => {
 //   //firestore post

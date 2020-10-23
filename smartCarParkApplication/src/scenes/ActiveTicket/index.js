@@ -13,51 +13,9 @@ import { PrivateValueStore } from '@react-navigation/native';
 const Tab = createMaterialTopTabNavigator();
 const Tickets = () => {
 
-  const value = useContext(FirebaseContext);
-  const currentUserUid = Auth().currentUser.uid
-  const [activeBooked, setActiveBooked] = useState([])
-
-  useEffect(() => {
-    firestore().collection('users').doc(`${currentUserUid}`).collection('activeBookedPark')
-      .get()
-      .then(snapShot => {
-        let myArray = []
-        snapShot.forEach(doc => {
-          myArray.push(doc.data())
-        })
-        setActiveBooked(myArray)
-      })
-  }, [activeBooked])
-  //   firestore().collection('users').doc(`${currentUserUid}`).collection('activeBookedPark')
-  //     .get()
-  //     .then(snapShot => {
-  //       let myArray = []
-  //       snapShot.forEach(doc => {
-  //         myArray.push(doc.data())
-  //       })
-  //       setActiveBooked(myArray)
-  //     })
-  // }, [activeBooked])
-
-
-  const allTickets = activeBooked.map((inf, index) => {
-    return (
-      <Container>
-        <Ticket
-          parkName={inf.parkName}
-          date={inf.checkInDate}
-          time={inf.checkInTime + " - " + inf.checkOutTime}
-          parkSlotName={inf.parkSlot}
-          key={index}
-        />
-      </Container>
-    )
-  }
-  );
-
   return (
     <ScrollView>
-      {allTickets}
+      {/* {allTickets} */}
     </ScrollView>
   );
 };

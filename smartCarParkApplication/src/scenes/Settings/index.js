@@ -24,6 +24,7 @@ import { FirebaseContext } from '../../provider/FirebaseProvider';
 
 const Settings = () => {
   const value = useContext(FirebaseContext);
+  console.log(value.userInformation.name);
   // Name: {value.userInformation.name}
   return (
     <SafeAreaView>

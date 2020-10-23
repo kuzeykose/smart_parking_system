@@ -1,7 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { FirebaseContext } from '../../provider/FirebaseProvider'
-import Ticket from '../../components/Ticket'
-import { Container } from './style'
+import React from 'react';
 import { SafeAreaView, ScrollView } from 'react-native';
 import ActiveTicket from '../ActiveTicket';
 import HistoryTicket from '../HistoryTicket';

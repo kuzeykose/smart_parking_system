@@ -13,25 +13,8 @@ const Tab = createMaterialTopTabNavigator();
 
 const Tickets = () => {
   const value = useContext(FirebaseContext);
-  const currentUserUid = Auth().currentUser.uid
-  const [bookedParkHistory, setBookedParkHistory] = useState([])
 
-  useEffect(() => {
-    firestore().collection('users').doc(`${currentUserUid}`).collection('bookedParkHistory')
-      .get()
-      .then(snapShot => {
-        let myArray = []
-        snapShot.forEach(doc => {
-          myArray.push(doc.data())
-        })
-        setBookedParkHistory(myArray)
-      })
-  }, [])
-
-
-
-
-  const allTickets = bookedParkHistory.map((inf, index) => {
+  const allTickets = value.userHistoryParkData.map((inf, index) => {
     return <Ticket
       parkName={inf.parkName}
       date={inf.checkInDate}

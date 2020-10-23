@@ -15,6 +15,7 @@ const FirebaseProvider = (props) => {
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [userInformation, setUserInformation] = useState({})
   const [slotAvaliblityInformation, setSlotAvaliblityInformation] = useState(null)
+  const [userHistoryParkData, setUserHistoryParkData] = useState([])
 
 
   const currentUserUid = Auth().currentUser.uid
@@ -36,24 +37,40 @@ const FirebaseProvider = (props) => {
 
   const allNotAvailable = arr => arr.every(v => v === "notAvailable") // check all element in slotAvaliblity are they notAvailable?
 
-  useEffect(() => {
-    firestore().collection('users').doc(`${currentUserUid}`)
-      .get()
-      .then(snapShot => {
-        setUserInformation(snapShot.data())
-      })
-  })
-
-
   // useEffect(() => {
-  //   axios.post('http://localhost:3000/', {
-  //     currentUserUid
-  //   }).then(res => {
-  //     console.log(res);
-  //   }).catch(function (error) {
-  //     console.log(error);
-  //   })
-  // }, [currentUserUid])
+  //   firestore().collection('users').doc(`${currentUserUid}`)
+  //     .get()
+  //     .then(snapShot => {
+  //       setUserInformation(snapShot.data())
+  //     })
+  // })
+
+  useEffect(() => {
+    axios.get('http://localhost:3000/')
+      .then(function (response) {
+        console.log(response.data);
+      })
+  }, [currentUserUid])
+
+  useEffect(() => {
+    axios.post('http://localhost:3000/user', {
+      currentUserUid
+    }).then(res => {
+      setUserInformation(res.data)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }, [currentUserUid])
+
+  useEffect(() => {
+    axios.post('http://localhost:3000/user/ticket', {
+      currentUserUid
+    }).then(res => {
+      setUserHistoryParkData(res.data)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }, [currentUserUid])
 
 
   // set Firebase car - parks slots from taking data from user -> (car - parks / { parkId } / parking - slot)
@@ -107,7 +124,8 @@ const FirebaseProvider = (props) => {
         userInformation: userInformation,
         logOut: logOut,
         setSlotAvaliblityInformation: setSlotAvaliblityInformation,
-        slotAvaliblityInformation: slotAvaliblityInformation
+        slotAvaliblityInformation: slotAvaliblityInformation,
+        userHistoryParkData: userHistoryParkData
       }}>
       { props.children}
     </FirebaseContext.Provider >
