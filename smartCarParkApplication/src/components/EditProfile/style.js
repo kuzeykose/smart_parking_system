@@ -22,7 +22,6 @@ color: #fff;
 font-weight: bold;
 font-size: 18px;
 `
-
 export const InitialInformationText = styled.Text`
 margin-top: 10px;
 margin-bottom: 10px;
@@ -38,7 +37,8 @@ color:#3b3b3b;
 `
 
 export const TopView = styled.View`
-height: 200px;
+margin-top:10px;
+height: 150px;
 display: flex;
 flex-wrap: wrap;
 align-content: center;

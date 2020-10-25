@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import Providers from './src/navigation';
 
 const App = () => {
-
   return <Providers />
 };
 

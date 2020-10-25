@@ -9,7 +9,6 @@ export const Container = styled.View`
 `
 
 export const Card = styled.View`
-
 background-color: #fff;
 border-style: solid;
 border-width: 1px;
