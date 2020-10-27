@@ -53,7 +53,7 @@ const FirebaseProvider = (props) => {
   }, [currentUserUid])
 
   useEffect(() => {
-    axios.post('http://localhost:3000/user', {
+    axios.post('http://localhost:3000/api/user', {
       currentUserUid
     }).then(res => {
       setUserInformation(res.data)
@@ -62,15 +62,7 @@ const FirebaseProvider = (props) => {
     })
   }, [currentUserUid])
 
-  useEffect(() => {
-    axios.post('http://localhost:3000/user/ticket', {
-      currentUserUid
-    }).then(res => {
-      setUserHistoryParkData(res.data)
-    }).catch(function (error) {
-      console.log(error);
-    })
-  }, [currentUserUid])
+
 
 
   // set Firebase car - parks slots from taking data from user -> (car - parks / { parkId } / parking - slot)

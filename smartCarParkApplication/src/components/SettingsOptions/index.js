@@ -55,14 +55,14 @@ const Options = ({ navigation }) => {
             </View>
             <Icon name="arrow-forward-ios" size={30} color="#292929" />
           </TouchbaleListItem>
-          <TouchbaleListItem onPress={() => navigation.navigate('Edit Profile')}>
+          <TouchbaleListItem onPress={() => navigation.navigate('Change Password')}>
             <View style={{ flexDirection: "row" }}>
               <Icon name="lock" size={30} color="#292929" />
               <TouchbaleListItemText>Change Password</TouchbaleListItemText>
             </View>
             <Icon name="arrow-forward-ios" size={30} color="#292929" />
           </TouchbaleListItem>
-          <TouchbaleListItem onPress={() => navigation.navigate('Edit Profile')}>
+          <TouchbaleListItem onPress={() => navigation.navigate('Cars')}>
             <View style={{ flexDirection: "row" }}>
               <Icon name="directions-car" size={30} color="#292929" />
               <TouchbaleListItemText>Cars</TouchbaleListItemText>
@@ -70,7 +70,7 @@ const Options = ({ navigation }) => {
             <Icon name="arrow-forward-ios" size={30} color="#292929" />
           </TouchbaleListItem>
           <ListName>Notification</ListName>
-          <TouchbaleListItem onPress={() => navigation.navigate('Edit Profile')}>
+          <TouchbaleListItem onPress={() => navigation.navigate('Notification')}>
             <View style={{ flexDirection: "row" }}>
               <Icon name="notifications" size={30} color="#292929" />
               <TouchbaleListItemText>Notification</TouchbaleListItemText>

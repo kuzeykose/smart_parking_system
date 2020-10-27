@@ -58,7 +58,10 @@ const Register = (props) => {
                   />
                 </View>
               </View>
-              <SignUpButton onPress={() => { user.register(user.fullName, user.licensePlate, user.email, user.password) }}>
+              <SignUpButton onPress={() => {
+                user.register(user.fullName, user.licensePlate, user.email, user.password)
+
+              }}>
                 <SignUpText>Sign up</SignUpText>
               </SignUpButton>
             </View>
