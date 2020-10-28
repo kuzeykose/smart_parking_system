@@ -3,7 +3,10 @@ import { UserContext } from '../../navigation/AuthProvider'
 import imagePeople from '../../imagePeople.jpg'
 
 import {
-  InformationCard
+  Card,
+  CardText,
+  AddCar,
+  AddCarText
 } from './style'
 
 import {
@@ -17,7 +20,16 @@ const Cars = () => {
   const value = useContext(FirebaseContext);
   return (
     <SafeAreaView>
-      <Text>Cars</Text>
+      <AddCar>
+        <AddCarText>
+          Add Car
+        </AddCarText>
+      </AddCar>
+      <Card>
+        <CardText>Kia</CardText>
+        <CardText>34 ES 2673</CardText>
+        <CardText>Kuzey Araba</CardText>
+      </Card>
     </SafeAreaView>
   );
 };

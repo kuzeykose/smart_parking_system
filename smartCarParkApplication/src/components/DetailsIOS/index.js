@@ -62,8 +62,7 @@ const DetailsIOS = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
-        firebaseContext.writeFirebaseUserBook(selectedParkId)
-
+        firebaseContext.userBook(selectedParkId)
       }}>
         <RequestButtonText>Book</RequestButtonText>
       </RequestButton>

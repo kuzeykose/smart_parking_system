@@ -13,7 +13,6 @@ const Tickets = (props) => {
       <CardText>{props.date}</CardText>
       <CardText>{props.time}</CardText>
       <CardText>{props.parkSlotName}</CardText>
-
     </Card>
   );
 };

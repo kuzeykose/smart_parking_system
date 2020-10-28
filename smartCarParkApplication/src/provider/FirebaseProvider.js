@@ -62,39 +62,18 @@ const FirebaseProvider = (props) => {
     })
   }, [currentUserUid])
 
-
-
-
-  // set Firebase car - parks slots from taking data from user -> (car - parks / { parkId } / parking - slot)
-  const writeFirebaseUserBook = (parkId) => {
-    const userDocument = firestore().collection('car-parks').doc(parkId).collection('parking-slots')
-    var date = checkInDate.toLocaleDateString().split("/")
-    var myCheckOutDate = date.join("-")
-    //get document in firebase and set slotAvaliblity with empty/available/notAvailable
-    userDocument.get().then(querySnapshot => {
-      var slotAvaliblity = querySnapshot.docs.map(doc => {
-        return checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate)
-      })
-      console.log(slotAvaliblity);
-
-      for (let i = 0; i < slotAvaliblity.length; i++) {
-        if (slotAvaliblity[i] === undefined) {
-          writeArrayBookDataAvailable(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, i, querySnapshot) //write firebase
-          break
-        } else if (slotAvaliblity[i] === 'empty') {
-          writeArrayBookDataEmpty(userDocument, myCheckOutDate, checkInTime, checkOutTime, currentUserUid, i, querySnapshot)
-          break
-        }
-      }
-
-      if (allNotAvailable(slotAvaliblity)) {
-        console.log("sorry no available");
-      }
-
+  const userBook = (parkId) => {
+    axios.post('http://localhost:3000/api/book', {
+      parkId,
+      currentUserUid,
+      checkOutTime,
+      checkInTime,
+      checkInDate
+    }).then(res => {
+      console.log(res.data);
     }).catch(function (error) {
-      console.log("Error getting document:", error);
+      console.log(error);
     })
-
   }
 
   const logOut = () => {
@@ -106,7 +85,7 @@ const FirebaseProvider = (props) => {
   return (
     <FirebaseContext.Provider
       value={{
-        writeFirebaseUserBook: writeFirebaseUserBook,
+        userBook: userBook,
         onChangeCheckInTime: onChangeCheckInTime,
         onChangeCheckOutTime: onChangeCheckOutTime,
         onChangeCheckInDate: onChangeCheckInDate,
@@ -117,7 +96,7 @@ const FirebaseProvider = (props) => {
         logOut: logOut,
         setSlotAvaliblityInformation: setSlotAvaliblityInformation,
         slotAvaliblityInformation: slotAvaliblityInformation,
-        userHistoryParkData: userHistoryParkData
+        userHistoryParkData: userHistoryParkData,
       }}>
       { props.children}
     </FirebaseContext.Provider >

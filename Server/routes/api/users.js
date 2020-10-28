@@ -1,14 +1,8 @@
 const express = require('express')
 const router = express.Router()
-const admin = require('firebase-admin');
-const serviceAccount = require('../../service-account-key.json');
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)
-});
+const { admin } = require('../../firebaseConfig')
 
 const db = admin.firestore();
-db.settings({ ignoreUndefinedProperties: true })
 
 router.post('/', (req, res) => {
   const docRef = db.collection("users");
@@ -60,5 +54,9 @@ router.post('/register', (req, res) => {
     });
 })
 
+
+// router.post('/userInformation', (req, res) =>{
+
+// })
 
 module.exports = router
