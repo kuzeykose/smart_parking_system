@@ -8,16 +8,17 @@ export const Container = styled.View`
   padding: 20px;
 `
 
-export const LogOutButton = styled.TouchableOpacity`
-background: red;
+export const UpdateButton = styled.TouchableOpacity`
+background: #F5C81C;
 justify-content: center;
 align-items: center;
-height: 44px;
+height: 40px;
 align-self: stretch;
 margin-top: 10px;
 border-radius:5px
+width: 100px;
 `
-export const LogOutText = styled.Text`
+export const UpdateButtonText = styled.Text`
 color: #fff;
 font-weight: bold;
 font-size: 18px;
@@ -31,6 +32,8 @@ margin-right: 50px;
 
 export const UserInformationText = styled.Text`
 margin-top: 10px;
+margin-bottom: 10px;
+padding-right: 50px;
 font-size: 24px;
 margin-left: 30px;
 color:#3b3b3b;
@@ -56,4 +59,10 @@ display: flex;
 flex-direction: row;
 text-align: center;
 justify-content: space-between;
+`
+
+export const Input = styled.TextInput`
+  border-color: #61cb61;
+  padding-right: 50px;
+  font-size: 24px;
 `

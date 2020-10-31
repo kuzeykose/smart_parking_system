@@ -3,28 +3,18 @@ import { UserContext } from '../../navigation/AuthProvider'
 import imagePeople from '../../imagePeople.jpg'
 
 import {
-  Container,
-  LogOutButton,
-  LogOutText,
+  UpdateButton,
+  UpdateButtonText,
   UserInformationText,
-  Description,
-  InitialInformationText,
-  UserIdText,
   TopView,
-
+  Input,
   InformationCard
 } from './style'
 
 import {
   SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  Button,
   Image,
-  Platform
+  View
 } from 'react-native';
 
 import { FirebaseContext } from '../../provider/FirebaseProvider';
@@ -45,45 +35,23 @@ const EditProfile = () => {
       </TopView>
       <InformationCard>
         <UserInformationText>Name:</UserInformationText>
-        <InitialInformationText>{value.userInformation.name}</InitialInformationText>
+        <Input
+          placeholder={value.userInformation.name}
+          value={value.editProfileName}
+          onChange={(text) => value.setEditProfileName(text)}
+        />
       </InformationCard>
       <InformationCard>
         <UserInformationText>Email:</UserInformationText>
-        <InitialInformationText>{value.userInformation.email}</InitialInformationText>
+        <UserInformationText>{value.userInformation.email}</UserInformationText>
       </InformationCard>
-      <InformationCard>
-        <UserInformationText>License Plate:</UserInformationText>
-        <InitialInformationText>{value.userInformation.licensePlate}</InitialInformationText>
-      </InformationCard>
+      <View style={{ marginLeft: 10 }}>
+        <UpdateButton title={"update"} onPress={() => { }}>
+          <UpdateButtonText>Update</UpdateButtonText>
+        </UpdateButton>
+      </View>
     </SafeAreaView>
   );
 };
 
 export default EditProfile;
-
-
-// <Container>
-// <View style={{ flexDirection: 'column', justifyContent: 'flex-end' }}>
-//   <Description>
-//     <UserInformationText>Name:</UserInformationText>
-//     <InitialInformationText>{value.userInformation.name}</InitialInformationText>
-//   </Description>
-//   <Description>
-//     <UserInformationText>Email:</UserInformationText>
-//     <InitialInformationText>{value.userInformation.email}</InitialInformationText>
-//   </Description>
-//   <Description>
-//     <UserInformationText>License Plate:</UserInformationText>
-//     <InitialInformationText>{value.userInformation.licensePlate}</InitialInformationText>
-//   </Description>
-// </View>
-// <View>
-//   <Description style={{ marginBottom: 20 }}>
-//     <UserInformationText>User id:</UserInformationText>
-//     <UserIdText>{value.userInformation.userUid}</UserIdText>
-//   </Description>
-//   <LogOutButton title={"logout"} onPress={value.logOut}>
-//     <LogOutText>Log Out</LogOutText>
-//   </LogOutButton>
-// </View>
-// </Container>

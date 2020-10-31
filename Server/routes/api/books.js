@@ -69,7 +69,7 @@ router.post('/', (req, res) => {
 
     if (notAvailableArray(slotAvaliblity)) {
       console.log("sorry no available");
-      res.send("not completed, slots are not available")
+      res.send("slotsAreNotAvailable")
     }
 
   }).catch(error => {

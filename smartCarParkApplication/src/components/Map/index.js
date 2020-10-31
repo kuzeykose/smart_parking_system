@@ -55,16 +55,6 @@ export default class Map extends Component {
     this.setState({ destination: null })
   }
 
-  bookedArea = () => {
-    alert("Booked!")
-    this.setState({ destination: null })
-  }
-
-  bookedAreaNotAvailable = () => {
-    alert("Not Available!")
-
-  }
-
   handleLocationSelected = (data, { geometry }) => {
     console.log(geometry);
     const { location: { lat: latitude, lng: longitude } } = geometry
@@ -134,12 +124,15 @@ export default class Map extends Component {
             <Back onPress={this.handleBack}>
               <Image source={backImage} />
             </Back>
-            <Details parkName={destination.title} parkId={destination.parkId} bookedArea={this.bookedArea} bookedAreaNotAvailable={this.bookedAreaNotAvailable} />
+            <Details
+              parkName={destination.title}
+              parkId={destination.parkId}
+              handleBack={this.handleBack}
+            />
           </Fragment>
         ) : (
             <Search onLocationSelected={this.handleLocationSelected} />
           )}
-        {/* <Search onLocationSelected={this.handleLocationSelected} /> */}
       </View >
     );
   }

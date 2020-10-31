@@ -6,10 +6,3 @@ const App = () => {
 };
 
 export default App;
-
-// <NavigationContainer>
-// <Tab.Navigator>
-//   <Tab.Screen name="Home" component={Homepage} />
-//   <Tab.Screen name="Settings" component={Settingspage} />
-// </Tab.Navigator>
-// </NavigationContainer>

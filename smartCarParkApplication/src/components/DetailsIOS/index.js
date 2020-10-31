@@ -14,6 +14,7 @@ import { View } from 'react-native';
 const DetailsIOS = (props) => {
   const firebaseContext = useContext(FirebaseContext);
   const selectedParkId = props.parkId;
+  const handleBack = props.handleBack
 
   return (
     <View>
@@ -62,8 +63,17 @@ const DetailsIOS = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
-        firebaseContext.userBook(selectedParkId)
+        firebaseContext.userBook(selectedParkId).then(res => {
+          if (res === "slotsAreNotAvailable") {
+            alert("Not Available!")
+          }
+          if (res === "completed") {
+            alert("Completed!")
+            handleBack()
+          }
+        })
       }}>
+
         <RequestButtonText>Book</RequestButtonText>
       </RequestButton>
     </View>
