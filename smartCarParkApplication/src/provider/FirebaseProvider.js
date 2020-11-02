@@ -33,14 +33,14 @@ const FirebaseProvider = (props) => {
 
 
   useEffect(() => {
-    axios.get('http://localhost:3000/')
+    axios.get('http://192.168.0.15:3000/')
       .then(function (response) {
         console.log(response.data);
       })
   }, [currentUserUid])
 
   useEffect(() => {
-    axios.post('http://localhost:3000/api/user', {
+    axios.post('http://192.168.0.15:3000/api/user', {
       currentUserUid
     }).then(res => {
       setUserInformation(res.data)
@@ -50,7 +50,7 @@ const FirebaseProvider = (props) => {
   }, [currentUserUid])
 
   const userBook = async (parkId) => {
-    const response = await axios.post('http://localhost:3000/api/book', {
+    const response = await axios.post('http://192.168.0.15:3000/api/book', {
       parkId,
       currentUserUid,
       checkOutTime,
