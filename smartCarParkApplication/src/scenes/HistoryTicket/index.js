@@ -13,7 +13,6 @@ const Tab = createMaterialTopTabNavigator();
 
 const Tickets = () => {
   const value = useContext(FirebaseContext);
-
   const allTickets = value.userHistoryParkData.map((inf, index) => {
     return <Ticket
       parkName={inf.parkName}

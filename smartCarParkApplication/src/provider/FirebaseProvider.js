@@ -11,6 +11,7 @@ const FirebaseProvider = (props) => {
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [userInformation, setUserInformation] = useState({})
   const [userHistoryParkData, setUserHistoryParkData] = useState([])
+  const [userActiveParkData, setUserActiveParkData] = useState([])
   const [editProfileName, setEditProfileName] = useState("")
   const [editProfileEmail, setEditProfileEmail] = useState("")
 
@@ -31,7 +32,6 @@ const FirebaseProvider = (props) => {
     setCheckInDate(currentDate);
   }
 
-
   useEffect(() => {
     axios.get('http://192.168.0.15:3000/')
       .then(function (response) {
@@ -43,14 +43,26 @@ const FirebaseProvider = (props) => {
     axios.post('http://192.168.0.15:3000/api/user', {
       currentUserUid
     }).then(res => {
-      setUserInformation(res.data)
+      setUserInformation(res.data.information)
+      setUserHistoryParkData(res.data.history)
+      setUserActiveParkData(res.data.active)
     }).catch(function (error) {
       console.log(error);
     })
   }, [currentUserUid])
 
+  const activeTicketCall = () => {
+    axios.post('http://192.168.0.15:3000/api/ticket', {
+      currentUserUid
+    }).then(res => {
+      console.log(res.data);
+    }).catch(function (error) {
+      console.log(error);
+    })
+  } // activeTickets
+
   const userBook = async (parkId) => {
-    const response = await axios.post('http://192.168.0.15:3000/api/book', {
+    const response = await axios.post('http://192.168.0.15:3000/api/book', { //returns slotsAreNotAvailable or completed
       parkId,
       currentUserUid,
       checkOutTime,
@@ -81,8 +93,10 @@ const FirebaseProvider = (props) => {
         userInformation: userInformation,
         logOut: logOut,
         userHistoryParkData: userHistoryParkData,
+        userActiveParkData: userActiveParkData,
         setEditProfileName: setEditProfileName,
-        setEditProfileEmail: setEditProfileEmail
+        setEditProfileEmail: setEditProfileEmail,
+        activeTicketCall: activeTicketCall
       }}>
       { props.children}
     </FirebaseContext.Provider >

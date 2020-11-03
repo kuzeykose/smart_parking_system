@@ -64,10 +64,12 @@ const DetailsIOS = (props) => {
 
       <RequestButton onPress={() => {
         firebaseContext.userBook(selectedParkId).then(res => {
+          console.log(res);
           if (res === "slotsAreNotAvailable") {
             alert("Not Available!")
           }
           if (res === "completed") {
+            firebaseContext.activeTicketCall()
             alert("Completed!")
             handleBack()
           }

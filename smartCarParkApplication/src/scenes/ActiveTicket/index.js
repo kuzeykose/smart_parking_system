@@ -6,16 +6,21 @@ import Auth from '@react-native-firebase/auth';
 import { Container, CustomButton } from './style'
 import { SafeAreaView, ScrollView, Button } from 'react-native';
 
-
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { PrivateValueStore } from '@react-navigation/native';
-
-const Tab = createMaterialTopTabNavigator();
 const Tickets = () => {
-
+  const value = useContext(FirebaseContext);
+  const allTickets = value.userActiveParkData.map((inf, index) => {
+    return <Ticket
+      parkName={inf.parkName}
+      date={inf.checkInDate}
+      time={inf.checkInTime + " - " + inf.checkOutTime}
+      parkSlotName={inf.parkSlot}
+      key={index}
+    />
+  }
+  )
   return (
     <ScrollView>
-      {/* {allTickets} */}
+      {allTickets}
     </ScrollView>
   );
 };
