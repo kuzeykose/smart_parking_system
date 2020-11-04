@@ -4,23 +4,28 @@ const { admin } = require('../../firebaseConfig')
 
 const db = admin.firestore();
 
+// send user information
 router.post('/', (req, res) => {
   const docRef = db.collection("users");
   docRef.doc(req.body.currentUserUid).get().then((data) => {
-    if (data && data.exists) {
-      const responseData = data.data();
-      res.send(JSON.stringify(responseData, null, "  "));
-    }
-  })
-});
 
-router.get('/', (req, res) => {
-  const docRef = db.collection("users");
-  docRef.get().then(querySnapshot => {
-    const data = querySnapshot.docs.map(allData => {
-      return allData.data()
+    const responseData = data.data();
+
+    data.ref.collection("activeBookedPark").get().then(element => {
+      active = element.docs.map(el => {
+        return el.data()
+      })
+      data.ref.collection("historyBookedPark").get().then(element => {
+        var history = element.docs.map(el => {
+          return el.data()
+        })
+        res.send({
+          active: active,
+          history: history,
+          information: responseData
+        });
+      })
     })
-    res.send(data)
   })
 });
 
@@ -53,10 +58,5 @@ router.post('/register', (req, res) => {
       res.send(error);
     });
 })
-
-
-// router.post('/userInformation', (req, res) =>{
-
-// })
 
 module.exports = router

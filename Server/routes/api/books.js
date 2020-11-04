@@ -8,17 +8,18 @@ const { setDbBookDataArray, setDbBookDataArrayEmpty } = require('../../firebaseH
 const db = admin.firestore();
 
 router.post('/', (req, res) => {
-
   // check all element in slotAvaliblity are they notAvailable?
   const notAvailableArray = arr => arr.every(v => v === "notAvailable")
-
   const bookDataInformation = switchFormatTimeAndDate(
     req.body.checkInDate,
     req.body.checkInTime,
     req.body.checkOutTime,
     req.body.currentUserUid,
-    req.body.parkId
+    req.body.parkId,
+    req.body.latitude,
+    req.body.longitude
   )
+
 
   // database selected park collection 
   const parkSlotsCollection = db
@@ -46,6 +47,8 @@ router.post('/', (req, res) => {
           bookDataInformation.checkInTime,
           bookDataInformation.checkOutTime,
           bookDataInformation.currentUserUid,
+          bookDataInformation.latitude,
+          bookDataInformation.longitude,
           index,
           querySnapshot
         )
@@ -59,6 +62,8 @@ router.post('/', (req, res) => {
           bookDataInformation.checkInTime,
           bookDataInformation.checkOutTime,
           bookDataInformation.currentUserUid,
+          bookDataInformation.latitude,
+          bookDataInformation.longitude,
           index,
           querySnapshot
         )

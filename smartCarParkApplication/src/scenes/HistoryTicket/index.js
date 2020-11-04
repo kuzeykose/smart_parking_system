@@ -20,6 +20,8 @@ const Tickets = () => {
       time={inf.checkInTime + " - " + inf.checkOutTime}
       parkSlotName={inf.parkSlot}
       key={index}
+      latitude={inf.latitude}
+      longitude={inf.longitude}
     />
   }
   );

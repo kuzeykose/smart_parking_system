@@ -1,26 +1,27 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import Ticket from '../../components/Ticket'
-import firestore, { firebase } from '@react-native-firebase/firestore';
-import Auth from '@react-native-firebase/auth';
-import { Container, CustomButton } from './style'
-import { SafeAreaView, ScrollView, Button } from 'react-native';
+
+import { ScrollView } from 'react-native';
 
 const Tickets = () => {
   const value = useContext(FirebaseContext);
-  const allTickets = value.userActiveParkData.map((inf, index) => {
-    return <Ticket
-      parkName={inf.parkName}
-      date={inf.checkInDate}
-      time={inf.checkInTime + " - " + inf.checkOutTime}
-      parkSlotName={inf.parkSlot}
-      key={index}
-    />
-  }
-  )
+  console.log(value.userActiveParkData);
+  // const allTickets = value.userActiveParkData.map((inf, index) => {
+  //   return <Ticket
+  //     parkName={inf.parkName}
+  //     date={inf.checkInDate}
+  //     time={inf.checkInTime + " - " + inf.checkOutTime}
+  //     parkSlotName={inf.parkSlot}
+  //     key={index}
+  //     latitude={inf.latitude}
+  //     longitude={inf.longitude}
+  //   />
+  // }
+  // )
   return (
     <ScrollView>
-      {allTickets}
+      {/* {allTickets} */}
     </ScrollView>
   );
 };

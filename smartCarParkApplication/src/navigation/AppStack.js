@@ -30,7 +30,7 @@ const AppStack = () => {
             tabBarIcon: ({ color, size }) => (
               <Icon name="bookmarks" color={color} size={size} />
             ),
-            tabBarBadge: 1,
+            // tabBarBadge: 2,
           }}
         />
         <Tab.Screen

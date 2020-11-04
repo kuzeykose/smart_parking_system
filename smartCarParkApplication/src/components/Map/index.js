@@ -125,8 +125,7 @@ export default class Map extends Component {
               <Image source={backImage} />
             </Back>
             <Details
-              parkName={destination.title}
-              parkId={destination.parkId}
+              destinationInformation={destination}
               handleBack={this.handleBack}
             />
           </Fragment>

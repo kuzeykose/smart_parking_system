@@ -55,15 +55,17 @@ const FirebaseProvider = (props) => {
     axios.post('http://192.168.0.15:3000/api/ticket', {
       currentUserUid
     }).then(res => {
-      console.log(res.data);
+      setUserActiveParkData(res.data)
     }).catch(function (error) {
       console.log(error);
     })
   } // activeTickets
 
-  const userBook = async (parkId) => {
+  const userBook = async (parkId, latitude, longitude) => {
     const response = await axios.post('http://192.168.0.15:3000/api/book', { //returns slotsAreNotAvailable or completed
       parkId,
+      latitude,
+      longitude,
       currentUserUid,
       checkOutTime,
       checkInTime,

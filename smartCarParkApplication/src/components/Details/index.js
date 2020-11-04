@@ -17,7 +17,7 @@ const Details = (props) => {
   return (
     <Container>
       <PlatformDetails
-        parkId={props.parkId}
+        destinationInformation={props.destinationInformation}
         handleBack={props.handleBack}
       />
     </Container >

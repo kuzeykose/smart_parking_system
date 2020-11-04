@@ -13,7 +13,7 @@ import { View } from 'react-native';
 
 const DetailsIOS = (props) => {
   const firebaseContext = useContext(FirebaseContext);
-  const selectedParkId = props.parkId;
+  const destinationInformation = props.destinationInformation;
   const handleBack = props.handleBack
 
   return (
@@ -63,14 +63,18 @@ const DetailsIOS = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
-        firebaseContext.userBook(selectedParkId).then(res => {
+        firebaseContext.userBook(
+          destinationInformation.parkId,
+          destinationInformation.latitude,
+          destinationInformation.longitude
+        ).then(res => {
           console.log(res);
           if (res === "slotsAreNotAvailable") {
             alert("Not Available!")
           }
           if (res === "completed") {
-            firebaseContext.activeTicketCall()
             alert("Completed!")
+            firebaseContext.activeTicketCall()
             handleBack()
           }
         })

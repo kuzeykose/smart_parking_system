@@ -6,15 +6,21 @@ function setDbBookDataArray(
   checkInTime,
   checkOutTime,
   currentUserUid,
+  latitude,
+  longitude,
   index,
   snapShot) {
+
 
   let activeDoc = { // for user active data  
     "checkInDate": checkInDate,
     "checkInTime": checkInTime,
     "checkOutTime": checkOutTime,
-    "userId": currentUserUid
+    "userId": currentUserUid,
+    "latitude": latitude,
+    "longitude": longitude,
   }
+
 
   let bookData = { // available or notAvailable uses
     "checkInTime": checkInTime,
@@ -50,8 +56,20 @@ function setDbBookDataArrayEmpty(
   checkInTime,
   checkOutTime,
   currentUserUid,
+  latitude,
+  longitude,
   index,
   snapShot) {
+
+  let activeDoc = { // for user active data  
+    "checkInDate": checkInDate,
+    "checkInTime": checkInTime,
+    "checkOutTime": checkOutTime,
+    "userId": currentUserUid,
+    "latitude": latitude,
+    "longitude": longitude,
+  }
+
 
   let bookDataIfNotSameTime = { // empty uses because creating date at the same time
     [checkInDate]: [
