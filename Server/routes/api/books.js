@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     req.body.latitude,
     req.body.longitude
   )
-
+  console.log(bookDataInformation.latitude);
 
   // database selected park collection 
   const parkSlotsCollection = db

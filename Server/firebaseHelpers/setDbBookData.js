@@ -10,7 +10,8 @@ function setDbBookDataArray(
   longitude,
   index,
   snapShot) {
-
+  console.log(latitude,
+    longitude);
 
   let activeDoc = { // for user active data  
     "checkInDate": checkInDate,

@@ -62,6 +62,7 @@ const FirebaseProvider = (props) => {
   } // activeTickets
 
   const userBook = async (parkId, latitude, longitude) => {
+    console.log(parkId, latitude, longitude);
     const response = await axios.post('http://192.168.0.15:3000/api/book', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,

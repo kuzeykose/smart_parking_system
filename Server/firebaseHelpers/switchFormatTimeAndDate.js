@@ -1,6 +1,6 @@
 // dates and time comes in the string format 
 // changing date format helps to split
-const switchTimeAndDate = (checkInDate, checkInTime, checkOutTime, currentUserUid, parkId) => {
+const switchTimeAndDate = (checkInDate, checkInTime, checkOutTime, currentUserUid, parkId, latitude, longitude) => {
 
   const date = new Date(checkInDate)
   const dateCheckInDate = date.toLocaleDateString().split("/")
@@ -20,7 +20,9 @@ const switchTimeAndDate = (checkInDate, checkInTime, checkOutTime, currentUserUi
     checkInTime: selectedCheckInTime,
     checkOutTime: selectedCheckOutTime,
     parkId: parkId,
-    currentUserUid: currentUserUid
+    currentUserUid: currentUserUid,
+    latitude: latitude,
+    longitude: longitude
   }
 }
 
