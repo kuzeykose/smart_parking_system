@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../components/Login'
 import Register from '../components/Register'
 
+
 const Stack = createStackNavigator();
 
 const AuthStack = (props) => {

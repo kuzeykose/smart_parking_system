@@ -16,7 +16,7 @@ import {
   SignUpText
 } from './style'
 
-const Register = (props) => {
+const Register = ({ navigation }) => {
   return (
     <UserContext.Consumer>
       {
@@ -59,8 +59,13 @@ const Register = (props) => {
                 </View>
               </View>
               <SignUpButton onPress={() => {
-                user.register(user.fullName, user.licensePlate, user.email, user.password)
-
+                user.register(user.fullName, user.licensePlate, user.email, user.password).then(res => {
+                  console.log(res);
+                  if (res === "userCreated") {
+                    alert("Pleas check you email, We send verification mail")
+                    navigation.navigate('Login')
+                  }
+                })
               }}>
                 <SignUpText>Sign up</SignUpText>
               </SignUpButton>

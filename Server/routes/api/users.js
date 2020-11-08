@@ -31,7 +31,6 @@ router.post('/', (req, res) => {
   })
 });
 
-
 // Register -> {name, licencePlate, email, userUid}
 router.post('/register', (req, res) => {
   const actionCodeSettings = {
@@ -39,28 +38,26 @@ router.post('/register', (req, res) => {
     handleCodeInApp: false
   };
 
-
   admin.auth().createUser({
     email: req.body.email,
     password: req.body.password,
   })
     .then(cred => {
-      // const userUid = cred.uid
-      // const docRef = db.collection('users').doc(userUid);
-      // docRef.set({
-      //   name: req.body.fullName,
-      //   licensePlate: req.body.licensePlate,
-      //   email: req.body.email,
-      //   userUid: userUid
-      // });
-      // res.send("userCreated")
+      const userUid = cred.uid
+      const docRef = db.collection('users').doc(userUid);
+      docRef.set({
+        name: req.body.fullName,
+        licensePlate: req.body.licensePlate,
+        email: req.body.email,
+        userUid: userUid
+      });
 
       admin.auth()
         .generateEmailVerificationLink(cred.email, actionCodeSettings)
         .then(link => {
           sendEmailVerification(cred.email, link)
         })
-
+      res.send("userCreated")
 
     })
     .catch(error => {

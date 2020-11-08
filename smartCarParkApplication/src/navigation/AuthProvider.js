@@ -5,12 +5,15 @@ import axios from 'axios'
 const UserContext = React.createContext()
 
 const AuthProvider = (props) => {
-
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [fullName, setFullName] = useState("")
   const [licensePlate, setLicensePlate] = useState("")
   const [userCreated, setUserCreated] = useState(false)
+
+  const checkMailVerification = () => {
+
+  }
 
   const signIn = (email, password) => {
     Auth()
@@ -30,21 +33,16 @@ const AuthProvider = (props) => {
   }
 
   // Pass parameters to server for register
-  const register = (fullName, licensePlate, email, password) => {
-    axios.post('http://localhost:3000/api/user/register', {
+  const register = async (fullName, licensePlate, email, password) => {
+    const response = await axios.post('http://localhost:3000/api/user/register', {
       fullName,
       licensePlate,
       email,
       password
-    }).then(res => {
-      console.log(res.data);
-      if (res.data === "userCreated") {
-        return "okey"
-      }
     }).catch(function (error) {
       console.log(error);
-      return "not okey"
     })
+    return response.data
   }
 
   return (
