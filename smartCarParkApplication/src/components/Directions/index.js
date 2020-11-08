@@ -1,4 +1,3 @@
-
 import React from "react";
 import MapViewDirections from "react-native-maps-directions";
 

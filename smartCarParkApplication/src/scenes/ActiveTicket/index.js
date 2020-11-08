@@ -7,7 +7,6 @@ import { ScrollView } from 'react-native';
 const Tickets = () => {
   const value = useContext(FirebaseContext);
 
-
   const allTickets = value.userActiveParkData.map((inf, index) => {
     return <Ticket
       parkName={inf.parkName}

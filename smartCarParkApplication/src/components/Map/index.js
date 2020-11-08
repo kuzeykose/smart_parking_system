@@ -56,7 +56,6 @@ export default class Map extends Component {
   }
 
   handleLocationSelected = (data, { geometry }) => {
-    console.log(geometry);
     const { location: { lat: latitude, lng: longitude } } = geometry
     this.setState({
       destination: {

@@ -68,15 +68,18 @@ const DetailsIOS = (props) => {
           destinationInformation.latitude,
           destinationInformation.longitude
         ).then(res => {
+
           console.log(res);
           if (res === "slotsAreNotAvailable") {
             alert("Not Available!")
           }
           if (res === "completed") {
             alert("Completed!")
-            firebaseContext.activeTicketCall()
+
             handleBack()
           }
+        }).then(() => {
+          firebaseContext.activeTicketCall()
         })
       }}>
 

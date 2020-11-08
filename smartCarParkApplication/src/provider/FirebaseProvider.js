@@ -33,14 +33,15 @@ const FirebaseProvider = (props) => {
   }
 
   useEffect(() => {
-    axios.get('http://192.168.0.15:3000/')
+    axios.get('http://localhost:3000/')
       .then(function (response) {
         console.log(response.data);
       })
   }, [currentUserUid])
 
+  //get saved data in database
   useEffect(() => {
-    axios.post('http://192.168.0.15:3000/api/user', {
+    axios.post('http://localhost:3000/api/user', {
       currentUserUid
     }).then(res => {
       setUserInformation(res.data.information)
@@ -51,19 +52,19 @@ const FirebaseProvider = (props) => {
     })
   }, [currentUserUid])
 
-  const activeTicketCall = () => {
-    axios.post('http://192.168.0.15:3000/api/ticket', {
+  const activeTicketCall = async () => {
+    await axios.post('http://localhost:3000/api/ticket', {
       currentUserUid
     }).then(res => {
       setUserActiveParkData(res.data)
     }).catch(function (error) {
       console.log(error);
     })
-  } // activeTickets
+  }
 
   const userBook = async (parkId, latitude, longitude) => {
     console.log(parkId, latitude, longitude);
-    const response = await axios.post('http://192.168.0.15:3000/api/book', { //returns slotsAreNotAvailable or completed
+    const response = await axios.post('http://localhost:3000/api/book', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,
       longitude,
