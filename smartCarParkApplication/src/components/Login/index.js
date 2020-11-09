@@ -18,7 +18,9 @@ import {
   SignInText,
   NewUserText,
   ShowRegisterButton,
-  CreateAccountText
+  CreateAccountText,
+  ForgetPasswordText,
+  ForgetPassword
 } from './style'
 
 const LoginPage = ({ navigation }) => {
@@ -49,9 +51,14 @@ const LoginPage = ({ navigation }) => {
                   />
                 </View>
               </View>
-              <SignInButton onPress={() => { user.signIn(user.email, user.password) }}>
-                <SignInText>Sign in</SignInText>
-              </SignInButton>
+              <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                <SignInButton onPress={() => { user.signIn(user.email, user.password) }}>
+                  <SignInText>Sign in</SignInText>
+                </SignInButton>
+                <ForgetPassword onPress={() => { navigation.navigate('Forgot Password') }}>
+                  <ForgetPasswordText>Forgot Password</ForgetPasswordText>
+                </ForgetPassword>
+              </View>
             </View>
 
             <View style={{ flexDirection: 'row' }}>

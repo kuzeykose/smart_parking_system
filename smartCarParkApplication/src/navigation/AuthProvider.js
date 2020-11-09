@@ -11,10 +11,6 @@ const AuthProvider = (props) => {
   const [licensePlate, setLicensePlate] = useState("")
   const [userCreated, setUserCreated] = useState(false)
 
-  const checkMailVerification = () => {
-
-  }
-
   const signIn = (email, password) => {
     Auth()
       .signInWithEmailAndPassword(email, password)
@@ -45,6 +41,14 @@ const AuthProvider = (props) => {
     return response.data
   }
 
+  const passwordChange = (email) => {
+    axios.post('http://localhost:3000/api/user/forgotpassword', {
+      email
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+
   return (
     <UserContext.Provider
       value={{
@@ -60,7 +64,8 @@ const AuthProvider = (props) => {
         signIn: signIn,
         register: register,
         userCreated: userCreated,
-        setUserCreated: setUserCreated
+        setUserCreated: setUserCreated,
+        passwordChange: passwordChange
       }}
     >
       {props.children}

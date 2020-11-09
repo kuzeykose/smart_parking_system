@@ -9,13 +9,13 @@ export const Container = styled.View`
   padding: 60px;
 `
 export const HelloText = styled.Text`
-  color: #292929;
-  font-size: 24px;
+  color: #61cb61;
+  font-size: 28px;
   text-align: center;
 `
 export const HelloTextSmall = styled.Text`
   color: #292929;
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
 `
 
@@ -74,19 +74,6 @@ export const ShowRegisterButton = styled.TouchableOpacity`
 
 export const CreateAccountText = styled.Text`
   font-size: 17px;
-  color: #55bf57;
-  padding-left:6px
-`
-
-export const ForgetPasswordText = styled.Text`
-  margin-top:35px;
-  font-size: 17px;
-  color: #55bf57;
-  padding-left:6px
-`
-
-export const ForgetPassword = styled.TouchableOpacity`
-
   color: #55bf57;
   padding-left:6px
 `

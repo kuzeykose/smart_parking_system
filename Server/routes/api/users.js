@@ -5,6 +5,11 @@ const sendEmailVerification = require('../../firebaseHelpers/sendEmailVerificati
 
 const db = admin.firestore();
 
+const actionCodeSettings = {
+  url: 'http://localhost:3000',
+  handleCodeInApp: false
+};
+
 // send user information
 router.post('/', (req, res) => {
 
@@ -33,10 +38,7 @@ router.post('/', (req, res) => {
 
 // Register -> {name, licencePlate, email, userUid}
 router.post('/register', (req, res) => {
-  const actionCodeSettings = {
-    url: 'http://localhost:3000',
-    handleCodeInApp: false
-  };
+
 
   admin.auth().createUser({
     email: req.body.email,
@@ -70,6 +72,18 @@ router.post('/register', (req, res) => {
         res.send('That email address is invalid!')
       }
       res.send(error);
+    });
+})
+
+router.post('/forgotpassword', (req, res) => {
+  console.log(req.body.email);
+  admin.auth().generatePasswordResetLink(req.body.email, actionCodeSettings)
+    .then((link) => {
+      console.log(link);
+      sendEmailVerification(req.body.email, link)
+    })
+    .catch((error) => {
+      console.log(error);
     });
 })
 
