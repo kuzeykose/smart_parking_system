@@ -10,6 +10,7 @@ import {
   CheckContainer
 } from './style'
 import { View } from 'react-native';
+import { firebase } from '@react-native-firebase/auth';
 
 const DetailsIOS = (props) => {
   const firebaseContext = useContext(FirebaseContext);
@@ -74,12 +75,11 @@ const DetailsIOS = (props) => {
           }
           if (res === "completed") {
             alert("Completed!")
+            firebaseContext.setTrigeredActiveBooked("completed")
             handleBack()
           }
         })
-
       }}>
-
         <RequestButtonText>Book</RequestButtonText>
       </RequestButton>
     </View>

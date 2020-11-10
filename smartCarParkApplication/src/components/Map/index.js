@@ -49,14 +49,12 @@ const Map = () => {
   }, [])
 
 
-
   handleBack = () => {
     setDestination(null)
   }
 
   handleLocationSelected = (data, { geometry }) => {
     const { location: { lat: latitude, lng: longitude } } = geometry
-    console.log(geometry);
     setDestination({
       latitude: latitude,
       longitude: longitude,

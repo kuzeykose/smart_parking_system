@@ -12,6 +12,7 @@ const FirebaseProvider = (props) => {
   const [userInformation, setUserInformation] = useState({})
   const [userHistoryParkData, setUserHistoryParkData] = useState([])
   const [userActiveParkData, setUserActiveParkData] = useState([])
+  const [trigeredActiveBooked, setTrigeredActiveBooked] = useState()
   const [editProfileName, setEditProfileName] = useState("")
   const [editProfileEmail, setEditProfileEmail] = useState("")
 
@@ -37,7 +38,7 @@ const FirebaseProvider = (props) => {
       .then(function (response) {
         console.log(response.data);
       })
-  }, [currentUserUid])
+  }, [])
 
   //get saved data in database
   useEffect(() => {
@@ -50,20 +51,21 @@ const FirebaseProvider = (props) => {
     }).catch(function (error) {
       console.log(error);
     })
-  }, [currentUserUid])
+  }, [])
 
-  const activeTicketCall = async () => {
-    await axios.post('http://localhost:3000/api/ticket', {
+  useEffect(() => {
+    axios.post('http://localhost:3000/api/ticket', {
       currentUserUid
     }).then(res => {
+      console.log(res.data);
       setUserActiveParkData(res.data)
     }).catch(function (error) {
       console.log(error);
     })
-  }
+    setTrigeredActiveBooked(null)
+  }, [trigeredActiveBooked])
 
   const userBook = async (parkId, latitude, longitude) => {
-    console.log(parkId, latitude, longitude);
     const response = await axios.post('http://localhost:3000/api/book', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,
@@ -100,7 +102,7 @@ const FirebaseProvider = (props) => {
         userActiveParkData: userActiveParkData,
         setEditProfileName: setEditProfileName,
         setEditProfileEmail: setEditProfileEmail,
-        activeTicketCall: activeTicketCall
+        setTrigeredActiveBooked: setTrigeredActiveBooked
       }}>
       { props.children}
     </FirebaseContext.Provider >
