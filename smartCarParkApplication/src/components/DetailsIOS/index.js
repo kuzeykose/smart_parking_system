@@ -76,9 +76,8 @@ const DetailsIOS = (props) => {
             alert("Completed!")
             handleBack()
           }
-        }).then(() => {
-          firebaseContext.activeTicketCall()
         })
+
       }}>
 
         <RequestButtonText>Book</RequestButtonText>
