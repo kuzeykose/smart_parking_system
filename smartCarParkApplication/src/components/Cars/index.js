@@ -16,11 +16,11 @@ import {
 
 import { FirebaseContext } from '../../provider/FirebaseProvider';
 
-const Cars = () => {
+const Cars = ({ navigation }) => {
   const value = useContext(FirebaseContext);
   return (
     <SafeAreaView>
-      <AddCar>
+      <AddCar onPress={() => navigation.navigate('Add Car')}>
         <AddCarText>
           Add Car
         </AddCarText>

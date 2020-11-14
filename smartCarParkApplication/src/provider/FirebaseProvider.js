@@ -57,7 +57,6 @@ const FirebaseProvider = (props) => {
     axios.post('http://localhost:3000/api/ticket', {
       currentUserUid
     }).then(res => {
-      console.log(res.data);
       setUserActiveParkData(res.data)
     }).catch(function (error) {
       console.log(error);
@@ -66,7 +65,7 @@ const FirebaseProvider = (props) => {
   }, [trigeredActiveBooked])
 
   const userBook = async (parkId, latitude, longitude) => {
-    const response = await axios.post('http://localhost:3000/api/book', { //returns slotsAreNotAvailable or completed
+    const response = await axios.post('http://localhost:3000/api/book/bookslot', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,
       longitude,
@@ -77,7 +76,18 @@ const FirebaseProvider = (props) => {
     }).catch(function (error) {
       console.log(error);
     })
-    return response.data
+    // return response.data
+  }
+
+  const userUnbook = (parkId, checkInDateTicket, checkInTimeTicket, checkOutTimeTicket) => {
+    axios.post('http://localhost:3000/api/book/bookcancelation', {
+      parkId,
+      currentUserUid,
+      checkInDateTicket,
+      checkInTimeTicket,
+      checkOutTimeTicket,
+      currentUserUid
+    }).then(res => console.log(res))
   }
 
   const logOut = () => {
@@ -102,7 +112,8 @@ const FirebaseProvider = (props) => {
         userActiveParkData: userActiveParkData,
         setEditProfileName: setEditProfileName,
         setEditProfileEmail: setEditProfileEmail,
-        setTrigeredActiveBooked: setTrigeredActiveBooked
+        setTrigeredActiveBooked: setTrigeredActiveBooked,
+        userUnbook: userUnbook
       }}>
       { props.children}
     </FirebaseContext.Provider >

@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import EditProfile from '../../components/EditProfile';
 import SettingsOptions from '../../components/SettingsOptions'
 import ChangePassword from '../../components/ChangePassword'
+import AddCar from '../../components/AddCar'
 import Cars from '../../components/Cars'
 import Notification from '../../components/Notification'
 
@@ -16,7 +17,9 @@ const Settings = () => {
       <Stack.Screen name="Edit Profile" component={EditProfile} />
       <Stack.Screen name="Change Password" component={ChangePassword} />
       <Stack.Screen name="Cars" component={Cars} />
+      <Stack.Screen name="Add Car" component={AddCar} />
       <Stack.Screen name="Notification" component={Notification} />
+
     </Stack.Navigator>
   );
 };

@@ -11,6 +11,7 @@ const Tab = createBottomTabNavigator();
 
 const AppStackNavigator = () => {
   const value = useContext(FirebaseContext);
+
   return (
     <Tab.Navigator>
       <Tab.Screen

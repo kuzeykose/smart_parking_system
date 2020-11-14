@@ -9,9 +9,10 @@ const Tickets = () => {
 
   const allTickets = value.userActiveParkData.map((inf, index) => {
     return <Ticket
-      parkName={inf.parkName}
-      date={inf.checkInDate}
-      time={inf.checkInTime + " - " + inf.checkOutTime}
+      parkId={inf.parkId}
+      checkInDate={inf.checkInDate}
+      checkInTime={inf.checkInTime}
+      checkOutTime={inf.checkOutTime}
       parkSlotName={inf.parkSlot}
       key={index}
       latitude={inf.latitude}
@@ -28,9 +29,3 @@ const Tickets = () => {
 };
 
 export default Tickets;
-
-// <Button
-// onPress={() => {
-//   value.setCancel([inf.checkInDate, inf.checkInTime, inf.checkOutTime])
-// }}
-// title="Cancel" color='red' />

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
+import { FirebaseContext } from '../../provider/FirebaseProvider'
+import { Button } from 'react-native'
 
 import {
   Card,
@@ -7,6 +9,7 @@ import {
 } from './style'
 
 const Tickets = (props) => {
+  const FirebaseProvider = useContext(FirebaseContext);
   const region = {
     latitude: Number(props.latitude), // props.latitude
     longitude: Number(props.longitude), // props.longitude
@@ -27,17 +30,16 @@ const Tickets = (props) => {
           anchor={{ x: 0, y: 0 }} >
         </Marker>
       </MapView>
-      <CardText>{props.parkName}</CardText>
-      <CardText>{props.date}</CardText>
-      <CardText>{props.time}</CardText>
+      <CardText>{props.parkId}</CardText>
+      <CardText>{props.checkInDate}</CardText>
+      <CardText>{props.checkInTime + " - " + props.checkOutTime}</CardText>
       <CardText>{props.parkSlotName}</CardText>
+      <Button title={"delete"} onPress={() => {
+        FirebaseProvider.userUnbook(props.parkId, props.checkInDate, props.checkInTime, props.checkOutTime)
+      }} />
     </Card>
 
   );
 };
 
 export default Tickets;
-
-//<LocationBox>
-//  <LocationText>Bilgi Uni</LocationText>
-//</LocationBox> 

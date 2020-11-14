@@ -10,7 +10,6 @@ import {
   CheckContainer
 } from './style'
 import { View } from 'react-native';
-import { firebase } from '@react-native-firebase/auth';
 
 const DetailsIOS = (props) => {
   const firebaseContext = useContext(FirebaseContext);
@@ -87,3 +86,5 @@ const DetailsIOS = (props) => {
 }
 
 export default DetailsIOS
+
+
