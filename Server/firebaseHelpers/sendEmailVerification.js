@@ -12,9 +12,11 @@ function sendEmailVerification(email, link) {
   const mailOptions = {
     from: 'Bilgi University Parking Policy Support <Abc_Support@gmail.com>',
     to: email,
+    subject: "Parking Policy",
     html:
       `<p style="font-size: 16px;">Thanks for signing up</p>
-        <p style="font-size: 12px;">Pleas verify your account using: ${link}</p>
+        <p style="font-size: 12px;">Pleas verify your account using: </p>
+        <a href="${link}">${link}</a>
         <p style="font-size: 12px;">Best Regards,</p>
         <p style="font-size: 12px;">-Support Team</p>
       ` // email content in HTML

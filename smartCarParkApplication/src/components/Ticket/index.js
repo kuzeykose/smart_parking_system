@@ -9,10 +9,11 @@ import {
 } from './style'
 
 const Tickets = (props) => {
+
   const FirebaseProvider = useContext(FirebaseContext);
   const region = {
-    latitude: Number(props.latitude), // props.latitude
-    longitude: Number(props.longitude), // props.longitude
+    latitude: Number(props.information.latitude), // props.latitude
+    longitude: Number(props.information.longitude), // props.longitude
     latitudeDelta: 0.00550,
     longitudeDelta: 0.00550,
   }
@@ -30,12 +31,19 @@ const Tickets = (props) => {
           anchor={{ x: 0, y: 0 }} >
         </Marker>
       </MapView>
-      <CardText>{props.parkId}</CardText>
-      <CardText>{props.checkInDate}</CardText>
-      <CardText>{props.checkInTime + " - " + props.checkOutTime}</CardText>
-      <CardText>{props.parkSlotName}</CardText>
+      <CardText>{props.information.parkId}</CardText>
+      <CardText>{props.information.checkInDate}</CardText>
+      <CardText>{props.information.checkInTime + " - " + props.information.checkOutTime}</CardText>
+      <CardText>{props.information.parkSlot}</CardText>
       <Button title={"delete"} onPress={() => {
-        FirebaseProvider.userUnbook(props.parkId, props.checkInDate, props.checkInTime, props.checkOutTime)
+        FirebaseProvider.userUnbook(
+          props.information.parkId,
+          props.information.checkInDate,
+          props.information.checkInTime,
+          props.information.checkOutTime,
+          props.information.parkSlot,
+          props.information.docId
+        )
       }} />
     </Card>
 

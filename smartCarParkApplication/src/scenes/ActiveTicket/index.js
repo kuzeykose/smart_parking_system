@@ -8,15 +8,10 @@ const Tickets = () => {
   const value = useContext(FirebaseContext);
 
   const allTickets = value.userActiveParkData.map((inf, index) => {
+    console.log(inf);
     return <Ticket
-      parkId={inf.parkId}
-      checkInDate={inf.checkInDate}
-      checkInTime={inf.checkInTime}
-      checkOutTime={inf.checkOutTime}
-      parkSlotName={inf.parkSlot}
+      information={inf}
       key={index}
-      latitude={inf.latitude}
-      longitude={inf.longitude}
     />
   }
   )

@@ -15,20 +15,14 @@ import {
 import { FirebaseContext } from '../../provider/FirebaseProvider';
 
 const AddCar = () => {
-
-  const [states, setStates] = useState('')
   const value = useContext(FirebaseContext);
 
   return (
     <View style={styles.scrollContainer}>
       <Text>Select a car</Text>
       <RNPickerSelect
-        onValueChange={(value) => console.log(value)}
-        items={[
-          { label: 'Football', value: 'football' },
-          { label: 'Baseball', value: 'baseball' },
-          { label: 'Hockey', value: 'hockey' },
-        ]}
+        onValueChange={(car) => { value.setSelectedCarModel(car) }}
+        items={value.carModels}
         style={pickerSelectStyles}
       />
     </View>

@@ -13,6 +13,8 @@ const FirebaseProvider = (props) => {
   const [userHistoryParkData, setUserHistoryParkData] = useState([])
   const [userActiveParkData, setUserActiveParkData] = useState([])
   const [trigeredActiveBooked, setTrigeredActiveBooked] = useState()
+  const [carModels, setCarModels] = useState([])
+  const [selectedCarModel, setSelectedCarModel] = useState()
   const [editProfileName, setEditProfileName] = useState("")
   const [editProfileEmail, setEditProfileEmail] = useState("")
 
@@ -64,7 +66,29 @@ const FirebaseProvider = (props) => {
     setTrigeredActiveBooked(null)
   }, [trigeredActiveBooked])
 
+  // useEffect(() => {
+  //   axios.get('http://localhost:3000/api/car')
+  //     .then(res => {
+  //       setCarModels(res.data)
+  //     }).catch(function (error) {
+  //       console.log(error);
+  //     })
+  // }, [])
+
+  // useEffect(() => {
+  //   axios.post('http://localhost:3000/api/car/selected-car', {
+  //     selectedCarModel
+  //   })
+  //     .then(res => {
+  //       console.log(res.data);
+  //     }).catch(function (error) {
+  //       console.log(error);
+  //     })
+  // }, [selectedCarModel])
+
+
   const userBook = async (parkId, latitude, longitude) => {
+    console.log();
     const response = await axios.post('http://localhost:3000/api/book/bookslot', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,
@@ -76,18 +100,24 @@ const FirebaseProvider = (props) => {
     }).catch(function (error) {
       console.log(error);
     })
-    // return response.data
+    return response.data
   }
 
-  const userUnbook = (parkId, checkInDateTicket, checkInTimeTicket, checkOutTimeTicket) => {
+  const userUnbook = (parkId, checkInDateTicket, checkInTimeTicket, checkOutTimeTicket, parkSlot, docId) => {
     axios.post('http://localhost:3000/api/book/bookcancelation', {
       parkId,
       currentUserUid,
       checkInDateTicket,
       checkInTimeTicket,
       checkOutTimeTicket,
-      currentUserUid
-    }).then(res => console.log(res))
+      currentUserUid,
+      parkSlot,
+      docId
+    }).then(res => {
+      setTrigeredActiveBooked("completed1")
+    }).catch(function (error) {
+      console.log(error);
+    })
   }
 
   const logOut = () => {
@@ -113,7 +143,9 @@ const FirebaseProvider = (props) => {
         setEditProfileName: setEditProfileName,
         setEditProfileEmail: setEditProfileEmail,
         setTrigeredActiveBooked: setTrigeredActiveBooked,
-        userUnbook: userUnbook
+        userUnbook: userUnbook,
+        carModels: carModels,
+        setSelectedCarModel: setSelectedCarModel
       }}>
       { props.children}
     </FirebaseContext.Provider >

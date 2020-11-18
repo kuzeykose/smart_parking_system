@@ -75,6 +75,7 @@ const DetailsIOS = (props) => {
           if (res === "completed") {
             alert("Completed!")
             firebaseContext.setTrigeredActiveBooked("completed")
+
             handleBack()
           }
         })
