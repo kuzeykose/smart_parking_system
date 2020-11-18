@@ -1,7 +1,8 @@
-// 
+const { v4: uuidv4 } = require('uuid');
 function setDbBookDataArray(
   db,
   coll,
+  parkId,
   checkInDate,
   checkInTime,
   checkOutTime,
@@ -10,9 +11,9 @@ function setDbBookDataArray(
   longitude,
   index,
   snapShot) {
-  console.log(latitude,
-    longitude);
 
+
+  const docId = uuidv4()
   let activeDoc = { // for user active data  
     "checkInDate": checkInDate,
     "checkInTime": checkInTime,
@@ -20,6 +21,9 @@ function setDbBookDataArray(
     "userId": currentUserUid,
     "latitude": latitude,
     "longitude": longitude,
+    "parkId": parkId,
+    "parkSlot": snapShot.docs[index].id,
+    "docId": docId
   }
 
 
@@ -45,7 +49,7 @@ function setDbBookDataArray(
         console.log("Document successfully written!")
       })
 
-    db.collection('users').doc(`${currentUserUid}`).collection('activeBookedPark').add(activeDoc)
+    db.collection('users').doc(`${currentUserUid}`).collection('activeBookedPark').doc(docId).set(activeDoc)
   })
 }
 
@@ -53,6 +57,7 @@ function setDbBookDataArray(
 function setDbBookDataArrayEmpty(
   db,
   coll,
+  parkId,
   checkInDate,
   checkInTime,
   checkOutTime,
@@ -61,14 +66,18 @@ function setDbBookDataArrayEmpty(
   longitude,
   index,
   snapShot) {
+  const docId = uuidv4()
 
   let activeDoc = { // for user active data  
+    "parkId": parkId,
     "checkInDate": checkInDate,
     "checkInTime": checkInTime,
     "checkOutTime": checkOutTime,
     "userId": currentUserUid,
     "latitude": latitude,
     "longitude": longitude,
+    "parkSlot": snapShot.docs[index].id,
+    "docId": docId
   }
 
 
@@ -88,12 +97,10 @@ function setDbBookDataArrayEmpty(
       console.log("Document successfully written!")
     })
 
-  db.collection('users').doc(`${currentUserUid}`).collection('activeBookedPark').add(activeDoc)
+  db.collection('users').doc(`${currentUserUid}`).collection('activeBookedPark').doc(docId).set(activeDoc)
 }
 
 module.exports = {
   setDbBookDataArray,
   setDbBookDataArrayEmpty
 }
-
-
