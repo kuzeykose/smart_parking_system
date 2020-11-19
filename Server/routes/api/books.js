@@ -8,33 +8,24 @@ const { setDbBookDataArray, setDbBookDataArrayEmpty } = require('../../firebaseH
 const db = admin.firestore();
 
 router.post('/bookslot', (req, res) => {
+  const bookData = req.body
+
   // check all element in slotAvaliblity are they notAvailable?
   const notAvailableArray = arr => arr.every(v => v === "notAvailable")
-  const bookDataInformation = switchFormatTimeAndDate(
-    req.body.checkInDate,
-    req.body.checkInTime,
-    req.body.checkOutTime,
-    req.body.currentUserUid,
-    req.body.parkId,
-    req.body.latitude,
-    req.body.longitude
-  )
 
-  // database selected park collection 
+  const bookDataInformation = switchFormatTimeAndDate(bookData)
+
+  // database -> selected park collection 
   const parkSlotsCollection = db
     .collection('car-parks')
     .doc(bookDataInformation.parkId)
     .collection('parking-slots')
 
   parkSlotsCollection.get().then(querySnapshot => {
-    // get documnet in firebase, slotAcaliblity -> empty/ available/notAvailable
+    // get documnet in firebase, slotAvailability -> empty/ available/ notAvailable
+
     var slotAvaliblity = querySnapshot.docs.map(doc => {
-      return checkAvailableStatus(
-        doc,
-        bookDataInformation.checkInTime,
-        bookDataInformation.checkOutTime,
-        bookDataInformation.checkInDate
-      )
+      return checkAvailableStatus(doc, bookDataInformation)
     })
 
     for (let index = 0; index < slotAvaliblity.length; index++) {
@@ -42,13 +33,7 @@ router.post('/bookslot', (req, res) => {
         setDbBookDataArray(
           db,
           parkSlotsCollection,
-          bookDataInformation.parkId,
-          bookDataInformation.checkInDate,
-          bookDataInformation.checkInTime,
-          bookDataInformation.checkOutTime,
-          bookDataInformation.currentUserUid,
-          bookDataInformation.latitude,
-          bookDataInformation.longitude,
+          bookDataInformation,
           index,
           querySnapshot
         )
@@ -58,13 +43,7 @@ router.post('/bookslot', (req, res) => {
         setDbBookDataArrayEmpty(
           db,
           parkSlotsCollection,
-          bookDataInformation.parkId,
-          bookDataInformation.checkInDate,
-          bookDataInformation.checkInTime,
-          bookDataInformation.checkOutTime,
-          bookDataInformation.currentUserUid,
-          bookDataInformation.latitude,
-          bookDataInformation.longitude,
+          bookDataInformation,
           index,
           querySnapshot
         )
@@ -121,7 +100,6 @@ router.post('/bookcancelation', (req, res) => {
         res.send("success delete")
       })
     })
-
 
 })
 

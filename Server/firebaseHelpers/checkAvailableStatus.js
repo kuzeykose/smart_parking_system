@@ -1,7 +1,7 @@
-function checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate) {
+function checkAvailableStatus(doc, bookDataInformation) {
 
   const parkSlotData = doc.data()
-  const dataFromSlot = parkSlotData[checkInDate] || 0;
+  const dataFromSlot = parkSlotData[bookDataInformation.checkInDate] || 0;
 
   if (dataFromSlot === 0) {
     return "empty"
@@ -10,8 +10,8 @@ function checkAvailableStatus(doc, checkInTime, checkOutTime, checkInDate) {
   let checkArray = []
   for (let i = 0; i < dataFromSlot.length; i++) {
     if (
-      (checkInTime < dataFromSlot[i]["checkInTime"] && checkOutTime < dataFromSlot[i]["checkInTime"])
-      || (checkInTime > dataFromSlot[i]["checkOutTime"] && checkOutTime > dataFromSlot[i]["checkOutTime"])) {
+      (bookDataInformation.checkInTime < dataFromSlot[i]["checkInTime"] && bookDataInformation.checkOutTime < dataFromSlot[i]["checkInTime"])
+      || (bookDataInformation.checkInTime > dataFromSlot[i]["checkOutTime"] && bookDataInformation.checkOutTime > dataFromSlot[i]["checkOutTime"])) {
       checkArray.push("available")
     } else {
       checkArray.push("notAvailable")
