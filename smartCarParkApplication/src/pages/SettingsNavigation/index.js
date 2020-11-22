@@ -1,16 +1,16 @@
 import React, { useContext } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import EditProfile from '../../components/EditProfile';
+import EditProfile from '../EditProfile';
 import SettingsOptions from '../../components/SettingsOptions'
-import ChangePassword from '../../components/ChangePassword'
-import AddCar from '../../components/AddCar'
-import Cars from '../../components/Cars'
+import ChangePassword from '../ChangePassword'
+import AddCar from '../AddCar'
+import Cars from '../Cars'
 import Notification from '../../components/Notification'
 
 const Stack = createStackNavigator();
 
-const Settings = () => {
+const SettingsNavigation = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Settings" component={SettingsOptions} />
@@ -19,9 +19,8 @@ const Settings = () => {
       <Stack.Screen name="Cars" component={Cars} />
       <Stack.Screen name="Add Car" component={AddCar} />
       <Stack.Screen name="Notification" component={Notification} />
-
     </Stack.Navigator>
   );
 };
 
-export default Settings;
+export default SettingsNavigation;

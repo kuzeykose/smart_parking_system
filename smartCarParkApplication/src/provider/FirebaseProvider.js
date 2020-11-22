@@ -63,7 +63,6 @@ const FirebaseProvider = (props) => {
     }).catch(function (error) {
       console.log(error);
     })
-    setTrigeredActiveBooked(null)
   }, [trigeredActiveBooked])
 
   // useEffect(() => {
@@ -88,7 +87,6 @@ const FirebaseProvider = (props) => {
 
 
   const userBook = async (parkId, latitude, longitude) => {
-    console.log();
     const response = await axios.post('http://localhost:3000/api/book/bookslot', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,
@@ -114,7 +112,7 @@ const FirebaseProvider = (props) => {
       parkSlot,
       docId
     }).then(res => {
-      setTrigeredActiveBooked("completed1")
+      setTrigeredActiveBooked({})
     }).catch(function (error) {
       console.log(error);
     })

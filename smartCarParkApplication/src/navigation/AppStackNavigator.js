@@ -3,9 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FirebaseContext } from '../provider/FirebaseProvider'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import MapPage from '../scenes/MapPage'
-import Settings from '../scenes/Settings'
-import Tickets from '../scenes/Tickets'
+import MapPage from '../pages/MapPage'
+import SettingsNavigation from '../pages/SettingsNavigation'
+import TicketsNavigation from '../pages/TicketsNavigation'
 
 const Tab = createBottomTabNavigator();
 
@@ -26,7 +26,7 @@ const AppStackNavigator = () => {
       />
       <Tab.Screen
         name="Tickets"
-        component={Tickets}
+        component={TicketsNavigation}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="bookmarks" color={color} size={size} />
@@ -36,7 +36,7 @@ const AppStackNavigator = () => {
       />
       <Tab.Screen
         name="Settings"
-        component={Settings}
+        component={SettingsNavigation}
         options={{
           tabBarIcon: ({ color, size }) => (
             <Icon name="settings" color={color} size={size} />

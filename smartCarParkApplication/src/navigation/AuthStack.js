@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Login from '../components/Login'
-import Register from '../components/Register'
+import Login from '../pages/Login'
+import Register from '../pages/Register'
 import ForgotPassword from '../components/ForgotPassword'
 
 

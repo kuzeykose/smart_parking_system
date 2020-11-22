@@ -38,8 +38,6 @@ router.post('/', (req, res) => {
 
 // Register -> {name, licencePlate, email, userUid}
 router.post('/register', (req, res) => {
-
-
   admin.auth().createUser({
     email: req.body.email,
     password: req.body.password,
