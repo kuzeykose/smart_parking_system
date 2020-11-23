@@ -15,6 +15,8 @@ app.use('/api/book', require('./routes/api/books'))
 app.use('/api/ticket', require('./routes/api/tickets'))
 // app.use('/api/car', require('./routes/api/cars'))
 
+app.use('/admin-api/addCarPark', require('./routes/adminApi/addAllCarParkInFirebase'))
+
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
