@@ -17,6 +17,7 @@ const FirebaseProvider = (props) => {
   const [selectedCarModel, setSelectedCarModel] = useState()
   const [editProfileName, setEditProfileName] = useState("")
   const [editProfileEmail, setEditProfileEmail] = useState("")
+  const [searchItem, setSearchItem] = useState("")
 
   const currentUserUid = Auth().currentUser.uid
   // user select check Date Time
@@ -86,6 +87,25 @@ const FirebaseProvider = (props) => {
   // }, [selectedCarModel])
 
 
+  useEffect(() => {
+
+    const delayDebounceFn = setTimeout(() => {
+      console.log(searchItem)
+      axios.post('http://localhost:3000/api/carpark', {
+        searchItem
+      }).then(res => {
+        console.log(res);
+      }).catch(function (error) {
+        console.log(error);
+      })
+    }, 2000)
+
+    return () => clearTimeout(delayDebounceFn)
+
+  }, [searchItem])
+
+
+
   const userBook = async (parkId, latitude, longitude) => {
     const response = await axios.post('http://localhost:3000/api/book/bookslot', { //returns slotsAreNotAvailable or completed
       parkId,
@@ -143,7 +163,9 @@ const FirebaseProvider = (props) => {
         setTrigeredActiveBooked: setTrigeredActiveBooked,
         userUnbook: userUnbook,
         carModels: carModels,
-        setSelectedCarModel: setSelectedCarModel
+        setSelectedCarModel: setSelectedCarModel,
+        setSearchItem: setSearchItem,
+        searchItem: searchItem,
       }}>
       { props.children}
     </FirebaseContext.Provider >
