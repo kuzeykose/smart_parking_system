@@ -20,13 +20,12 @@ import {
   LocationTimeBox,
   LocationTimeTextSmall,
   LocationTimeText
-
 } from './style'
 
 const Map = () => {
-  const value = useContext(FirebaseContext)
+  const firebaseProvider = useContext(FirebaseContext)
   const [region, setRegion] = useState(null)
-  const [destination, setDestination] = useState(null)
+  // const [destination, setDestination] = useState(null)
   const [duration, setDuration] = useState(null)
 
   useEffect(() => {
@@ -50,17 +49,7 @@ const Map = () => {
 
 
   handleBack = () => {
-    setDestination(null)
-  }
-
-  handleLocationSelected = (data, { geometry }) => {
-    const { location: { lat: latitude, lng: longitude } } = geometry
-    setDestination({
-      latitude: latitude,
-      longitude: longitude,
-      title: data.description,
-      parkId: data.id
-    })
+    firebaseProvider.setSelectedCarPark(null)
   }
 
   // const { region, destination, duration } = this.state
@@ -74,11 +63,11 @@ const Map = () => {
         loadingEnabled
         ref={el => mapView = el}
       >
-        {destination && (
+        {firebaseProvider.selectedCarPark && (
           <Fragment>
             <Directions
               origin={region}
-              destination={destination}
+              destination={firebaseProvider.selectedCarPark}
               onReady={(result) => {
                 setDuration(Math.floor(result.duration))
                 mapView.fitToCoordinates(result.coordinates, {
@@ -92,10 +81,10 @@ const Map = () => {
               }}
             />
             <Marker
-              coordinate={destination}
+              coordinate={firebaseProvider.selectedCarPark}
               anchor={{ x: 0, y: 0 }} >
               <LocationBox>
-                <LocationText>{destination.title}</LocationText>
+                <LocationText>{firebaseProvider.selectedCarPark.ParkAdi}</LocationText>
               </LocationBox>
             </Marker>
 
@@ -107,29 +96,28 @@ const Map = () => {
                   <LocationTimeText>{duration}</LocationTimeText>
                   <LocationTimeTextSmall>MIN</LocationTimeTextSmall>
                 </LocationTimeBox>
-                <LocationText>{value.userInformation.name}</LocationText>
+                <LocationText>{firebaseProvider.userInformation.name}</LocationText>
               </LocationBox>
             </Marker>
           </Fragment>
         )}
       </MapView>
-      {destination ? (
+      {firebaseProvider.selectedCarPark ? (
         <Fragment>
           <Back onPress={handleBack}>
             <Image source={backImage} />
           </Back>
           <Details
-            destinationInformation={destination}
+            destinationInformation={firebaseProvider.selectedCarPark}
             handleBack={handleBack}
           />
         </Fragment>
       ) : (
-          <Search onLocationSelected={handleLocationSelected} />
+          <Search />
         )}
     </View >
   );
 }
-
 
 
 export default Map

@@ -1,5 +1,5 @@
 import React, { Component, useState, useContext } from 'react'
-import { View, Text, TextInput, StyleSheet } from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import { carParkNames } from '../../assets/carParkNames'
@@ -15,25 +15,32 @@ const bilgiUniversityDolapdere = {
   id: 'BilgiUniversityDolapdereCarPark'
 };
 
-const Search = () => {
+const Search = (props) => {
+  const [searchItems, setSearchItems] = useState([])
   const firebaseContext = useContext(FirebaseContext);
 
   const searchCarPark = (text) => {
-    firebaseContext.setSearchItem(text)
     const filteredCharacters = carParkNames.filter(character => {
       return (
         character.ParkAdi.toLowerCase().includes(text.toLowerCase()) ||
         character.Ilce.toLowerCase().includes(text.toLowerCase())
       )
     });
-    console.log(filteredCharacters);
+    if (text === "") {
+      setSearchItems([])
+    } else {
+      setSearchItems(filteredCharacters)
+    }
   }
 
-  const listItem = () => {
-    return <Text>
-      Hello
-    </Text>
-  }
+  const listItem = (
+    searchItems.map((item, index) => {
+      return <Button title={item.ParkAdi}
+        onPress={() => {
+          // props.onLocationSelected(item.ParkAdi)
+          firebaseContext.setSearchItem(item.ParkAdi)
+        }} />
+    }))
 
   return (
     <View style={styles.container}>
@@ -42,15 +49,14 @@ const Search = () => {
           placeholderTextColor="#333"
           style={styles.textInput}
           placeholder="Where do you want to park?"
-          value={firebaseContext.searchItem}
+          value={searchItems}
           onChange={(text) => { searchCarPark(text.nativeEvent.text) }}
         />
-
+        {listItem}
       </View>
     </View>
   );
 }
-
 
 const styles = StyleSheet.create({
 

@@ -18,6 +18,7 @@ const FirebaseProvider = (props) => {
   const [editProfileName, setEditProfileName] = useState("")
   const [editProfileEmail, setEditProfileEmail] = useState("")
   const [searchItem, setSearchItem] = useState("")
+  const [selectedCarPark, setSelectedCarPark] = useState(null)
 
   const currentUserUid = Auth().currentUser.uid
   // user select check Date Time
@@ -56,6 +57,8 @@ const FirebaseProvider = (props) => {
     })
   }, [])
 
+
+
   useEffect(() => {
     axios.post('http://localhost:3000/api/ticket', {
       currentUserUid
@@ -86,25 +89,24 @@ const FirebaseProvider = (props) => {
   //     })
   // }, [selectedCarModel])
 
-
   useEffect(() => {
-
-    const delayDebounceFn = setTimeout(() => {
-      console.log(searchItem)
-      axios.post('http://localhost:3000/api/carpark', {
-        searchItem
-      }).then(res => {
-        console.log(res);
-      }).catch(function (error) {
-        console.log(error);
-      })
-    }, 2000)
-
-    return () => clearTimeout(delayDebounceFn)
-
+    console.log(searchItem)
+    axios.post('http://localhost:3000/api/carpark', {
+      searchItem
+    }).then(res => {
+      const dataRetype = {
+        parkId: res.data.ParkID,
+        kapasite: res.data.Kapasitesi,
+        ilce: res.data.Ilce,
+        latitude: res.data.Latitude,
+        parkAdi: res.data.ParkAdi,
+        longitude: res.data.Longitude
+      }
+      setSelectedCarPark(dataRetype)
+    }).catch(function (error) {
+      console.log(error);
+    })
   }, [searchItem])
-
-
 
   const userBook = async (parkId, latitude, longitude) => {
     const response = await axios.post('http://localhost:3000/api/book/bookslot', { //returns slotsAreNotAvailable or completed
@@ -166,6 +168,8 @@ const FirebaseProvider = (props) => {
         setSelectedCarModel: setSelectedCarModel,
         setSearchItem: setSearchItem,
         searchItem: searchItem,
+        selectedCarPark: selectedCarPark,
+        setSelectedCarPark: setSelectedCarPark
       }}>
       { props.children}
     </FirebaseContext.Provider >
