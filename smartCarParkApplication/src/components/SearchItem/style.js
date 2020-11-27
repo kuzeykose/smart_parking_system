@@ -1,9 +1,25 @@
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
-background: #FFF;
-height: 100%;
-width: 100%;
-padding: 20px;
-justify-content: space-between;
+shadow-color: #000;
+shadow-offset: 0 0;
+shadow-opacity: 0.2;
+elevation: 3;
+border: 1px solid #DDD;
+align-items: center;
+`
+
+export const SearchItemButton = styled.TouchableOpacity`
+  height: 54px;
+  background: #fffffe;
+  justify-content: center;
+  padding-left: 20px
+  align-self: stretch;
+  margin-top: 1px
+  
+`
+
+export const SearchItemText = styled.Text`
+  color: #292929;
+  font-size: 18px;
 `

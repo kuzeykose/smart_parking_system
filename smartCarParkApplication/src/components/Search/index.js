@@ -1,10 +1,9 @@
 import React, { Component, useEffect, useState, useContext } from 'react'
-import { View, Text, Button, TextInput, StyleSheet } from 'react-native'
+import { View, Text, Button, TextInput, StyleSheet, ScrollView, FlatList } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import { carParkNames } from '../../assets/carParkNames'
 import SearchItems from '../../components/SearchItem'
-
 
 const Search = () => {
   const [searchText, setSearchText] = useState("")
@@ -26,15 +25,6 @@ const Search = () => {
   }, [searchText])
 
 
-
-  const listItem = (
-    searchItems?.map((item, index) => {
-      return <SearchItems
-        parkInformation={item}
-        key={index}
-      />
-    }))
-
   return (
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
@@ -45,7 +35,16 @@ const Search = () => {
           value={searchText}
           onChange={(text) => { setSearchText(text.nativeEvent.text) }}
         />
-        {listItem}
+        {searchItems &&
+          <View style={{ height: 300 }}>
+            <FlatList
+              data={searchItems}
+              keyboardShouldPersistTaps={"handled"}
+              renderItem={({ item, index }) => <SearchItems parkInformation={item} key={index} firebaseContext={firebaseContext} />}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </View>
+        }
       </View>
     </View>
   );

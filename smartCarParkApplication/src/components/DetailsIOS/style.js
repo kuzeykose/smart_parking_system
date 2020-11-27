@@ -13,7 +13,6 @@ export const Container = styled.View`
   border: 1px solid #DDD;
   align-items: center;
   padding: 20px;
-  
 `
 
 export const TypeDescription = styled.Text`
