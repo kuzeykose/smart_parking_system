@@ -1,45 +1,38 @@
-import React, { Component, useState, useContext } from 'react'
+import React, { Component, useEffect, useState, useContext } from 'react'
 import { View, Text, Button, TextInput, StyleSheet } from 'react-native'
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete'
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import { carParkNames } from '../../assets/carParkNames'
+import SearchItems from '../../components/SearchItem'
 
-const bilgiUniversitySantral = {
-  description: 'Bilgi University - Santral',
-  geometry: { location: { lat: 41.0657524, lng: 28.946341 } },
-  id: 'BilgiUniversitySantralCarPark'
-};
-const bilgiUniversityDolapdere = {
-  description: 'Bilgi University - Dolapdere',
-  geometry: { location: { lat: 41.038853, lng: 28.9737589999999 } },
-  id: 'BilgiUniversityDolapdereCarPark'
-};
 
-const Search = (props) => {
-  const [searchItems, setSearchItems] = useState([])
+const Search = () => {
+  const [searchText, setSearchText] = useState("")
+  const [searchItems, setSearchItems] = useState(null)
   const firebaseContext = useContext(FirebaseContext);
 
-  const searchCarPark = (text) => {
+  useEffect(() => {
     const filteredCharacters = carParkNames.filter(character => {
       return (
-        character.ParkAdi.toLowerCase().includes(text.toLowerCase()) ||
-        character.Ilce.toLowerCase().includes(text.toLowerCase())
+        character.ParkAdi.toLowerCase().includes(searchText.toLowerCase()) ||
+        character.Ilce.toLowerCase().includes(searchText.toLowerCase())
       )
     });
-    if (text === "") {
-      setSearchItems([])
+    if (searchText === "") {
+      setSearchItems(null)
     } else {
       setSearchItems(filteredCharacters)
     }
-  }
+  }, [searchText])
+
+
 
   const listItem = (
-    searchItems.map((item, index) => {
-      return <Button title={item.ParkAdi}
-        onPress={() => {
-          // props.onLocationSelected(item.ParkAdi)
-          firebaseContext.setSearchItem(item.ParkAdi)
-        }} />
+    searchItems?.map((item, index) => {
+      return <SearchItems
+        parkInformation={item}
+        key={index}
+      />
     }))
 
   return (
@@ -49,8 +42,8 @@ const Search = (props) => {
           placeholderTextColor="#333"
           style={styles.textInput}
           placeholder="Where do you want to park?"
-          value={searchItems}
-          onChange={(text) => { searchCarPark(text.nativeEvent.text) }}
+          value={searchText}
+          onChange={(text) => { setSearchText(text.nativeEvent.text) }}
         />
         {listItem}
       </View>

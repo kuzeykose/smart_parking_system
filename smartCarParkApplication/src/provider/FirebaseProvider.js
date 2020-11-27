@@ -98,9 +98,9 @@ const FirebaseProvider = (props) => {
         parkId: res.data.ParkID,
         kapasite: res.data.Kapasitesi,
         ilce: res.data.Ilce,
-        latitude: res.data.Latitude,
+        latitude: parseFloat(res.data.Latitude),
         parkAdi: res.data.ParkAdi,
-        longitude: res.data.Longitude
+        longitude: parseFloat(res.data.Longitude)
       }
       setSelectedCarPark(dataRetype)
     }).catch(function (error) {
