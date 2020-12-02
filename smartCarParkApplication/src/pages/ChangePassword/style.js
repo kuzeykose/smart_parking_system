@@ -14,6 +14,7 @@ align-items: center;
 `
 
 export const SendEmailChangePassword = styled.View`
+margin-top: 50px
 margin-bottom: 50px
 `
 

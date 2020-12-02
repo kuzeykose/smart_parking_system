@@ -140,6 +140,16 @@ const FirebaseProvider = (props) => {
     })
   }
 
+  const changePassword = (email) => {
+    axios.post('http://localhost:3000/api/user/forgotpassword', {
+      email
+    }).then(res => {
+      console.log(res.data);
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+
   const logOut = () => {
     Auth()
       .signOut()
@@ -169,7 +179,8 @@ const FirebaseProvider = (props) => {
         setSearchItem: setSearchItem,
         searchItem: searchItem,
         selectedCarPark: selectedCarPark,
-        setSelectedCarPark: setSelectedCarPark
+        setSelectedCarPark: setSelectedCarPark,
+        changePassword: changePassword
       }}>
       { props.children}
     </FirebaseContext.Provider >
