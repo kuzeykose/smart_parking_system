@@ -50,6 +50,7 @@ const Map = () => {
 
   handleBack = () => {
     firebaseProvider.setSelectedCarPark(null)
+    firebaseProvider.setSearchItem("")
   }
 
   // const { region, destination, duration } = this.state
@@ -84,7 +85,7 @@ const Map = () => {
               coordinate={firebaseProvider.selectedCarPark}
               anchor={{ x: 0, y: 0 }} >
               <LocationBox>
-                <LocationText>{firebaseProvider.selectedCarPark.ParkAdi}</LocationText>
+                <LocationText>{firebaseProvider.selectedCarPark.parkAdi}</LocationText>
               </LocationBox>
             </Marker>
 

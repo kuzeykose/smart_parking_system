@@ -1,16 +1,17 @@
-import { firebase } from '@react-native-firebase/auth'
 import React, { useContext } from 'react'
-import { View, Button } from 'react-native'
+import { View, Button, Text } from 'react-native'
 import { FirebaseContext } from '../../provider/FirebaseProvider'
+
 import {
   Container,
   SearchItemButton,
   SearchItemText,
-  Text
+  SubInformation,
+  Stars,
+  Price
 } from './style'
 
 const SearchItem = (props) => {
-
   return (
     <Container>
       <SearchItemButton onPress={() => props.firebaseContext.setSearchItem(props.parkInformation.ParkAdi)}>
@@ -18,6 +19,10 @@ const SearchItem = (props) => {
           {props.parkInformation.ParkAdi}
         </SearchItemText>
       </SearchItemButton>
+      <SubInformation>
+        <Stars>Stars</Stars>
+        <Price>Price: per hour</Price>
+      </SubInformation>
     </Container>
   );
 }

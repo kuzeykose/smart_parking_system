@@ -24,7 +24,6 @@ const Search = () => {
     }
   }, [searchText])
 
-
   return (
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
@@ -36,7 +35,7 @@ const Search = () => {
           onChange={(text) => { setSearchText(text.nativeEvent.text) }}
         />
         {searchItems &&
-          <View style={{ height: 300 }}>
+          <View style={{ height: 300, marginTop: 15 }}>
             <FlatList
               data={searchItems}
               keyboardShouldPersistTaps={"handled"}
