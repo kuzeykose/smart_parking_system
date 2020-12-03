@@ -1,47 +1,69 @@
 import React, { useContext, useState } from 'react';
 import RNPickerSelect from 'react-native-picker-select';
-
+import { FirebaseContext } from '../../provider/FirebaseProvider';
+import { items } from '../../assets/carModels'
 import {
-  InformationCard
+  CarInputView,
+  InfoText,
+  CarTextInput,
+  Container,
+  SaveButton,
+  SaveButtonText
 } from './style'
 
 import {
   View,
-  SafeAreaView,
-  Text,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
-
-import { FirebaseContext } from '../../provider/FirebaseProvider';
 
 const AddCar = () => {
   const value = useContext(FirebaseContext);
 
   return (
-    <View style={styles.scrollContainer}>
-      <Text>Select a car</Text>
-      <RNPickerSelect
-        onValueChange={(car) => { value.setSelectedCarModel(car) }}
-        items={value.carModels}
-        style={pickerSelectStyles}
-      />
-    </View>
-
+    <Container>
+      <View>
+        <CarInputView>
+          <InfoText>Name</InfoText>
+          <CarTextInput
+            onChange={(text) => { }}
+          ></CarTextInput>
+        </CarInputView>
+        <CarInputView>
+          <InfoText>License plate</InfoText>
+          <CarTextInput
+            onChange={(text) => { }}
+          ></CarTextInput>
+        </CarInputView>
+        <CarInputView>
+          <InfoText>Brand</InfoText>
+          <RNPickerSelect
+            onValueChange={(car) => { value.setSelectedCarModel(car) }}
+            items={items}
+            style={pickerSelectStyles}
+          />
+        </CarInputView>
+      </View>
+      <SaveButton>
+        <SaveButtonText>
+          Save
+      </SaveButtonText>
+      </SaveButton>
+    </Container>
   );
 };
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
-    marginTop: 10,
+    width: 330,
+    backgroundColor: '#efeff0',
     fontSize: 18,
     paddingVertical: 12,
     paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: 'gray',
-    borderRadius: 4,
+    borderRadius: 10,
     paddingRight: 30, // to ensure the text is never behind the icon
   },
   inputAndroid: {
+    width: 330,
     fontSize: 16,
     paddingHorizontal: 10,
     paddingVertical: 8,
@@ -50,20 +72,6 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 8,
     color: 'black',
     paddingRight: 30, // to ensure the text is never behind the icon
-  },
-});
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContainer: {
-    flex: 1,
-    paddingHorizontal: 15,
-  },
-  scrollContentContainer: {
-    paddingTop: 40,
-    paddingBottom: 10,
   },
 });
 
