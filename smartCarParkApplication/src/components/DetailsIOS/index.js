@@ -63,8 +63,9 @@ const DetailsIOS = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
+        console.log(props.destinationInformation);
         firebaseContext.userBook(
-          destinationInformation.parkId,
+          destinationInformation.parkAdi,
           destinationInformation.latitude,
           destinationInformation.longitude
         ).then(res => {
