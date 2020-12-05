@@ -34,9 +34,17 @@ router.get('/setDatabaseAllParkFromIspark', (req, res) => {
         ParkTipi: item.ParkTipi,
         Ilce: item.Ilce,
       }
-      db.collection('car-parks').doc(item.ParkAdi).set(parkObject);
+      // db.collection('car-parks').doc(item.ParkAdi).set(parkObject);
+      // for (let i = 0; i < 5; i++) {
+      //   db.collection('car-parks')
+      //     .doc(item.ParkAdi)
+      //     .collection("parking-slots")
+      //     .doc(`${i}`)
+      //     .set({})
+      // }
       return parkObject
     })
+    res.send(parkData);
   });
 
 })
