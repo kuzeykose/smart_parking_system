@@ -4,15 +4,15 @@ import Ticket from '../../components/Ticket'
 
 import { ScrollView } from 'react-native';
 
-const Tickets = () => {
+const ActiveTicket = ({ navigation }) => {
   const value = useContext(FirebaseContext);
   const allTickets = value.userActiveParkData.map((inf, index) => {
     return <Ticket
       information={inf}
       key={index}
+      navigation={navigation}
     />
-  }
-  )
+  })
 
   return (
     <ScrollView>
@@ -21,4 +21,4 @@ const Tickets = () => {
   );
 };
 
-export default Tickets;
+export default ActiveTicket;

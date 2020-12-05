@@ -12,7 +12,6 @@ const actionCodeSettings = {
 
 // send user information
 router.post('/', (req, res) => {
-
   const docRef = db.collection("users");
   docRef.doc(req.body.currentUserUid).get().then((data) => {
 

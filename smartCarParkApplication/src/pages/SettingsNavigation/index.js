@@ -8,7 +8,6 @@ import AddCar from '../AddCar'
 import Vehicles from '../Vehicles'
 import Notification from '../../components/Notification'
 
-
 import {
   SafeAreaView,
   Button,
@@ -26,6 +25,7 @@ const SettingsNavigation = () => {
       <Stack.Screen name="Settings" component={SettingsOptions} />
       <Stack.Screen name="Edit Profile" component={EditProfile} />
       <Stack.Screen name="Change Password" component={ChangePassword} />
+
       <Stack.Screen
         name="Vehicles"
         component={Vehicles}
@@ -55,6 +55,7 @@ const SettingsNavigation = () => {
         })
         }
       />
+
       <Stack.Screen name="Add Car" component={AddCar} />
       <Stack.Screen name="Notification" component={Notification} />
     </Stack.Navigator>

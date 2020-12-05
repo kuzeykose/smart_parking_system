@@ -1,14 +1,22 @@
 import React, { useContext } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import { Button } from 'react-native'
 
 import {
   Card,
-  CardText
+  CardText,
+  DateTimeCard,
+  DateTimeText,
+  CardHeader
 } from './style'
 
-const Tickets = (props) => {
+import {
+  View
+} from 'react-native'
+
+const Ticket = (props) => {
 
   const FirebaseProvider = useContext(FirebaseContext);
   const region = {
@@ -18,8 +26,21 @@ const Tickets = (props) => {
     longitudeDelta: 0.00550,
   }
   return (
-    <Card>
-      <MapView
+    <Card onPress={() => {
+      props.navigation.navigate("TicketDetails", {
+        parkId: props.information.parkId,
+        checkInDate: props.information.checkInDate,
+        checkInTime: props.information.checkInTime,
+        checkOutTime: props.information.checkOutTime,
+        latitude: region.latitude,
+        longitude: region.longitude,
+        latitudeDelta: region.latitudeDelta,
+        longitudeDelta: region.longitudeDelta,
+        parkslot: props.information.parkSlot,
+        docId: props.information.docId
+      })
+    }}>
+      {/* <MapView
         provider={PROVIDER_GOOGLE}
         style={{ flex: 1 }}
         initialRegion={region}
@@ -30,12 +51,22 @@ const Tickets = (props) => {
           coordinate={region}
           anchor={{ x: 0, y: 0 }} >
         </Marker>
-      </MapView>
-      <CardText>{props.information.parkId}</CardText>
-      <CardText>{props.information.checkInDate}</CardText>
-      <CardText>{props.information.checkInTime + " - " + props.information.checkOutTime}</CardText>
-      <CardText>{props.information.parkSlot}</CardText>
-      <Button title={"delete"} onPress={() => {
+      </MapView> */}
+      <CardHeader>
+        <CardText>{props.information.parkId}</CardText>
+        <Icon name="arrow-forward-ios" size={25} color="#292929" />
+      </CardHeader>
+      <DateTimeCard>
+        <View>
+          <DateTimeText>Date</DateTimeText>
+          <CardText>{props.information.checkInDate}</CardText>
+        </View>
+        <View>
+          <DateTimeText>Time</DateTimeText>
+          <CardText>{props.information.checkInTime + " - " + props.information.checkOutTime}</CardText>
+        </View>
+      </DateTimeCard>
+      {/* <Button title={"delete"} onPress={() => {
         FirebaseProvider.userUnbook(
           props.information.parkId,
           props.information.checkInDate,
@@ -44,10 +75,11 @@ const Tickets = (props) => {
           props.information.parkSlot,
           props.information.docId
         )
-      }} />
+      }} /> */}
+
     </Card>
 
   );
 };
 
-export default Tickets;
+export default Ticket;
