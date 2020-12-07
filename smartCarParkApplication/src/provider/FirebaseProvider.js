@@ -90,7 +90,6 @@ const FirebaseProvider = (props) => {
   // }, [selectedCarModel])
 
   useEffect(() => {
-    console.log(searchItem)
     axios.post('http://localhost:3000/api/carpark', {
       searchItem
     }).then(res => {

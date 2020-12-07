@@ -5,7 +5,7 @@ import { FirebaseContext } from '../provider/FirebaseProvider'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MapPage from '../pages/MapPage'
 import SettingsNavigation from '../pages/SettingsNavigation'
-import TicketsNavigation from '../pages/TicketsNavigation'
+import TicketsNavigation from '../pages/TicketHome'
 
 const Tab = createBottomTabNavigator();
 

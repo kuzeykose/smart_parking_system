@@ -50,7 +50,6 @@ const Map = () => {
 
   handleBack = () => {
     firebaseProvider.setSelectedCarPark(null)
-    firebaseProvider.setSearchItem("")
   }
 
   // const { region, destination, duration } = this.state
