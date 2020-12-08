@@ -36,22 +36,10 @@ const Ticket = (props) => {
         longitude: region.longitude,
         latitudeDelta: region.latitudeDelta,
         longitudeDelta: region.longitudeDelta,
-        parkslot: props.information.parkSlot,
+        parkSlot: props.information.parkSlot,
         docId: props.information.docId
       })
     }}>
-      {/* <MapView
-        provider={PROVIDER_GOOGLE}
-        style={{ flex: 1 }}
-        initialRegion={region}
-        rotateEnabled={false}
-        scrollEnabled={false}
-      >
-        <Marker
-          coordinate={region}
-          anchor={{ x: 0, y: 0 }} >
-        </Marker>
-      </MapView> */}
       <CardHeader>
         <CardText>{props.information.parkId}</CardText>
         <Icon name="arrow-forward-ios" size={25} color="#292929" />
@@ -66,17 +54,6 @@ const Ticket = (props) => {
           <CardText>{props.information.checkInTime + " - " + props.information.checkOutTime}</CardText>
         </View>
       </DateTimeCard>
-      {/* <Button title={"delete"} onPress={() => {
-        FirebaseProvider.userUnbook(
-          props.information.parkId,
-          props.information.checkInDate,
-          props.information.checkInTime,
-          props.information.checkOutTime,
-          props.information.parkSlot,
-          props.information.docId
-        )
-      }} /> */}
-
     </Card>
 
   );
