@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 export const Container = styled.View`
   background: #FFF
-  height: 300px
+  height: 250px
   width: 100%
   position: absolute
   bottom:0
@@ -11,17 +11,17 @@ export const Container = styled.View`
   shadow-opacity: 0.2
   elevation: 3
   border: 1px solid #DDD
-  align-items: center
   padding: 20px;
+  justify-content: space-between
 `
 
 export const TypeDescription = styled.Text`
 color: #222
-font-size: 14px
-`
-export const DateTimeSelectText = styled.Text`
-color: #292929
 font-size: 20px
+`
+export const ParkNameText = styled.Text`
+color: #292929
+font-size: 26px
 margin-top:5px
 margin-bottom:8px
 `
@@ -40,16 +40,4 @@ export const RequestButtonText = styled.Text`
 font-size: 20px
 text-align: center
 margin: auto
-`
-
-export const CheckContainer = styled.View`
-width: 90%
-`
-
-export const CheckView = styled.View`
-margin-top: 10px
-display: flex
-flex-direction: row
-align-items: center
-justify-content: space-between
 `

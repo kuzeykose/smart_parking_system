@@ -80,7 +80,7 @@ const DetailsIOS = (props) => {
           }
         })
       }}>
-        <RequestButtonText>Book</RequestButtonText>
+        <RequestButtonText>Go to Payment</RequestButtonText>
       </RequestButton>
     </View>
   )

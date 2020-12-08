@@ -57,8 +57,6 @@ const FirebaseProvider = (props) => {
     })
   }, [])
 
-
-
   useEffect(() => {
     axios.post('http://localhost:3000/api/ticket', {
       currentUserUid

@@ -8,6 +8,7 @@ import MapView from 'react-native-maps';
 import { getPixelSize } from '../../utils'
 import Search from '../Search'
 import Directions from '../Directions'
+import ParkInformation from '../ParkInformation'
 import Details from '../Details'
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 
@@ -21,9 +22,11 @@ import {
   LocationTimeTextSmall,
   LocationTimeText
 } from './style'
+import DeatilsAndroid from '../DetailsAndroid';
 
 const Map = () => {
   const firebaseProvider = useContext(FirebaseContext)
+  const [popup, setPopup] = useState(null)
   const [region, setRegion] = useState(null)
   // const [destination, setDestination] = useState(null)
   const [duration, setDuration] = useState(null)
@@ -50,6 +53,11 @@ const Map = () => {
 
   handleBack = () => {
     firebaseProvider.setSelectedCarPark(null)
+    setPopup(null);
+  }
+
+  bookPressed = (info) => {
+    setPopup(info);
   }
 
   // const { region, destination, duration } = this.state
@@ -87,7 +95,6 @@ const Map = () => {
                 <LocationText>{firebaseProvider.selectedCarPark.parkAdi}</LocationText>
               </LocationBox>
             </Marker>
-
             <Marker
               coordinate={region}
               anchor={{ x: 0, y: 0 }} >
@@ -102,19 +109,40 @@ const Map = () => {
           </Fragment>
         )}
       </MapView>
+
+
       {firebaseProvider.selectedCarPark ? (
-        <Fragment>
+        // bir tane daha bundan 
+        <Fragment >
           <Back onPress={handleBack}>
             <Image source={backImage} />
           </Back>
-          <Details
+          <ParkInformation
             destinationInformation={firebaseProvider.selectedCarPark}
             handleBack={handleBack}
+            bookPressed={bookPressed}
           />
         </Fragment>
       ) : (
           <Search />
+        )
+      }
+
+      <View>
+        {popup && (
+          // bir tane daha bundan 
+          <Fragment >
+            <Back onPress={handleBack}>
+              <Image source={backImage} />
+            </Back>
+            <Details
+              destinationInformation={firebaseProvider.selectedCarPark}
+              handleBack={handleBack}
+            />
+          </Fragment>
         )}
+      </View>
+
     </View >
   );
 }
