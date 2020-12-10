@@ -110,10 +110,8 @@ const Map = () => {
         )}
       </MapView>
 
-
       {firebaseProvider.selectedCarPark ? (
-        // bir tane daha bundan 
-        <Fragment >
+        <Fragment>
           <Back onPress={handleBack}>
             <Image source={backImage} />
           </Back>
@@ -130,7 +128,6 @@ const Map = () => {
 
       <View>
         {popup && (
-          // bir tane daha bundan 
           <Fragment >
             <Back onPress={handleBack}>
               <Image source={backImage} />

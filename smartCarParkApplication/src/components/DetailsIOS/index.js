@@ -7,7 +7,10 @@ import {
   RequestButtonText,
   DateTimeSelectText,
   CheckView,
-  CheckContainer
+  CheckContainer,
+  Container,
+  ParkNameText,
+  TypeDescription
 } from './style'
 import { View } from 'react-native';
 
@@ -17,10 +20,19 @@ const DetailsIOS = (props) => {
   const handleBack = props.handleBack
 
   return (
-    <View>
+    <Container>
+
+
+      <View>
+        <ParkNameText>{props.destinationInformation.parkAdi}</ParkNameText>
+        <TypeDescription>Adress</TypeDescription>
+        <TypeDescription>Price</TypeDescription>
+        <TypeDescription>Stars</TypeDescription>
+      </View>
+
       <CheckContainer>
         <CheckView>
-          <DateTimeSelectText>Select parking date!</DateTimeSelectText>
+          <DateTimeSelectText>Check-in Date</DateTimeSelectText>
           <DateTimePicker
             testID="dateTimePicker"
             value={firebaseContext.checkInDate}
@@ -33,7 +45,7 @@ const DetailsIOS = (props) => {
           />
         </CheckView>
         <CheckView >
-          <DateTimeSelectText>Select Check In Time</DateTimeSelectText>
+          <DateTimeSelectText>Check-in Time</DateTimeSelectText>
           <DateTimePicker
             value={firebaseContext.checkInTime}
             mode="time"
@@ -47,7 +59,7 @@ const DetailsIOS = (props) => {
         </CheckView>
 
         <CheckView>
-          <DateTimeSelectText>Select Check Out Time</DateTimeSelectText>
+          <DateTimeSelectText>Check-out Time</DateTimeSelectText>
           <DateTimePicker
             testID="dateTimePicker"
             value={firebaseContext.checkOutTime}
@@ -59,6 +71,10 @@ const DetailsIOS = (props) => {
             locale="tr"
             style={{ width: 100 }}
           />
+        </CheckView>
+
+        <CheckView>
+          <DateTimeSelectText>Price:</DateTimeSelectText>
         </CheckView>
       </CheckContainer>
 
@@ -82,7 +98,7 @@ const DetailsIOS = (props) => {
       }}>
         <RequestButtonText>Go to Payment</RequestButtonText>
       </RequestButton>
-    </View>
+    </Container>
   )
 }
 

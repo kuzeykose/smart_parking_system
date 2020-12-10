@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 
 import DetailsIOS from '../DetailsIOS'
 import DetailsAndroid from '../DetailsAndroid'
@@ -15,12 +15,12 @@ const Details = (props) => {
   })();
 
   return (
-    <Container>
+    <View>
       <PlatformDetails
         destinationInformation={props.destinationInformation}
         handleBack={props.handleBack}
       />
-    </Container >
+    </View >
   )
 }
 

@@ -1,18 +1,20 @@
 import styled from 'styled-components/native'
 
 export const Container = styled.View`
-  background: #FFF
-  height: 250px
-  width: 100%
-  position: absolute
-  bottom:0
-  shadow-color: #000
-  shadow-offset: 0 0
-  shadow-opacity: 0.2
-  elevation: 3
-  border: 1px solid #DDD
-  padding: 20px;
-  justify-content: space-between
+margin: 20px
+background: #FFF
+height: 250px
+width: 90%
+position: absolute
+bottom:0
+shadow-color: #000
+shadow-offset: 0 0
+shadow-opacity: 0.1
+elevation: 3
+border: 1px solid #D3D3D3
+border-radius: 10px
+padding: 20px
+justify-content: space-between
 `
 
 export const TypeDescription = styled.Text`
