@@ -20,8 +20,7 @@ const SearchItem = (props) => {
         </SearchItemText>
       </SearchItemButton>
       <SubInformation>
-        <Stars>Stars</Stars>
-        <Price>Price: per hour</Price>
+        <Stars>{props.parkInformation.rating}</Stars>
       </SubInformation>
     </Container>
   );

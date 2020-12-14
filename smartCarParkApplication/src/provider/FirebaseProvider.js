@@ -19,6 +19,7 @@ const FirebaseProvider = (props) => {
   const [editProfileEmail, setEditProfileEmail] = useState("")
   const [searchItem, setSearchItem] = useState("")
   const [selectedCarPark, setSelectedCarPark] = useState(null)
+  const [selectedParkInfo, setSelectedParkInfo] = useState(null)
 
   const currentUserUid = Auth().currentUser.uid
   // user select check Date Time
@@ -91,15 +92,9 @@ const FirebaseProvider = (props) => {
     axios.post('http://localhost:3000/api/carpark', {
       searchItem
     }).then(res => {
-      const dataRetype = {
-        parkId: res.data.ParkID,
-        kapasite: res.data.Kapasitesi,
-        ilce: res.data.Ilce,
-        latitude: parseFloat(res.data.Latitude),
-        parkAdi: res.data.ParkAdi,
-        longitude: parseFloat(res.data.Longitude)
-      }
-      setSelectedCarPark(dataRetype)
+      console.log(res.data);
+      setSelectedCarPark(res.data)
+      setSelectedParkInfo()
     }).catch(function (error) {
       console.log(error);
     })

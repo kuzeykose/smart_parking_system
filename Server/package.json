@@ -11,6 +11,7 @@
   "author": "Kuzey Köse",
   "license": "ISC",
   "dependencies": {
+    "@googlemaps/google-maps-services-js": "^3.1.13",
     "axios": "^0.21.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",

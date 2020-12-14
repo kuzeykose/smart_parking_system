@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
+import Stars from '../Stars'
 
 import {
   RequestButton,
@@ -21,13 +22,10 @@ const DetailsIOS = (props) => {
 
   return (
     <Container>
-
-
       <View>
-        <ParkNameText>{props.destinationInformation.parkAdi}</ParkNameText>
-        <TypeDescription>Adress</TypeDescription>
-        <TypeDescription>Price</TypeDescription>
-        <TypeDescription>Stars</TypeDescription>
+        <ParkNameText>{destinationInformation.parkAdi}</ParkNameText>
+        <TypeDescription>{destinationInformation.address}</TypeDescription>
+        <Stars rating={destinationInformation.rating} />
       </View>
 
       <CheckContainer>

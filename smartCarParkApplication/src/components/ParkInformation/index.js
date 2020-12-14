@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import Stars from '../Stars'
 
 import {
   RequestButton,
@@ -10,14 +11,14 @@ import {
 
 import { View } from 'react-native';
 
-const DetailsIOS = (props) => {
+const ParkInformation = (props) => {
+  console.log(props.destinationInformation);
   return (
     <Container>
       <View>
         <ParkNameText>{props.destinationInformation.parkAdi}</ParkNameText>
-        <TypeDescription>Adress</TypeDescription>
-        <TypeDescription>Price</TypeDescription>
-        <TypeDescription>Stars</TypeDescription>
+        <TypeDescription>{props.destinationInformation.address}</TypeDescription>
+        <Stars rating={props.destinationInformation.rating} />
       </View>
       <RequestButton onPress={() => { props.bookPressed(props.destinationInformation) }}>
         <RequestButtonText>Book</RequestButtonText>
@@ -26,6 +27,6 @@ const DetailsIOS = (props) => {
   )
 }
 
-export default DetailsIOS
+export default ParkInformation
 
 
