@@ -19,6 +19,7 @@ const DetailsIOS = (props) => {
   const firebaseContext = useContext(FirebaseContext);
   const destinationInformation = props.destinationInformation;
   const handleBack = props.handleBack
+  const navigation = props.navigation
 
   return (
     <Container>
@@ -77,22 +78,10 @@ const DetailsIOS = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
-        console.log(props.destinationInformation);
-        firebaseContext.userBook(
-          destinationInformation.parkAdi,
-          destinationInformation.latitude,
-          destinationInformation.longitude
-        ).then(res => {
-          console.log(res);
-          if (res === "slotsAreNotAvailable") {
-            alert("Not Available!")
-          }
-          if (res === "completed") {
-            firebaseContext.setTrigeredActiveBooked(null)
-            alert("Completed!")
-            handleBack()
-          }
-        })
+        navigation.navigate('Payment', {
+          destinationInformation,
+          handleBack
+        });
       }}>
         <RequestButtonText>Go to Payment</RequestButtonText>
       </RequestButton>

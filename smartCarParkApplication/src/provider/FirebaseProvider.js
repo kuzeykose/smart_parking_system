@@ -92,7 +92,6 @@ const FirebaseProvider = (props) => {
     axios.post('http://localhost:3000/api/carpark', {
       searchItem
     }).then(res => {
-      console.log(res.data);
       setSelectedCarPark(res.data)
       setSelectedParkInfo()
     }).catch(function (error) {

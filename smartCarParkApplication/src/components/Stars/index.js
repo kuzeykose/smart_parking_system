@@ -27,10 +27,11 @@ const Stars = (props) => {
 
   return (
     <Container style={{ flexDirection: 'row' }}>
+      <RatingText>{props.rating}</RatingText>
       {createStar(Math.round(props.rating)).map(item => {
         return item
       })}
-      <RatingText>{props.rating}</RatingText>
+
     </Container>
   );
 }

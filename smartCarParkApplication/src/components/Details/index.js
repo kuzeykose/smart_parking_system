@@ -19,6 +19,7 @@ const Details = (props) => {
       <PlatformDetails
         destinationInformation={props.destinationInformation}
         handleBack={props.handleBack}
+        navigation={props.navigation}
       />
     </View >
   )

@@ -24,7 +24,7 @@ import {
 } from './style'
 import DeatilsAndroid from '../DetailsAndroid';
 
-const Map = () => {
+const Map = ({ navigation }) => {
   const firebaseProvider = useContext(FirebaseContext)
   const [popup, setPopup] = useState(null)
   const [region, setRegion] = useState(null)
@@ -135,6 +135,7 @@ const Map = () => {
             <Details
               destinationInformation={firebaseProvider.selectedCarPark}
               handleBack={handleBack}
+              navigation={navigation}
             />
           </Fragment>
         )}
