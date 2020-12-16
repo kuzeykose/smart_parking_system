@@ -20,6 +20,7 @@ const FirebaseProvider = (props) => {
   const [searchItem, setSearchItem] = useState("")
   const [selectedCarPark, setSelectedCarPark] = useState(null)
   const [selectedParkInfo, setSelectedParkInfo] = useState(null)
+  const [selectedCar, setSelectedCar] = useState({})
 
   const currentUserUid = Auth().currentUser.uid
   // user select check Date Time
@@ -171,7 +172,9 @@ const FirebaseProvider = (props) => {
         searchItem: searchItem,
         selectedCarPark: selectedCarPark,
         setSelectedCarPark: setSelectedCarPark,
-        changePassword: changePassword
+        changePassword: changePassword,
+        selectedCar: selectedCar,
+        setSelectedCar: setSelectedCar
       }}>
       { props.children}
     </FirebaseContext.Provider >
