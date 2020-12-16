@@ -12,7 +12,6 @@ import {
 import { View } from 'react-native';
 
 const ParkInformation = (props) => {
-  console.log(props.destinationInformation);
   return (
     <Container>
       <View>

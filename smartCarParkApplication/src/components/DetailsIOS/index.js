@@ -79,8 +79,7 @@ const DetailsIOS = (props) => {
 
       <RequestButton onPress={() => {
         navigation.navigate('Payment', {
-          destinationInformation,
-          handleBack
+          destinationInformation
         });
       }}>
         <RequestButtonText>Go to Payment</RequestButtonText>
