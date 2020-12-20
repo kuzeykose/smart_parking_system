@@ -25,11 +25,17 @@ router.post('/', (req, res) => {
         var history = element.docs.map(el => {
           return el.data()
         })
-        res.send({
-          active: active,
-          history: history,
-          information: responseData
-        });
+        data.ref.collection("vehicles").get().then(element => {
+          var vehicles = element.docs.map(el => {
+            return el.data()
+          })
+          res.send({
+            active: active,
+            history: history,
+            information: responseData,
+            vehicles: vehicles
+          });
+        })
       })
     })
   })

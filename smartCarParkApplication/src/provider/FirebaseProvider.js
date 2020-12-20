@@ -10,6 +10,7 @@ const FirebaseProvider = (props) => {
   const [checkOutTime, setCheckOutTime] = useState(new Date(2020, 1, 1, 0, 0, 0))
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [userInformation, setUserInformation] = useState({})
+  const [userVehicle, setUserVehicle] = useState([])
   const [userHistoryParkData, setUserHistoryParkData] = useState([])
   const [userActiveParkData, setUserActiveParkData] = useState([])
   const [trigeredActiveBooked, setTrigeredActiveBooked] = useState()
@@ -52,6 +53,7 @@ const FirebaseProvider = (props) => {
       setUserInformation(res.data.information)
       setUserHistoryParkData(res.data.history)
       setUserActiveParkData(res.data.active)
+      setUserVehicle(res.data.vehicles)
     }).catch(function (error) {
       console.log(error);
     })
@@ -128,6 +130,7 @@ const FirebaseProvider = (props) => {
       brand
     }).then(res => {
       console.log(res.data);
+      setUserVehicle(res.data)
     }).catch(function (error) {
       console.log(error);
     })
@@ -164,9 +167,10 @@ const FirebaseProvider = (props) => {
         changePassword: changePassword,
         selectedCar: selectedCar,
         setSelectedCar: setSelectedCar,
-        addCar: addCar
+        addCar: addCar,
+        userVehicle: userVehicle
       }}>
-      { props.children}
+      {props.children}
     </FirebaseContext.Provider >
   )
 };

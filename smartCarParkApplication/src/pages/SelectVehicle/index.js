@@ -14,25 +14,28 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const SelectVehicle = ({ navigation: { goBack } }) => {
+const SelectVehicle = ({ route, navigation: { goBack } }) => {
+  const { setSelectedCar } = route.params;
   const value = useContext(FirebaseContext);
+
+  const vehicles = value.userVehicle.map((inf, index) => {
+    return <TouchableOpacity onPress={() => {
+      setSelectedCar(inf)
+      goBack()
+    }}>
+      <VehicleCard
+        LogoSrc={LogoSrc}
+        carName={inf.name}
+        licensePlate={"34 PG 2020"}
+        key={index}
+      />
+    </TouchableOpacity>
+  })
+
   return (
     <SafeAreaView>
       <Container>
-        <TouchableOpacity onPress={() => goBack()}>
-          <VehicleCard
-            LogoSrc={LogoSrc}
-            carName={"Kuzey Araba"}
-            licensePlate={"34 PG 2020"}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => value.setSelectedCar()}>
-          <VehicleCard
-            LogoSrc={LogoSrc2}
-            carName={"Kuzey Araba 2"}
-            licensePlate={"34 WV 2020"}
-          />
-        </TouchableOpacity>
+        {vehicles}
       </Container>
     </SafeAreaView >
   );

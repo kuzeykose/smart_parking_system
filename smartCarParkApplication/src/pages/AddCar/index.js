@@ -16,7 +16,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-const AddCar = () => {
+const AddCar = ({ navigation }) => {
   const value = useContext(FirebaseContext);
   const [selectedCarmodel, setSelectedCarModel] = useState("")
   const [carName, setCarName] = useState("")
@@ -48,6 +48,7 @@ const AddCar = () => {
       </View>
       <SaveButton onPress={() => {
         value.addCar(carName, licensePlate, selectedCarmodel)
+        navigation.navigate("Vehicles")
       }}>
         <SaveButtonText>
           Save

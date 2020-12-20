@@ -14,6 +14,7 @@ router.post('/save-car', (req, res) => {
       const vehicles = el.docs.map(el => {
         return el.data()
       })
+      console.log(vehicles);
       res.send(vehicles)
     })
   )
