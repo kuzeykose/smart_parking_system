@@ -6,13 +6,7 @@ import {
   RatingText
 } from './style'
 
-import {
-  View,
-  Text
-} from 'react-native'
-
 const Stars = (props) => {
-
   const createStar = (ratingNumber) => {
     let stars = []
     for (let i = 0; i < 5; i++) {

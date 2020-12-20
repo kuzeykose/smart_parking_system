@@ -15,7 +15,7 @@ app.use('/api/user', require('./routes/api/users'))
 app.use('/api/book', require('./routes/api/books'))
 app.use('/api/ticket', require('./routes/api/tickets'))
 app.use('/api/carpark', require('./routes/api/carparks'))
-// app.use('/api/car', require('./routes/api/cars'))
+app.use('/api/car', require('./routes/api/cars'))
 
 app.use('/admin-api/carparks', require('./routes/adminApi/addAllCarParkInFirebase'))
 

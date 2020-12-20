@@ -18,6 +18,9 @@ import {
 
 const AddCar = () => {
   const value = useContext(FirebaseContext);
+  const [selectedCarmodel, setSelectedCarModel] = useState("")
+  const [carName, setCarName] = useState("")
+  const [licensePlate, setlicensePlate] = useState("")
 
   return (
     <Container>
@@ -25,25 +28,27 @@ const AddCar = () => {
         <CarInputView>
           <InfoText>Name</InfoText>
           <CarTextInput
-            onChange={(text) => { }}
+            onChange={(text) => { setCarName(text.nativeEvent.text) }}
           ></CarTextInput>
         </CarInputView>
         <CarInputView>
           <InfoText>License plate</InfoText>
           <CarTextInput
-            onChange={(text) => { }}
+            onChange={(text) => { setlicensePlate(text.nativeEvent.text) }}
           ></CarTextInput>
         </CarInputView>
         <CarInputView>
           <InfoText>Brand</InfoText>
           <RNPickerSelect
-            onValueChange={(car) => { value.setSelectedCarModel(car) }}
+            onValueChange={(car) => { setSelectedCarModel(car) }}
             items={items}
             style={pickerSelectStyles}
           />
         </CarInputView>
       </View>
-      <SaveButton>
+      <SaveButton onPress={() => {
+        value.addCar(carName, licensePlate, selectedCarmodel)
+      }}>
         <SaveButtonText>
           Save
       </SaveButtonText>

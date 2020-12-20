@@ -13,8 +13,6 @@ const FirebaseProvider = (props) => {
   const [userHistoryParkData, setUserHistoryParkData] = useState([])
   const [userActiveParkData, setUserActiveParkData] = useState([])
   const [trigeredActiveBooked, setTrigeredActiveBooked] = useState()
-  const [carModels, setCarModels] = useState([])
-  const [selectedCarModel, setSelectedCarModel] = useState()
   const [editProfileName, setEditProfileName] = useState("")
   const [editProfileEmail, setEditProfileEmail] = useState("")
   const [searchItem, setSearchItem] = useState("")
@@ -69,26 +67,6 @@ const FirebaseProvider = (props) => {
     })
   }, [trigeredActiveBooked])
 
-  // useEffect(() => {
-  //   axios.get('http://localhost:3000/api/car')
-  //     .then(res => {
-  //       setCarModels(res.data)
-  //     }).catch(function (error) {
-  //       console.log(error);
-  //     })
-  // }, [])
-
-  // useEffect(() => {
-  //   axios.post('http://localhost:3000/api/car/selected-car', {
-  //     selectedCarModel
-  //   })
-  //     .then(res => {
-  //       console.log(res.data);
-  //     }).catch(function (error) {
-  //       console.log(error);
-  //     })
-  // }, [selectedCarModel])
-
   useEffect(() => {
     axios.post('http://localhost:3000/api/carpark', {
       searchItem
@@ -142,6 +120,19 @@ const FirebaseProvider = (props) => {
     })
   }
 
+  const addCar = (name, licensePlate, brand) => {
+    axios.post('http://localhost:3000/api/car/save-car', {
+      currentUserUid,
+      name,
+      licensePlate,
+      brand
+    }).then(res => {
+      console.log(res.data);
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+
   const logOut = () => {
     Auth()
       .signOut()
@@ -166,15 +157,14 @@ const FirebaseProvider = (props) => {
         setEditProfileEmail: setEditProfileEmail,
         setTrigeredActiveBooked: setTrigeredActiveBooked,
         userUnbook: userUnbook,
-        carModels: carModels,
-        setSelectedCarModel: setSelectedCarModel,
         setSearchItem: setSearchItem,
         searchItem: searchItem,
         selectedCarPark: selectedCarPark,
         setSelectedCarPark: setSelectedCarPark,
         changePassword: changePassword,
         selectedCar: selectedCar,
-        setSelectedCar: setSelectedCar
+        setSelectedCar: setSelectedCar,
+        addCar: addCar
       }}>
       { props.children}
     </FirebaseContext.Provider >
