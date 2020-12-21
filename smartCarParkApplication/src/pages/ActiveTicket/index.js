@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import Ticket from '../../components/Ticket'
-
 import { ScrollView } from 'react-native';
 
 const ActiveTicket = ({ navigation }) => {

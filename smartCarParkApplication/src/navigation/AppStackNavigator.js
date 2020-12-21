@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+
 import { FirebaseContext } from '../provider/FirebaseProvider'
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -44,7 +45,6 @@ const AppStackNavigator = () => {
         }}
       />
     </Tab.Navigator>
-
   );
 }
 

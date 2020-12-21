@@ -1,5 +1,6 @@
 import React from 'react';
-import { SafeAreaView, ScrollView } from 'react-native';
+import { ScrollView } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import ActiveTicket from '../ActiveTicket';
 import HistoryTicket from '../HistoryTicket';
 
@@ -8,10 +9,12 @@ const Tab = createMaterialTopTabNavigator();
 
 const TicketNavigation = () => {
   return (
+
     <Tab.Navigator>
       <Tab.Screen name="Active" component={ActiveTicket} />
       <Tab.Screen name="History" component={HistoryTicket} />
     </Tab.Navigator>
+
   );
 };
 

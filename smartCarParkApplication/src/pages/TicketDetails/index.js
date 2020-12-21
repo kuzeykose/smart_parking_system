@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
-import { Button } from 'react-native'
+import { Button, Alert } from 'react-native'
 
 import {
   Card,
@@ -17,7 +17,7 @@ import {
 } from 'react-native'
 
 
-const TicketDetail = ({ route }) => {
+const TicketDetail = ({ route, navigation }) => {
   const {
     parkId,
     checkInDate,
@@ -62,14 +62,31 @@ const TicketDetail = ({ route }) => {
           </View>
         </DateTimeCard>
         <Button title={"delete"} onPress={() => {
-          FirebaseProvider.userUnbook(
-            parkId,
-            checkInDate,
-            checkInTime,
-            checkOutTime,
-            parkSlot,
-            docId
-          )
+          Alert.alert(
+            "Your reservation will be canceled.",
+            "Do you want to cancel your reservation?",
+            [
+              {
+                text: "No",
+                onPress: () => { },
+                style: "cancel"
+              },
+              {
+                text: "Yes", onPress: () => {
+                  FirebaseProvider.userUnbook(
+                    parkId,
+                    checkInDate,
+                    checkInTime,
+                    checkOutTime,
+                    parkSlot,
+                    docId
+                  )
+                  navigation.navigate("TicketNavigation")
+                }
+              }
+            ],
+            { cancelable: false }
+          );
         }} />
       </Card >
     </View>
