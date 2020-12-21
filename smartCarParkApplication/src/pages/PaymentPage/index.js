@@ -73,7 +73,8 @@ const PaymentPage = ({ route, navigation }) => {
             firebaseContext.userBook(
               destinationInformation.parkAdi,
               destinationInformation.latitude,
-              destinationInformation.longitude
+              destinationInformation.longitude,
+              selectedCar
             ).then(res => {
               console.log(res);
               if (res === "slotsAreNotAvailable") {

@@ -12,13 +12,15 @@ function setDbBookDataArray(db, coll, bookDataInformation, index, snapShot) {
     "longitude": bookDataInformation.longitude,
     "parkId": bookDataInformation.parkId,
     "parkSlot": snapShot.docs[index].id,
+    "selectedCar": bookDataInformation.selectedCar,
     "docId": docId
   }
 
   let bookData = { // available or notAvailable uses
     "checkInTime": bookDataInformation.checkInTime,
     "checkOutTime": bookDataInformation.checkOutTime,
-    "userId": bookDataInformation.currentUserUid
+    "userId": bookDataInformation.currentUserUid,
+    "carInformation": bookDataInformation.selectedCar
   }
 
   coll.doc(snapShot.docs[index].id).get().then(snap => {
@@ -41,7 +43,6 @@ function setDbBookDataArray(db, coll, bookDataInformation, index, snapShot) {
   })
 }
 
-// 
 function setDbBookDataArrayEmpty(
   db,
   coll,
@@ -59,6 +60,7 @@ function setDbBookDataArrayEmpty(
     "latitude": bookDataInformation.latitude,
     "longitude": bookDataInformation.longitude,
     "parkSlot": snapShot.docs[index].id,
+    "selectedCar": bookDataInformation.selectedCar,
     "docId": docId
   }
 
@@ -68,7 +70,8 @@ function setDbBookDataArrayEmpty(
       {
         "checkInTime": bookDataInformation.checkInTime,
         "checkOutTime": bookDataInformation.checkOutTime,
-        "userId": bookDataInformation.currentUserUid
+        "userId": bookDataInformation.currentUserUid,
+        "carInformation": bookDataInformation.selectedCar
       }
     ]
   }

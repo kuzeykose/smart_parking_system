@@ -3,8 +3,6 @@
 
 // get all data and return with unchanging name in object
 const switchTimeAndDate = (bookData) => {
-
-
   const date = new Date(bookData.checkInDate)
   const dateCheckInDate = date.toLocaleDateString().split("/")
   const selectedCheckInDate = dateCheckInDate.join("-")
@@ -25,7 +23,8 @@ const switchTimeAndDate = (bookData) => {
     parkId: bookData.parkId,
     currentUserUid: bookData.currentUserUid,
     latitude: bookData.latitude,
-    longitude: bookData.longitude
+    longitude: bookData.longitude,
+    selectedCar: bookData.selectedCar
   }
 }
 

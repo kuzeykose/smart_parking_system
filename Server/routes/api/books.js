@@ -14,7 +14,6 @@ router.post('/bookslot', (req, res) => {
   const notAvailableArray = arr => arr.every(v => v === "notAvailable")
 
   const bookDataInformation = switchFormatTimeAndDate(bookData)
-
   // database -> selected park collection 
   const parkSlotsCollection = db
     .collection('car-parks')

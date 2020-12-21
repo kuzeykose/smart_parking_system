@@ -80,7 +80,7 @@ const FirebaseProvider = (props) => {
     })
   }, [searchItem])
 
-  const userBook = async (parkId, latitude, longitude) => {
+  const userBook = async (parkId, latitude, longitude, selectedCar) => {
     const response = await axios.post('http://localhost:3000/api/book/bookslot', { //returns slotsAreNotAvailable or completed
       parkId,
       latitude,
@@ -88,7 +88,8 @@ const FirebaseProvider = (props) => {
       currentUserUid,
       checkOutTime,
       checkInTime,
-      checkInDate
+      checkInDate,
+      selectedCar
     }).catch(function (error) {
       console.log(error);
     })
