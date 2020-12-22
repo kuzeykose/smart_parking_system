@@ -3,12 +3,16 @@ import { UserContext } from '../../navigation/AuthProvider'
 import imagePeople from '../../imagePeople.jpg'
 
 import {
-  UpdateButton,
-  UpdateButtonText,
   UserInformationText,
   TopView,
-  Input,
-  InformationCard
+  ImageView,
+  Container,
+  CarTextInput,
+  CarInputView,
+  InfoText,
+  SaveButtonText,
+  SaveButton,
+  Middelof
 } from './style'
 
 import {
@@ -23,34 +27,46 @@ const EditProfile = () => {
   const value = useContext(FirebaseContext);
   return (
     <SafeAreaView>
-      <TopView>
-        <Image
-          source={imagePeople}
-          style={{
-            width: 125,
-            height: 125,
-            borderRadius: 400 / 2,
-          }}
-        />
-      </TopView>
-      <InformationCard>
-        <UserInformationText>Name:</UserInformationText>
-        <Input
-          placeholder={value.userInformation.name}
-          value={value.editProfileName}
-          onChange={(text) => value.setEditProfileName(text)}
-        />
-      </InformationCard>
-      <InformationCard>
-        <UserInformationText>Email:</UserInformationText>
-        <UserInformationText>{value.userInformation.email}</UserInformationText>
-      </InformationCard>
-      <View style={{ marginLeft: 10 }}>
-        <UpdateButton title={"update"} onPress={() => { }}>
-          <UpdateButtonText>Update</UpdateButtonText>
-        </UpdateButton>
-      </View>
-    </SafeAreaView>
+      <Container>
+        <Middelof>
+          <TopView>
+            <ImageView>
+              <Image
+                source={imagePeople}
+                style={{
+                  width: 100,
+                  height: 100,
+                  borderRadius: 400 / 2,
+                }}
+              />
+            </ImageView>
+            <View>
+              <UserInformationText>{value.userInformation.name}</UserInformationText>
+              <UserInformationText>{value.userInformation.email}</UserInformationText>
+            </View>
+          </TopView>
+          <CarInputView>
+            <InfoText>Name</InfoText>
+            <CarTextInput
+              onChange={(text) => { value.setEditProfileName(text.nativeEvent.text) }}
+            ></CarTextInput>
+          </CarInputView>
+          <CarInputView>
+            <InfoText>Name</InfoText>
+            <CarTextInput
+              onChange={(text) => { value.setEditProfileName(text.nativeEvent.text) }}
+            ></CarTextInput>
+          </CarInputView>
+        </Middelof>
+
+        <SaveButton onPress={() => { }}>
+          <SaveButtonText>
+            Save
+          </SaveButtonText>
+        </SaveButton>
+
+      </Container>
+    </SafeAreaView >
   );
 };
 

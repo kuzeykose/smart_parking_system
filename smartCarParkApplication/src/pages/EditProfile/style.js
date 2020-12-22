@@ -4,25 +4,22 @@ export const Container = styled.View`
   background: #FFF;
   height: 100%;
   width: 100%;
-  justify-content: space-between;
   padding: 20px;
+  align-items: center
+  justify-content: space-between;
 `
 
-export const UpdateButton = styled.TouchableOpacity`
-background: #F5C81C;
-justify-content: center;
-align-items: center;
-height: 40px;
-align-self: stretch;
-margin-top: 10px;
-border-radius:5px
-width: 100px;
+export const Middelof = styled.View`
+align-items: center
 `
-export const UpdateButtonText = styled.Text`
-color: #fff;
-font-weight: bold;
-font-size: 18px;
+
+export const ImageView = styled.View`
+shadow-opacity: 0.75;
+shadow-radius: 10px;
+shadow-color: #aaaaaa;
+shadow-offset: 2px 2px;
 `
+
 export const InitialInformationText = styled.Text`
 margin-top: 10px;
 margin-bottom: 10px;
@@ -31,38 +28,60 @@ margin-right: 50px;
 `
 
 export const UserInformationText = styled.Text`
-margin-top: 10px;
-margin-bottom: 10px;
-padding-right: 50px;
+margin-top: 2px;
 font-size: 24px;
-margin-left: 30px;
-color:#3b3b3b;
+margin-left: 16px;
+color: #3b3b3b;
 `
 
 export const TopView = styled.View`
-margin-top:10px;
-height: 150px;
-display: flex;
-flex-wrap: wrap;
-align-content: center;
-box-shadow: 4px 4px 4px #aaaaaa;
-`
-export const InformationCard = styled.View`
-margin-top: 10px;
-background-color: #fff;
-border-style: solid;
-border-width: 1px;
-border-radius: 2px;
-border-color: #DDD;
-width: 100%;
+height: 200px;
 display: flex;
 flex-direction: row;
-text-align: center;
-justify-content: space-between;
+align-items: center;
+margin-bottom: 12px;
 `
+
 
 export const Input = styled.TextInput`
   border-color: #61cb61;
   padding-right: 50px;
   font-size: 24px;
+`
+
+export const CarInputView = styled.View`
+margin-top: 10px;
+`
+
+export const CarTextInput = styled.TextInput`
+background: #efeff0;
+height: 40px;
+width: 330px;
+font-size: 20px;
+margin-bottom: 15px;
+color: #0756F2;
+border-radius: 10px
+padding-left: 20px;
+`
+export const InfoText = styled.Text`
+font-size: 16px;
+text-align: left;
+padding-left: 10px;
+`
+
+
+export const SaveButton = styled.TouchableOpacity`
+margin-top: 10px;
+margin-bottom: 10px;
+background: #FBBC04;
+height: 50px;
+width: 350px;
+font-size: 20px;
+border-radius: 10px
+`
+
+export const SaveButtonText = styled.Text`
+font-size: 20px;
+text-align: center;
+margin: auto
 `
