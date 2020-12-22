@@ -8,6 +8,10 @@ padding: 20px;
 justify-content: space-between;
 `
 
+export const List = styled.View`
+margin-left: 8px
+`
+
 export const ImageView = styled.View`
 shadow-opacity: 0.75;
 shadow-radius: 10px;
@@ -27,12 +31,13 @@ height: 50px;
 display: flex;
 flex-direction: row;
 justify-content: space-between;
+align-items:center
 `
 
 export const ListName = styled.Text`
-font-size: 20px;
-margin-bottom: 15px;
-color: #0756F2;
+font-size: 24px;
+margin-bottom: 10px;
+margin-top: 10px;
 `
 
 export const TouchbaleListItemText = styled.Text`
@@ -41,21 +46,10 @@ font-size: 24px
 margin-left: 20px;
 `
 
-export const LogOutButton = styled.TouchableOpacity`
-background: #BF0404;
-justify-content: center;
-align-items: center;
-height: 40px;
-align-self: stretch;
-margin-top: 10px;
-border-radius:5px
-width: 100px;
-`
-
 export const LogOutText = styled.Text`
-color: #fff;
-font-weight: bold;
-font-size: 18px;
+color: #FF3B30;
+font-size: 24px
+margin-left: 20px;
 `
 
 export const UserInformationText = styled.Text`

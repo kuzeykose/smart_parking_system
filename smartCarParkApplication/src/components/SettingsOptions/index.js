@@ -12,6 +12,7 @@ import {
   TouchbaleListItemText,
   TopView,
   ListName,
+  List,
   InformationCard
 } from './style'
 
@@ -48,39 +49,57 @@ const Options = ({ navigation }) => {
           </TopView>
 
           <ListName>Account</ListName>
-          <TouchbaleListItem onPress={() => navigation.navigate('Edit Profile')}>
-            <View style={{ flexDirection: "row" }}>
-              <Icon name="person" size={30} color="#292929" />
-              <TouchbaleListItemText>Edit Profile</TouchbaleListItemText>
-            </View>
-            <Icon name="arrow-forward-ios" size={30} color="#292929" />
-          </TouchbaleListItem>
-          <TouchbaleListItem onPress={() => navigation.navigate('Change Password')}>
-            <View style={{ flexDirection: "row" }}>
-              <Icon name="lock" size={30} color="#292929" />
-              <TouchbaleListItemText>Change Password</TouchbaleListItemText>
-            </View>
-            <Icon name="arrow-forward-ios" size={30} color="#292929" />
-          </TouchbaleListItem>
-          <TouchbaleListItem onPress={() => navigation.navigate('Vehicles')}>
-            <View style={{ flexDirection: "row" }}>
-              <Icon name="directions-car" size={30} color="#292929" />
-              <TouchbaleListItemText>Vehicles</TouchbaleListItemText>
-            </View>
-            <Icon name="arrow-forward-ios" size={30} color="#292929" />
-          </TouchbaleListItem>
+          <List>
+            <TouchbaleListItem onPress={() => navigation.navigate('Edit Profile')}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="person" size={30} color="#FBBC04" />
+                <TouchbaleListItemText>Edit Profile</TouchbaleListItemText>
+              </View>
+              <Icon name="arrow-forward-ios" size={25} color="#292929" />
+            </TouchbaleListItem>
+
+            <TouchbaleListItem onPress={() => navigation.navigate('Change Password')}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="lock" size={30} color="#FBBC04" />
+                <TouchbaleListItemText>Change Password</TouchbaleListItemText>
+              </View>
+              <Icon name="arrow-forward-ios" size={25} color="#292929" />
+            </TouchbaleListItem>
+
+            <TouchbaleListItem onPress={() => navigation.navigate('Vehicles')}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="directions-car" size={30} color="#FBBC04" />
+                <TouchbaleListItemText>Vehicles</TouchbaleListItemText>
+              </View>
+              <Icon name="arrow-forward-ios" size={25} color="#292929" />
+            </TouchbaleListItem>
+
+            <TouchbaleListItem onPress={() => navigation.navigate('Payment Methods')}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="payment" size={30} color="#FBBC04" />
+                <TouchbaleListItemText>Payment methods</TouchbaleListItemText>
+              </View>
+              <Icon name="arrow-forward-ios" size={25} color="#292929" />
+            </TouchbaleListItem>
+
+            <TouchbaleListItem onPress={value.logOut}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="exit-to-app" size={30} color="#FF3B30" />
+                <LogOutText>Log Out</LogOutText>
+              </View>
+            </TouchbaleListItem>
+          </List>
           <ListName>Notification</ListName>
-          <TouchbaleListItem onPress={() => navigation.navigate('Notification')}>
-            <View style={{ flexDirection: "row" }}>
-              <Icon name="notifications" size={30} color="#292929" />
-              <TouchbaleListItemText>Notification</TouchbaleListItemText>
-            </View>
-            <Icon name="arrow-forward-ios" size={30} color="#292929" />
-          </TouchbaleListItem>
+          <List>
+            <TouchbaleListItem onPress={() => navigation.navigate('Notification')}>
+              <View style={{ flexDirection: "row" }}>
+                <Icon name="notifications" size={30} color="#FBBC04" />
+                <TouchbaleListItemText>Notification</TouchbaleListItemText>
+              </View>
+              <Icon name="arrow-forward-ios" size={25} color="#292929" />
+            </TouchbaleListItem>
+          </List>
         </View>
-        <LogOutButton title={"logout"} onPress={value.logOut}>
-          <LogOutText>Log Out</LogOutText>
-        </LogOutButton>
       </Container>
     </SafeAreaView>
   );

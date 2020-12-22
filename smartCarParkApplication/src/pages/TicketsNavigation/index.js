@@ -9,12 +9,10 @@ const Tab = createMaterialTopTabNavigator();
 
 const TicketNavigation = () => {
   return (
-
     <Tab.Navigator>
       <Tab.Screen name="Active" component={ActiveTicket} />
       <Tab.Screen name="History" component={HistoryTicket} />
     </Tab.Navigator>
-
   );
 };
 
