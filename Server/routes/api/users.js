@@ -14,7 +14,6 @@ const actionCodeSettings = {
 router.post('/', (req, res) => {
   const docRef = db.collection("users");
   docRef.doc(req.body.currentUserUid).get().then((data) => {
-
     const responseData = data.data();
 
     data.ref.collection("activeBookedPark").get().then(element => {
@@ -29,12 +28,18 @@ router.post('/', (req, res) => {
           var vehicles = element.docs.map(el => {
             return el.data()
           })
-          res.send({
-            active: active,
-            history: history,
-            information: responseData,
-            vehicles: vehicles
-          });
+          data.ref.collection("paymentInformation").get().then(element => {
+            var paymentInformation = element.docs.map(el => {
+              return el.data()
+            })
+            res.send({
+              active: active,
+              history: history,
+              information: responseData,
+              vehicles: vehicles,
+              paymentInformation: paymentInformation
+            });
+          })
         })
       })
     })
