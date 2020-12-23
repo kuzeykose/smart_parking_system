@@ -25,6 +25,8 @@ import {
 import DeatilsAndroid from '../DetailsAndroid';
 
 const Map = ({ navigation }) => {
+
+
   const firebaseProvider = useContext(FirebaseContext)
   const [popup, setPopup] = useState(null)
   const [region, setRegion] = useState(null)
@@ -69,6 +71,7 @@ const Map = ({ navigation }) => {
         initialRegion={region}
         showsUserLocation={true}
         loadingEnabled
+        showsBuildings={false}
         ref={el => mapView = el}
       >
         {firebaseProvider.selectedCarPark && (
