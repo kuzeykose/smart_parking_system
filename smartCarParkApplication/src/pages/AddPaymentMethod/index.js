@@ -138,8 +138,8 @@ const AddPaymentMethod = ({ navigation }) => {
       </InputContainer>
 
       <SaveButton onPress={() => {
-        value.addCar(carName, licensePlate, selectedCarmodel)
-        navigation.navigate("Vehicles")
+        value.addPaymentMethod(nameSurname.toUpperCase(), cardNumber, expirationDate, cardCVV)
+        navigation.navigate("Payment Methods")
       }}>
         <SaveButtonText>
           Save

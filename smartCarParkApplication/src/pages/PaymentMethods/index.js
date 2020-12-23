@@ -13,11 +13,10 @@ import {
 
 const PaymentMethods = () => {
   const value = useContext(FirebaseContext);
-  const myCard = [{ name: 'kuzey kose', cardNumber: '0000 0000 0000 0000' }]
 
-  const PaymentCards = myCard.map((inf, index) => {
+  const PaymentCards = value.userPaymentMethods.map((inf, index) => {
     return <PaymentCard
-      name={inf.name}
+      name={inf.nameSurname}
       cardNumber={inf.cardNumber}
       key={index}
     />

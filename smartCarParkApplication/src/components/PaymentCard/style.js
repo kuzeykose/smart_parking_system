@@ -4,6 +4,7 @@ export const Card = styled.View`
   flex-direction: row
   margin-left: 10px
   margin-right: 10px
+  align-items: center
 `
 
 export const TextContainer = styled.View`
@@ -12,8 +13,9 @@ export const TextContainer = styled.View`
 `
 
 export const Logo = styled.Image`
-  width: 90px
-  height: 90px
+  width: 72.5px
+  height: 50px
+  margin-top: 15px
 `
 
 export const CardText = styled.Text`

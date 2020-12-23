@@ -11,6 +11,7 @@ const FirebaseProvider = (props) => {
   const [checkInDate, setCheckInDate] = useState(new Date())
   const [userInformation, setUserInformation] = useState({})
   const [userVehicle, setUserVehicle] = useState([])
+  const [userPaymentMethods, setUserPaymentMethods] = useState([])
   const [userHistoryParkData, setUserHistoryParkData] = useState([])
   const [userActiveParkData, setUserActiveParkData] = useState([])
   const [trigeredActiveBooked, setTrigeredActiveBooked] = useState()
@@ -54,6 +55,7 @@ const FirebaseProvider = (props) => {
       setUserHistoryParkData(res.data.history)
       setUserActiveParkData(res.data.active)
       setUserVehicle(res.data.vehicles)
+      setUserPaymentMethods(res.data.paymentInformation)
     }).catch(function (error) {
       console.log(error);
     })
@@ -137,6 +139,21 @@ const FirebaseProvider = (props) => {
     })
   }
 
+  const addPaymentMethod = (nameSurname, cardNumber, expirationDate, CVV) => {
+    axios.post('http://localhost:3000/api/paymentMethod/add-bank-card', {
+      currentUserUid,
+      nameSurname,
+      cardNumber,
+      expirationDate,
+      CVV
+    }).then(res => {
+      console.log(res.data);
+      setUserPaymentMethods(res.data)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+
   const logOut = () => {
     Auth()
       .signOut()
@@ -169,7 +186,9 @@ const FirebaseProvider = (props) => {
         selectedCar: selectedCar,
         setSelectedCar: setSelectedCar,
         addCar: addCar,
-        userVehicle: userVehicle
+        userVehicle: userVehicle,
+        addPaymentMethod: addPaymentMethod,
+        userPaymentMethods: userPaymentMethods
       }}>
       {props.children}
     </FirebaseContext.Provider >
