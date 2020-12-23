@@ -1,10 +1,12 @@
 import React from "react";
 
+
 import {
   Card,
   CardText,
   Logo,
   TextContainer,
+  DeleteButton,
 } from './style'
 
 const VehicleCard = (props) => (

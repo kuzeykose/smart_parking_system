@@ -2,8 +2,7 @@ import styled from 'styled-components/native'
 
 export const Card = styled.View`
   flex-direction: row
-  margin-left: 10px
-  margin-right: 10px
+  margin-bottom: 20px
 `
 
 export const TextContainer = styled.View`

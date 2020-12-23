@@ -4,7 +4,8 @@ import { FirebaseContext } from '../../provider/FirebaseProvider';
 import PaymentCard from '../../components/PaymentCard'
 
 import {
-  Container
+  Container,
+  Card
 } from './style'
 
 import {
@@ -15,11 +16,10 @@ const PaymentMethods = () => {
   const value = useContext(FirebaseContext);
 
   const PaymentCards = value.userPaymentMethods.map((inf, index) => {
-    return <PaymentCard
+    return <Card key={index}><PaymentCard
       name={inf.nameSurname}
       cardNumber={inf.cardNumber}
-      key={index}
-    />
+    /></Card>
   })
 
   return (

@@ -6,7 +6,6 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import ForgotPassword from '../components/ForgotPassword'
 
-
 const Stack = createStackNavigator();
 
 const AuthStack = (props) => {

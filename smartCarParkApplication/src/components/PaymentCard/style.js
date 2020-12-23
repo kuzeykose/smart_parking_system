@@ -2,9 +2,13 @@ import styled from 'styled-components/native'
 
 export const Card = styled.View`
   flex-direction: row
-  margin-left: 10px
-  margin-right: 10px
   align-items: center
+  margin-bottom: 20px
+  justify-content: space-between
+`
+
+export const InfoImage = styled.View`
+  flex-direction: row
 `
 
 export const TextContainer = styled.View`
@@ -23,4 +27,10 @@ export const CardText = styled.Text`
   margin-top: 2px
   font-size: 20px
   font-weight: 300
+`
+export const DeleteButton = styled.TouchableOpacity`
+align-items: center
+justify-content: center
+width: 50px
+height: 50px
 `
