@@ -13,8 +13,8 @@ const Search = () => {
   useEffect(() => {
     const filteredCharacters = carParkNames.filter(character => {
       return (
-        character.ParkAdi.toLowerCase().includes(searchText.toLowerCase()) ||
-        character.Ilce.toLowerCase().includes(searchText.toLowerCase())
+        character.ParkName.toLowerCase().includes(searchText.toLowerCase()) ||
+        character.District.toLowerCase().includes(searchText.toLowerCase())
       )
     });
     if (searchText === "") {

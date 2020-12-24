@@ -15,7 +15,7 @@ const ParkInformation = (props) => {
   return (
     <Container>
       <View>
-        <ParkNameText>{props.destinationInformation.parkAdi}</ParkNameText>
+        <ParkNameText>{props.destinationInformation.parkName}</ParkNameText>
         <TypeDescription>{props.destinationInformation.address}</TypeDescription>
         <Stars rating={props.destinationInformation.rating} />
       </View>

@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
         .then((r) => {
           client.textSearch({
             params: {
-              query: data.data().ParkAdi,
+              query: data.data().ParkName,
               key: GOOGLE_MAPS_API_KEY,
             },
             timeout: 1000, // milliseconds
@@ -40,7 +40,7 @@ router.post('/', (req, res) => {
               kapasite: data.data().Kapasitesi,
               ilce: data.data().Ilce,
               latitude: parseFloat(data.data().Latitude),
-              parkAdi: data.data().ParkAdi,
+              parkName: data.data().ParkName,
               longitude: parseFloat(data.data().Longitude),
               address: r.data.results[0].address_components[2].long_name
                 + ', ' + r.data.results[0].address_components[1].long_name

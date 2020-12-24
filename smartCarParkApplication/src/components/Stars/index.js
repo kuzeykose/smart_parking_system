@@ -11,9 +11,9 @@ const Stars = (props) => {
     let stars = []
     for (let i = 0; i < 5; i++) {
       if (i < ratingNumber) {
-        stars[i] = <Icon name="star" size={30} color="#f9b402" />
+        stars[i] = <Icon key={i} name="star" size={30} color="#f9b402" />
       } else {
-        stars[i] = <Icon name="star" size={30} color="#d7d7d7" />
+        stars[i] = <Icon key={i} name="star" size={30} color="#d7d7d7" />
       }
     }
     return stars
@@ -22,7 +22,7 @@ const Stars = (props) => {
   return (
     <Container style={{ flexDirection: 'row' }}>
       <RatingText>{props.rating}</RatingText>
-      {createStar(Math.round(props.rating)).map(item => {
+      {createStar(Math.round(props.rating)).map((item) => {
         return item
       })}
 

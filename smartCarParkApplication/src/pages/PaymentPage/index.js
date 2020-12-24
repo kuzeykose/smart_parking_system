@@ -36,7 +36,7 @@ const PaymentPage = ({ route, navigation }) => {
       <Container>
         <InfoContainer>
           <View>
-            <ParkNameText>{destinationInformation.parkAdi}</ParkNameText>
+            <ParkNameText>{destinationInformation.parkName}</ParkNameText>
             <TypeDescription>{destinationInformation.address}</TypeDescription>
             <Stars rating={destinationInformation.rating} />
           </View>
@@ -71,7 +71,7 @@ const PaymentPage = ({ route, navigation }) => {
         <View>
           <RequestButton onPress={() => {
             firebaseContext.userBook(
-              destinationInformation.parkAdi,
+              destinationInformation.parkName,
               destinationInformation.latitude,
               destinationInformation.longitude,
               selectedCar

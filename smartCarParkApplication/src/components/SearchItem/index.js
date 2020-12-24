@@ -14,9 +14,9 @@ import {
 const SearchItem = (props) => {
   return (
     <Container>
-      <SearchItemButton onPress={() => props.firebaseContext.setSearchItem(props.parkInformation.ParkAdi)}>
+      <SearchItemButton onPress={() => props.firebaseContext.setSearchItem(props.parkInformation.ParkName)}>
         <SearchItemText>
-          {props.parkInformation.ParkAdi}
+          {props.parkInformation.ParkName}
         </SearchItemText>
       </SearchItemButton>
       <SubInformation>

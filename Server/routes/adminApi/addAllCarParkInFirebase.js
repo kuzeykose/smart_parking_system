@@ -12,7 +12,6 @@ const axios = require('axios');
 const db = admin.firestore();
 
 router.get('/setDatabaseAllParkFromIspark', (req, res) => {
-
   axios.get('https://api.ibb.gov.tr/ispark/Park').then(resp => {
     const arr = resp.data
     const kapaliAndAcikCarPark = arr.filter(item => {
@@ -24,29 +23,44 @@ router.get('/setDatabaseAllParkFromIspark', (req, res) => {
         return false
       }
     })
-    const parkData = kapaliAndAcikCarPark.map(item => {
+
+    const parkDataForSearching = kapaliAndAcikCarPark.map(item => {
+      console.log(item);
       const parkObject = {
-        ParkID: item.ParkID,
-        ParkAdi: item.ParkAdi,
-        Latitude: item.Latitude,
-        Longitude: item.Longitude,
-        Kapasitesi: item.Kapasitesi,
-        ParkTipi: item.ParkTipi,
-        Ilce: item.Ilce,
+        ParkName: item.ParkAdi,
+        District: item.Ilce,
       }
-      // db.collection('car-parks').doc(item.ParkAdi).set(parkObject);
-      // for (let i = 0; i < 5; i++) {
-      //   db.collection('car-parks')
-      //     .doc(item.ParkAdi)
-      //     .collection("parking-slots")
-      //     .doc(`${i}`)
-      //     .set({})
-      // }
       return parkObject
     })
-    res.send(parkData);
-  });
 
+    const parkData = kapaliAndAcikCarPark.map(item => {
+      axios.get(`https://api.ibb.gov.tr/ispark/ParkDetay?id=${item.ParkID}`).then(resp => {
+        const parkInformation = resp.data
+        const parkObject = {
+          ParkID: parkInformation.ParkID,
+          ParkName: parkInformation.ParkAdi,
+          Latitude: parkInformation.Latitude,
+          Longitude: parkInformation.Longitude,
+          Capacity: parkInformation.Kapasitesi,
+          ParkType: parkInformation.ParkTipi,
+          District: parkInformation.Ilce,
+          PriceList: parkInformation.Tarifeler,
+          Address: parkInformation.Adres
+        }
+        console.log(parkObject);
+      })
+      //   db.collection('car-parks').doc(parkInformation.ParkAdi).set(parkObject);
+      //   for (let i = 0; i < 5; i++) {
+      //     db.collection('car-parks')
+      //       .doc(item.ParkAdi)
+      //       .collection("parking-slots")
+      //       .doc(`${i}`)
+      //       .set({})
+      //   }
+
+    })
+    res.send(parkDataForSearching);
+  });
 })
 
 

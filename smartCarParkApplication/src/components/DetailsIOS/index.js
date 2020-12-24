@@ -13,7 +13,7 @@ import {
   ParkNameText,
   TypeDescription
 } from './style'
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 
 const DetailsIOS = (props) => {
   const firebaseContext = useContext(FirebaseContext);
@@ -24,7 +24,7 @@ const DetailsIOS = (props) => {
   return (
     <Container>
       <View>
-        <ParkNameText>{destinationInformation.parkAdi}</ParkNameText>
+        <ParkNameText>{destinationInformation.ParkName}</ParkNameText>
         <TypeDescription>{destinationInformation.address}</TypeDescription>
         <Stars rating={destinationInformation.rating} />
       </View>
@@ -78,9 +78,14 @@ const DetailsIOS = (props) => {
       </CheckContainer>
 
       <RequestButton onPress={() => {
-        navigation.navigate('Payment', {
-          destinationInformation
-        });
+        if (firebaseContext.checkInTime < firebaseContext.checkOutTime) {
+          navigation.navigate('Payment', {
+            destinationInformation
+          });
+        } else {
+          Alert.alert("Please select ")
+        }
+
       }}>
         <RequestButtonText>Go to Payment</RequestButtonText>
       </RequestButton>
