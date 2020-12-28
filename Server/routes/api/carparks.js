@@ -37,15 +37,16 @@ router.post('/', (req, res) => {
           }).then((t) => {
             const dataRetype = {
               parkId: data.data().ParkID,
-              kapasite: data.data().Kapasitesi,
-              ilce: data.data().Ilce,
+              kapasite: data.data().Capacity,
+              district: data.data().District,
               latitude: parseFloat(data.data().Latitude),
               parkName: data.data().ParkName,
               longitude: parseFloat(data.data().Longitude),
               address: r.data.results[0].address_components[2].long_name
                 + ', ' + r.data.results[0].address_components[1].long_name
                 + ', ' + 'No: ' + r.data.results[0].address_components[0].long_name,
-              rating: t.data.results[0].rating
+              rating: t.data.results[0].rating,
+              priceList: data.data().PriceList,
             }
             res.send(dataRetype)
           })

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { FirebaseContext } from '../../provider/FirebaseProvider'
 import Stars from '../Stars'
@@ -21,10 +21,43 @@ const DetailsIOS = (props) => {
   const handleBack = props.handleBack
   const navigation = props.navigation
 
+  const parseTime = (s) => {
+    var c = s.split(':');
+    return parseInt(c[0]) * 60 + parseInt(c[1]);
+  }
+
+  const priceForSelectedTime = () => {
+    const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit' }
+    const stringCheckInTime = firebaseContext.checkInTime.toLocaleTimeString('en-US', timeOptions)
+    const stringCheckOutTime = firebaseContext.checkOutTime.toLocaleTimeString('en-US', timeOptions)
+    var estimatedParkingTime = (parseTime(stringCheckOutTime) - parseTime(stringCheckInTime)) / 60;
+
+    if (firebaseContext.checkInTime < firebaseContext.checkOutTime) {
+      for (let i = 0; i < destinationInformation.priceList.length; i++) {
+        const timeSpace = destinationInformation.priceList[i].Tarife.split('-')
+        // console.log(timeSpace);
+        if (timeSpace[1]) {
+          const initialTime = parseInt(timeSpace[0])
+          const endTime = parseInt(timeSpace[1].substring(0, 2))
+          if (estimatedParkingTime >= initialTime && estimatedParkingTime <= endTime) {
+            // setPrice(destinationInformation.priceList[i].Fiyat)
+            return destinationInformation.priceList[i].Fiyat
+          }
+        }
+        if (timeSpace[1] === undefined) {
+          // setPrice(destinationInformation.priceList[i].Fiyat)
+          return destinationInformation.priceList[i].Fiyat
+        }
+      }
+    } else {
+      Alert.alert("Please acceptable time")
+    }
+  }
+
   return (
     <Container>
       <View>
-        <ParkNameText>{destinationInformation.ParkName}</ParkNameText>
+        <ParkNameText>{destinationInformation.parkName}</ParkNameText>
         <TypeDescription>{destinationInformation.address}</TypeDescription>
         <Stars rating={destinationInformation.rating} />
       </View>
@@ -73,7 +106,7 @@ const DetailsIOS = (props) => {
         </CheckView>
 
         <CheckView>
-          <DateTimeSelectText>Price:</DateTimeSelectText>
+          <DateTimeSelectText>Price:{priceForSelectedTime()}</DateTimeSelectText>
         </CheckView>
       </CheckContainer>
 
@@ -83,7 +116,7 @@ const DetailsIOS = (props) => {
             destinationInformation
           });
         } else {
-          Alert.alert("Please select ")
+          Alert.alert("Please select")
         }
 
       }}>
