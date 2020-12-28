@@ -95,7 +95,7 @@ const Map = ({ navigation }) => {
               coordinate={firebaseProvider.selectedCarPark}
               anchor={{ x: 0, y: 0 }} >
               <LocationBox>
-                <LocationText>{firebaseProvider.selectedCarPark.ParkName}</LocationText>
+                <LocationText>{firebaseProvider.selectedCarPark.parkName}</LocationText>
               </LocationBox>
             </Marker>
             <Marker
