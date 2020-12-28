@@ -6,6 +6,7 @@ import {
 import Map from '../components/Map'
 import PaymentPage from '../pages/PaymentPage'
 import SelectVehicle from '../pages/SelectVehicle'
+import SelectPaymentMethod from '../pages/SelectPaymentMethod'
 
 import { createStackNavigator } from '@react-navigation/stack';
 const Stack = createStackNavigator();
@@ -21,6 +22,7 @@ const Homepage = () => {
         />
         <Stack.Screen name="Payment" component={PaymentPage} />
         <Stack.Screen name="Select Vehicle" component={SelectVehicle} />
+        <Stack.Screen name="Select Payment Method" component={SelectPaymentMethod} />
       </Stack.Navigator>
     </SafeAreaView >
   );

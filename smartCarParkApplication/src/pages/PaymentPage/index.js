@@ -3,6 +3,7 @@ import { FirebaseContext } from '../../provider/FirebaseProvider'
 import Stars from '../../components/Stars'
 import VehicleCard from '../../components/VehicleCard'
 import LogoSrc from "../../assets/peugeot.png";
+import PaymentCard from "../../components/PaymentCard"
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -28,6 +29,7 @@ const PaymentPage = ({ route, navigation }) => {
   const firebaseContext = useContext(FirebaseContext);
   const { destinationInformation } = route.params;
   const [selectedCar, setSelectedCar] = useState(firebaseContext.userVehicle[0])
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(firebaseContext.userPaymentMethods[0])
 
   const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit' }
 
@@ -68,6 +70,21 @@ const PaymentPage = ({ route, navigation }) => {
           <Line />
         </VehicleSelection>
 
+        <VehicleSelection>
+          <ItemIncludeChange>
+            <PaymentCard
+              name={selectedPaymentMethod.nameSurname}
+              cardNumber={selectedPaymentMethod.cardNumber}
+            />
+            <ChangeButton onPress={() => navigation.navigate("Select Payment Method", {
+              setSelectedPaymentMethod: setSelectedPaymentMethod
+            })}>
+              <ChangeButtonText>Change</ChangeButtonText>
+            </ChangeButton>
+          </ItemIncludeChange>
+        </VehicleSelection>
+
+
         <View>
           <RequestButton onPress={() => {
             firebaseContext.userBook(
@@ -91,7 +108,7 @@ const PaymentPage = ({ route, navigation }) => {
           </RequestButton>
         </View>
       </Container>
-    </ScrollView>
+    </ScrollView >
   )
 }
 

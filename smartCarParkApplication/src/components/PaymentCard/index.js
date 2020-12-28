@@ -53,7 +53,7 @@ const PaymentCard = (props) => {
           }</CardText>
         </TextContainer>
       </InfoImage>
-      <DeleteButton onPress={() => {
+      {/* <DeleteButton onPress={() => {
         Alert.alert(
           "Your payment method will be deleted.",
           "Do you want to delete?",
@@ -73,7 +73,7 @@ const PaymentCard = (props) => {
         );
       }} >
         <Icon name="delete" size={27} color="#FF3B3B" />
-      </DeleteButton>
+      </DeleteButton> */}
     </Card>
   )
 }

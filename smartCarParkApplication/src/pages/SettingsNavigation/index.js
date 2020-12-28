@@ -134,11 +134,6 @@ const SettingsNavigation = () => {
         component={Notification}
         options={headerStyle}
       />
-
-
-
-
-
     </Stack.Navigator>
   );
 };
