@@ -19,7 +19,7 @@ const SelectVehicle = ({ route, navigation: { goBack } }) => {
   const value = useContext(FirebaseContext);
 
   const vehicles = value.userVehicle.map((inf, index) => {
-    return <TouchableOpacity onPress={() => {
+    return <TouchableOpacity key={index} onPress={() => {
       setSelectedCar(inf)
       goBack()
     }}>
@@ -27,7 +27,6 @@ const SelectVehicle = ({ route, navigation: { goBack } }) => {
         LogoSrc={LogoSrc}
         carName={inf.name}
         licensePlate={"34 PG 2020"}
-        key={index}
       />
     </TouchableOpacity>
   })

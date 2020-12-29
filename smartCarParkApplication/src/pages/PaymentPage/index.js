@@ -21,13 +21,15 @@ import {
   ChangeButton,
   ItemIncludeChange,
   ChangeButtonText,
-  Line
+  Line,
+  PriceText,
+  PriceView
 } from './style'
-import { View, ScrollView, TouchableOpacity } from 'react-native';
+import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 
 const PaymentPage = ({ route, navigation }) => {
   const firebaseContext = useContext(FirebaseContext);
-  const { destinationInformation } = route.params;
+  const { destinationInformation, price } = route.params;
   const [selectedCar, setSelectedCar] = useState(firebaseContext.userVehicle[0])
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState(firebaseContext.userPaymentMethods[0])
 
@@ -67,7 +69,6 @@ const PaymentPage = ({ route, navigation }) => {
               <ChangeButtonText>Change</ChangeButtonText>
             </ChangeButton>
           </ItemIncludeChange>
-          <Line />
         </VehicleSelection>
 
         <VehicleSelection>
@@ -104,6 +105,9 @@ const PaymentPage = ({ route, navigation }) => {
               }
             })
           }}>
+            <PriceView>
+              <PriceText>{price}</PriceText>
+            </PriceView>
             <RequestButtonText>Payment</RequestButtonText>
           </RequestButton>
         </View>

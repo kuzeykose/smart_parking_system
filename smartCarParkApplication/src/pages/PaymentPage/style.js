@@ -31,7 +31,8 @@ margin-bottom:8px
 export const RequestButton = styled.TouchableOpacity`
 background: #FBBC04
 margin: 20px
-justify-content: center
+flex-direction: row;
+justify-content: space-between
 align-items: center
 height: 44px
 border-radius: 10px
@@ -40,6 +41,7 @@ width: 350px
 
 export const RequestButtonText = styled.Text`
 font-size: 22px
+margin-right:100px
 `
 
 export const CheckContainer = styled.View`
@@ -115,6 +117,7 @@ padding: 4px
 
 export const ItemIncludeChange = styled.View`
 margin-top: 20px
+justify-content: space-between
 flex-direction: row
 align-items: center
 padding-left: 10px
@@ -125,4 +128,17 @@ margin-bottom:10px
 export const Line = styled.View`
 border-bottom-width: 0.5px
 border-bottom-color: #D3D3D3
+`
+
+export const PriceText = styled.Text`
+font-size: 20px
+`
+export const PriceView = styled.View`
+background: #ffffff
+height: 44px
+width: 75px
+border-radius: 10px
+border: 3px solid #FBBC04
+align-items: center
+justify-content: center
 `

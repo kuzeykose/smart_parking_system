@@ -16,14 +16,13 @@ const SelectedPaymentMethod = ({ route, navigation: { goBack } }) => {
   const value = useContext(FirebaseContext);
 
   const paymentMethods = value.userPaymentMethods.map((inf, index) => {
-    return <TouchableOpacity onPress={() => {
+    return <TouchableOpacity key={index} onPress={() => {
       setSelectedPaymentMethod(inf)
       goBack()
     }}>
       <PaymentCard
         name={inf.nameSurname}
         cardNumber={inf.cardNumber}
-        key={index}
       />
     </TouchableOpacity>
   })

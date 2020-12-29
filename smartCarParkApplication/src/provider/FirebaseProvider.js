@@ -72,14 +72,15 @@ const FirebaseProvider = (props) => {
   }, [trigeredActiveBooked])
 
   useEffect(() => {
-    axios.post('http://localhost:3000/api/carpark', {
-      searchItem
-    }).then(res => {
-      setSelectedCarPark(res.data)
-      setSelectedParkInfo()
-    }).catch(function (error) {
-      console.log(error);
-    })
+    if (searchItem !== '')
+      axios.post('http://localhost:3000/api/carpark', {
+        searchItem
+      }).then(res => {
+        setSelectedCarPark(res.data)
+        setSelectedParkInfo()
+      }).catch(function (error) {
+        console.log(error);
+      })
   }, [searchItem])
 
   const userBook = async (parkId, latitude, longitude, selectedCar) => {

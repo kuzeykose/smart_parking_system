@@ -54,6 +54,8 @@ const DetailsIOS = (props) => {
     }
   }
 
+  var price = priceForSelectedTime()
+
   return (
     <Container>
       <View>
@@ -106,14 +108,15 @@ const DetailsIOS = (props) => {
         </CheckView>
 
         <CheckView>
-          <DateTimeSelectText>Price:{priceForSelectedTime()}</DateTimeSelectText>
+          <DateTimeSelectText>Price:{price}</DateTimeSelectText>
         </CheckView>
       </CheckContainer>
 
       <RequestButton onPress={() => {
         if (firebaseContext.checkInTime < firebaseContext.checkOutTime) {
           navigation.navigate('Payment', {
-            destinationInformation
+            destinationInformation,
+            price
           });
         } else {
           Alert.alert("Please select")
