@@ -23,5 +23,25 @@ router.post('/add-bank-card', (req, res) => {
   )
 });
 
+router.post('/delete-bank-card', (req, res) => {
+  console.log(req.body);
+
+  db.collection("users").doc(req.body.currentUserUid).collection("paymentInformation").where("cardNumber", "==", String(req.body.cardNumber)).get()
+    .then(querySnapshot => {
+      querySnapshot.forEach(function (doc) {
+        db.collection("users").doc(req.body.currentUserUid)
+          .collection("paymentInformation").doc(doc.id).delete()
+      })
+    }).then(
+      db.collection("users").doc(req.body.currentUserUid).collection("paymentInformation").get().then(el => {
+        const paymentMethods = el.docs.map(el => {
+          return el.data()
+        })
+        console.log(paymentMethods);
+        res.send(paymentMethods)
+      })
+    )
+});
+
 
 module.exports = router

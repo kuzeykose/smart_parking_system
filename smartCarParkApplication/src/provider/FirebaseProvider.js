@@ -131,14 +131,24 @@ const FirebaseProvider = (props) => {
       licensePlate,
       brand
     }).then(res => {
-      console.log(res.data);
       setUserVehicle(res.data)
     }).catch(function (error) {
       console.log(error);
     })
   }
 
-  const editProfile = (newName, email) => {
+  const deleteCar = (carInfo) => {
+    axios.post('http://localhost:3000/api/car/delete-car', {
+      currentUserUid,
+      carInfo
+    }).then(res => {
+      setUserVehicle(res.data)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  const editProfile = (newName) => {
     axios.post('http://localhost:3000/api/user/edit-user', {
       newName,
       userInformation
@@ -156,6 +166,19 @@ const FirebaseProvider = (props) => {
       cardNumber,
       expirationDate,
       CVV
+    }).then(res => {
+      console.log(res.data);
+      setUserPaymentMethods(res.data)
+    }).catch(function (error) {
+      console.log(error);
+    })
+  }
+
+  const deletePaymentMethod = (nameSurname, cardNumber) => {
+    axios.post('http://localhost:3000/api/paymentMethod/delete-bank-card', {
+      currentUserUid,
+      nameSurname,
+      cardNumber
     }).then(res => {
       console.log(res.data);
       setUserPaymentMethods(res.data)
@@ -197,7 +220,9 @@ const FirebaseProvider = (props) => {
         userVehicle: userVehicle,
         addPaymentMethod: addPaymentMethod,
         userPaymentMethods: userPaymentMethods,
-        editProfile: editProfile
+        editProfile: editProfile,
+        deleteCar: deleteCar,
+        deletePaymentMethod: deletePaymentMethod
       }}>
       {props.children}
     </FirebaseContext.Provider >

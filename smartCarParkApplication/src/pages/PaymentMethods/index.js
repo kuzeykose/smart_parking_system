@@ -3,13 +3,16 @@ import { UserContext } from '../../navigation/AuthProvider'
 import { FirebaseContext } from '../../provider/FirebaseProvider';
 import PaymentCard from '../../components/PaymentCard'
 
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   Container,
-  Card
+  Card,
+  DeleteButton
 } from './style'
 
 import {
   SafeAreaView,
+  Alert
 } from 'react-native';
 
 const PaymentMethods = () => {
@@ -19,7 +22,29 @@ const PaymentMethods = () => {
     return <Card key={index}><PaymentCard
       name={inf.nameSurname}
       cardNumber={inf.cardNumber}
-    /></Card>
+    />
+      <DeleteButton onPress={() => {
+        Alert.alert(
+          "Your vehicle will be deleted.",
+          "Do you want to delete?",
+          [
+            {
+              text: "No",
+              onPress: () => { },
+              style: "cancel"
+            },
+            {
+              text: "Yes", onPress: () => {
+                value.deletePaymentMethod(inf.nameSurname, inf.cardNumber)
+              }
+            }
+          ],
+          { cancelable: false }
+        );
+      }} >
+        <Icon name="delete" size={27} color="#FF3B3B" />
+      </DeleteButton>
+    </Card >
   })
 
   return (

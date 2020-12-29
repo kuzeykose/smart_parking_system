@@ -4,6 +4,7 @@ import { FirebaseContext } from '../../provider/FirebaseProvider';
 import VehicleCard from '../../components/VehicleCard'
 import LogoSrc from '../../assets/peugeot.png';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import {
   Container,
   Card,
@@ -36,7 +37,7 @@ const Cars = () => {
             },
             {
               text: "Yes", onPress: () => {
-                console.log("delete");
+                value.deleteCar(inf)
               }
             }
           ],
