@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { UserContext } from '../../navigation/AuthProvider'
 import imagePeople from '../../imagePeople.jpg'
 
@@ -25,6 +25,9 @@ import { FirebaseContext } from '../../provider/FirebaseProvider';
 
 const EditProfile = () => {
   const value = useContext(FirebaseContext);
+  const [editProfileName, setEditProfileName] = useState("")
+  const [editProfileEmail, setEditProfileEmail] = useState("")
+
   return (
     <SafeAreaView>
       <Container>
@@ -48,18 +51,20 @@ const EditProfile = () => {
           <CarInputView>
             <InfoText>Name</InfoText>
             <CarTextInput
-              onChange={(text) => { value.setEditProfileName(text.nativeEvent.text) }}
+              onChange={(text) => { setEditProfileName(text.nativeEvent.text) }}
             ></CarTextInput>
           </CarInputView>
-          <CarInputView>
-            <InfoText>Name</InfoText>
+          {/* <CarInputView>
+            <InfoText>Email</InfoText>
             <CarTextInput
-              onChange={(text) => { value.setEditProfileName(text.nativeEvent.text) }}
+              onChange={(text) => { setEditProfileEmail(text.nativeEvent.text) }}
             ></CarTextInput>
-          </CarInputView>
+          </CarInputView> */}
         </Middelof>
 
-        <SaveButton onPress={() => { }}>
+        <SaveButton onPress={() => {
+          value.editProfile(editProfileName, editProfileEmail)
+        }}>
           <SaveButtonText>
             Save
           </SaveButtonText>

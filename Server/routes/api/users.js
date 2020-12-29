@@ -83,6 +83,20 @@ router.post('/register', (req, res) => {
     });
 })
 
+router.post('/edit-user', (req, res) => {
+  console.log(req.body);
+  const inf = req.body
+
+  const docRef = db.collection("users")
+  docRef.doc(req.body.userInformation.userUdi).set({
+    name: inf.newName,
+    email: inf.userInformation.email,
+    userUdi: inf.userInformation.userUdi
+  });
+
+
+})
+
 router.post('/forgotpassword', (req, res) => {
   console.log(req.body.email);
   admin.auth().generatePasswordResetLink(req.body.email, actionCodeSettings)
