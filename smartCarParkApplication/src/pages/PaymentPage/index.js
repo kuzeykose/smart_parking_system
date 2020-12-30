@@ -27,7 +27,7 @@ import {
 } from './style'
 import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
 
-const PaymentPage = ({ route, navigation }) => {
+const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
   const firebaseContext = useContext(FirebaseContext);
   const { destinationInformation, price } = route.params;
   const [selectedCar, setSelectedCar] = useState(firebaseContext.userVehicle[0])
@@ -57,34 +57,59 @@ const PaymentPage = ({ route, navigation }) => {
         </InfoContainer>
 
         <VehicleSelection>
-          <ItemIncludeChange>
-            <VehicleCard
-              LogoSrc={LogoSrc}
-              carName={selectedCar.name}
-              licensePlate={selectedCar.licensePlate}
-            />
-            <ChangeButton onPress={() => navigation.navigate("Select Vehicle", {
-              setSelectedCar: setSelectedCar
-            })}>
-              <ChangeButtonText>Change</ChangeButtonText>
-            </ChangeButton>
-          </ItemIncludeChange>
+          {selectedCar ?
+            <ItemIncludeChange>
+              <VehicleCard
+                LogoSrc={LogoSrc}
+                carName={selectedCar.name}
+                licensePlate={selectedCar.licensePlate}
+              />
+              <ChangeButton onPress={() => navigate("Select Vehicle", {
+                setSelectedCar: setSelectedCar
+              })}>
+                <ChangeButtonText>Change</ChangeButtonText>
+              </ChangeButton>
+            </ItemIncludeChange>
+            :
+            <View>
+              <Text>Please add vehicle for booking</Text>
+              <ChangeButton onPress={() => {
+                goBack()
+                navigate('Add Car')
+              }}>
+                <ChangeButtonText>Change</ChangeButtonText>
+              </ChangeButton>
+            </View>
+
+          }
+
         </VehicleSelection>
 
         <VehicleSelection>
-          <ItemIncludeChange>
-            <PaymentCard
-              name={selectedPaymentMethod.nameSurname}
-              cardNumber={selectedPaymentMethod.cardNumber}
-            />
-            <ChangeButton onPress={() => navigation.navigate("Select Payment Method", {
-              setSelectedPaymentMethod: setSelectedPaymentMethod
-            })}>
-              <ChangeButtonText>Change</ChangeButtonText>
-            </ChangeButton>
-          </ItemIncludeChange>
+          {selectedPaymentMethod ?
+            <ItemIncludeChange>
+              <PaymentCard
+                name={selectedPaymentMethod.nameSurname}
+                cardNumber={selectedPaymentMethod.cardNumber}
+              />
+              <ChangeButton onPress={() => navigate("Select Payment Method", {
+                setSelectedPaymentMethod: setSelectedPaymentMethod
+              })}>
+                <ChangeButtonText>Change</ChangeButtonText>
+              </ChangeButton>
+            </ItemIncludeChange>
+            :
+            <View>
+              <Text>Please add vehicle method for booking</Text>
+              <ChangeButton onPress={() => {
+                goBack()
+                navigate('Add Payment Method')
+              }}>
+                <ChangeButtonText>Change</ChangeButtonText>
+              </ChangeButton>
+            </View>
+          }
         </VehicleSelection>
-
 
         <View>
           <RequestButton onPress={() => {
@@ -106,7 +131,7 @@ const PaymentPage = ({ route, navigation }) => {
             })
           }}>
             <PriceView>
-              <PriceText>{price}</PriceText>
+              <PriceText>{price} ₺</PriceText>
             </PriceView>
             <RequestButtonText>Payment</RequestButtonText>
           </RequestButton>

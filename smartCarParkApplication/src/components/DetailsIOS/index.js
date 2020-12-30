@@ -41,12 +41,12 @@ const DetailsIOS = (props) => {
           const endTime = parseInt(timeSpace[1].substring(0, 2))
           if (estimatedParkingTime >= initialTime && estimatedParkingTime <= endTime) {
             // setPrice(destinationInformation.priceList[i].Fiyat)
-            return destinationInformation.priceList[i].Fiyat
+            return destinationInformation.priceList[i].Fiyat / 100
           }
         }
         if (timeSpace[1] === undefined) {
           // setPrice(destinationInformation.priceList[i].Fiyat)
-          return destinationInformation.priceList[i].Fiyat
+          return destinationInformation.priceList[i].Fiyat / 100
         }
       }
     } else {
@@ -108,11 +108,21 @@ const DetailsIOS = (props) => {
         </CheckView>
 
         <CheckView>
-          <DateTimeSelectText>Price:{price}</DateTimeSelectText>
+          <DateTimeSelectText>Price:</DateTimeSelectText>
+          <DateTimeSelectText>{price} ₺</DateTimeSelectText>
         </CheckView>
       </CheckContainer>
 
       <RequestButton onPress={() => {
+        // if (firebaseContext.userVehicle.length === 0) {
+        //   navigation.navigate('Add Car');
+        //   Alert.alert("You have to add Vehicle and Payment method for booking")
+        // } else if (firebaseContext.userPaymentMethods.length === 0) {
+        //   navigation.navigate('Add Payment Method');
+        //   Alert.alert("You have to add Vehicle and Payment method for booking")
+        // }
+
+        // if (firebaseContext.userVehicle.length != 0 && firebaseContext.userPaymentMethods.length != 0) {
         if (firebaseContext.checkInTime < firebaseContext.checkOutTime) {
           navigation.navigate('Payment', {
             destinationInformation,
@@ -121,7 +131,7 @@ const DetailsIOS = (props) => {
         } else {
           Alert.alert("Please select")
         }
-
+        // }
       }}>
         <RequestButtonText>Go to Payment</RequestButtonText>
       </RequestButton>

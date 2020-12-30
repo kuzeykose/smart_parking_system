@@ -3,7 +3,6 @@ import styled from 'styled-components/native'
 export const Container = styled.View`
 background: #FFF
 height: 100%
-
 justify-content: space-between
 align-items: center
 `

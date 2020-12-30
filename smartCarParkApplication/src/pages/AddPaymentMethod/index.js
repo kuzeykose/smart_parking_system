@@ -25,9 +25,10 @@ import {
 
 import {
   View,
+  Alert
 } from 'react-native';
 
-const AddPaymentMethod = ({ navigation }) => {
+const AddPaymentMethod = ({ navigation: { goBack } }) => {
   const value = useContext(FirebaseContext);
   const [nameSurname, setNameSurname] = useState('NAME SURNAME')
   const [cardNumber, setCardNumber] = useState('')
@@ -51,6 +52,7 @@ const AddPaymentMethod = ({ navigation }) => {
         break;
       default:
         setCardCompanyLogo(null)
+        break;
     }
 
     if (parseInt(number[0]) === 3) {
@@ -138,8 +140,14 @@ const AddPaymentMethod = ({ navigation }) => {
       </InputContainer>
 
       <SaveButton onPress={() => {
-        value.addPaymentMethod(nameSurname.toUpperCase(), cardNumber, expirationDate, cardCVV)
-        navigation.navigate("Payment Methods")
+        console.log();
+        if (cardNumber[0] === '3' || cardNumber[0] === '4' || cardNumber[0] === '5' || cardNumber[0] === '6') {
+          value.addPaymentMethod(nameSurname.toUpperCase(), cardNumber, expirationDate, cardCVV)
+          goBack()
+        } else {
+          Alert.alert("Plese write bank card or credit card")
+        }
+
       }}>
         <SaveButtonText>
           Save
