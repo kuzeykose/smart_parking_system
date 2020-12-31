@@ -36,7 +36,7 @@ const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
   const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit' }
 
   return (
-    <ScrollView>
+    <ScrollView >
       <Container>
         <InfoContainer>
           <View>
@@ -82,7 +82,6 @@ const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
             </View>
 
           }
-
         </VehicleSelection>
 
         <VehicleSelection>

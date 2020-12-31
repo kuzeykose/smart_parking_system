@@ -46,6 +46,6 @@ export const LocationTimeTextSmall = styled.Text`
 
 export const Back = styled.TouchableOpacity`
   position: absolute;
-  top: 50px;
+  top: 75px;
   left: 20px
 `

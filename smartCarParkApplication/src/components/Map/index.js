@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { Component, Fragment } from 'react';
-import { View, Image } from 'react-native';
+import { View, Image, SafeAreaView } from 'react-native';
 
 import Geolocation from '@react-native-community/geolocation';
 import { Marker, PROVIDER_DEFAULT, PROVIDER_GOOGLE } from 'react-native-maps'; //PROVIDER_DEFAULT uses Apple's map
@@ -11,6 +11,7 @@ import Directions from '../Directions'
 import ParkInformation from '../ParkInformation'
 import Details from '../Details'
 import { FirebaseContext } from '../../provider/FirebaseProvider'
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import backImage from "../../assets/back.png";
 
@@ -22,6 +23,7 @@ import {
   LocationTimeTextSmall,
   LocationTimeText
 } from './style'
+
 import DeatilsAndroid from '../DetailsAndroid';
 
 const Map = ({ navigation }) => {
@@ -64,7 +66,7 @@ const Map = ({ navigation }) => {
 
   // const { region, destination, duration } = this.state
   return (
-    <View style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1 }}>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
@@ -116,7 +118,7 @@ const Map = ({ navigation }) => {
       {firebaseProvider.selectedCarPark ? (
         <Fragment>
           <Back onPress={handleBack}>
-            <Image source={backImage} />
+            <Icon name="keyboard-backspace" size={32} color="#292929" />
           </Back>
           <ParkInformation
             destinationInformation={firebaseProvider.selectedCarPark}
@@ -144,7 +146,7 @@ const Map = ({ navigation }) => {
         )}
       </View>
 
-    </View >
+    </SafeAreaView >
   );
 }
 

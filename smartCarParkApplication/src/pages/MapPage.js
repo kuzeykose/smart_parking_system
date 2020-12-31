@@ -2,6 +2,7 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
+  View,
 } from 'react-native';
 import Map from '../components/Map'
 import PaymentPage from '../pages/PaymentPage'
@@ -36,8 +37,8 @@ const Homepage = () => {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Stack.Navigator>
+    <View style={styles.container}>
+      <Stack.Navigator >
         <Stack.Screen name="Home" component={Map}
           options={{
             headerShown: false, // change this to `false`
@@ -53,7 +54,7 @@ const Homepage = () => {
         <Stack.Screen name="Add Payment Method" component={AddPaymentMethod} />
         <Stack.Screen name="Add Car" component={AddCar} />
       </Stack.Navigator>
-    </SafeAreaView >
+    </View >
   );
 };
 
