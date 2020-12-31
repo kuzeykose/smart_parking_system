@@ -21,11 +21,12 @@ import {
   ChangeButton,
   ItemIncludeChange,
   ChangeButtonText,
-  Line,
   PriceText,
-  PriceView
+  PriceView,
+  AddText,
 } from './style'
-import { View, ScrollView, TouchableOpacity, Text } from 'react-native';
+
+import { View, ScrollView, Alert, Text } from 'react-native';
 
 const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
   const firebaseContext = useContext(FirebaseContext);
@@ -36,7 +37,7 @@ const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
   const timeOptions = { hour12: false, hour: '2-digit', minute: '2-digit' }
 
   return (
-    <ScrollView >
+    <ScrollView>
       <Container>
         <InfoContainer>
           <View>
@@ -71,15 +72,15 @@ const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
               </ChangeButton>
             </ItemIncludeChange>
             :
-            <View>
-              <Text>Please add vehicle for booking</Text>
+            <ItemIncludeChange>
+              <AddText>Please add vehicle</AddText>
               <ChangeButton onPress={() => {
                 goBack()
                 navigate('Add Car')
               }}>
                 <ChangeButtonText>Change</ChangeButtonText>
               </ChangeButton>
-            </View>
+            </ItemIncludeChange>
 
           }
         </VehicleSelection>
@@ -98,36 +99,41 @@ const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
               </ChangeButton>
             </ItemIncludeChange>
             :
-            <View>
-              <Text>Please add vehicle method for booking</Text>
+            <ItemIncludeChange>
+              <AddText>Please add payment method</AddText>
               <ChangeButton onPress={() => {
                 goBack()
                 navigate('Add Payment Method')
               }}>
                 <ChangeButtonText>Change</ChangeButtonText>
               </ChangeButton>
-            </View>
+            </ItemIncludeChange>
           }
         </VehicleSelection>
 
         <View>
           <RequestButton onPress={() => {
-            firebaseContext.userBook(
-              destinationInformation.parkName,
-              destinationInformation.latitude,
-              destinationInformation.longitude,
-              selectedCar
-            ).then(res => {
-              console.log(res);
-              if (res === "slotsAreNotAvailable") {
-                alert("Not Available!")
-              }
-              if (res === "completed") {
-                firebaseContext.setTrigeredActiveBooked(null)
-                alert("Completed!")
-                navigation.navigate('Home')
-              }
-            })
+            console.log(selectedCar, selectedPaymentMethod);
+            if (selectedCar === undefined || selectedPaymentMethod === undefined) {
+              Alert.alert("Please add vehicle and payment method for booking!")
+            } else {
+              firebaseContext.userBook(
+                destinationInformation.parkName,
+                destinationInformation.latitude,
+                destinationInformation.longitude,
+                selectedCar
+              ).then(res => {
+                console.log(res);
+                if (res === "slotsAreNotAvailable") {
+                  alert("Not Available!")
+                }
+                if (res === "completed") {
+                  firebaseContext.setTrigeredActiveBooked(null)
+                  alert("Completed!")
+                  navigation.navigate('Home')
+                }
+              })
+            }
           }}>
             <PriceView>
               <PriceText>{price} ₺</PriceText>

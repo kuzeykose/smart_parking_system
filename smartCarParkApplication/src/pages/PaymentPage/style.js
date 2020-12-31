@@ -142,3 +142,8 @@ border: 3px solid #FBBC04
 align-items: center
 justify-content: center
 `
+
+export const AddText = styled.Text`
+font-size: 20px
+`
+

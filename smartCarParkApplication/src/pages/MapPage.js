@@ -49,10 +49,29 @@ const Homepage = () => {
           component={PaymentPage}
           options={headerStyle}
         />
-        <Stack.Screen name="Select Vehicle" component={SelectVehicle} />
-        <Stack.Screen name="Select Payment Method" component={SelectPaymentMethod} />
-        <Stack.Screen name="Add Payment Method" component={AddPaymentMethod} />
-        <Stack.Screen name="Add Car" component={AddCar} />
+
+        <Stack.Screen
+          name="Select Vehicle"
+          component={SelectVehicle}
+          options={headerStyle}
+        />
+
+        <Stack.Screen
+          name="Select Payment Method"
+          component={SelectPaymentMethod}
+          options={headerStyle}
+        />
+
+        <Stack.Screen
+          name="Add Payment Method"
+          component={AddPaymentMethod}
+          options={headerStyle}
+        />
+        <Stack.Screen
+          name="Add Car"
+          component={AddCar}
+          options={headerStyle}
+        />
       </Stack.Navigator>
     </View >
   );
