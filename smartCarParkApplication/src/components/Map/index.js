@@ -66,7 +66,7 @@ const Map = ({ navigation }) => {
 
   // const { region, destination, duration } = this.state
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <View style={{ flex: 1 }}>
       <MapView
         provider={PROVIDER_GOOGLE}
         style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}
@@ -146,7 +146,7 @@ const Map = ({ navigation }) => {
         )}
       </View>
 
-    </SafeAreaView >
+    </View >
   );
 }
 

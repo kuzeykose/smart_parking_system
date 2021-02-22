@@ -28,7 +28,7 @@ const Search = () => {
     <View style={styles.container}>
       <View style={styles.textInputContainer}>
         <TextInput
-          placeholderTextColor="#333"
+          placeholderTextColor="#fff"
           style={styles.textInput}
           placeholder="Where do you want to park?"
           value={searchText}
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   container: {
     position: 'absolute',
     top: Platform.select({ ios: 100, android: 80 }),
-    width: '100%'
+    width: '100%',
   },
   textInputContainer: {
     flex: 1,
@@ -62,12 +62,14 @@ const styles = StyleSheet.create({
     height: 54,
     marginHorizontal: 20,
     borderTopWidth: 0,
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    opacity: 0.85,
   },
   textInput: {
+    color: 'white',
     height: 54,
     margin: 0,
-    borderRadius: 0,
+    borderRadius: 30,
     paddingTop: 0,
     paddingBottom: 0,
     paddingLeft: 20,
@@ -84,8 +86,8 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     borderWidth: 1,
     borderColor: '#DDD',
-    backgroundColor: '#fffffe',
-    fontSize: 18
+    backgroundColor: '#151338',
+    fontSize: 18,
   }
 });
 

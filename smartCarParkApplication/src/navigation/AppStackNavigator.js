@@ -14,14 +14,35 @@ const AppStackNavigator = () => {
   const value = useContext(FirebaseContext);
 
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+
+      tabBarOptions={{
+        activeTintColor: '#42CBC8',
+        inactiveTintColor: '#ffffff',
+        labelStyle: {
+          fontSize: 14,
+          marginTop: -7,
+          marginBottom: -20
+        },
+        style: {
+          position: 'absolute',
+          activeTintColor: '#e91e63',
+          backgroundColor: '#151338',
+          borderRadius: 330,
+          height: 60,
+          margin: 10,
+          marginBottom: 20
+        }
+      }}
+    >
       <Tab.Screen
         name="Home"
         component={MapPage}
         options={{
+          headerLayoutPreset: 'center',
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <Icon name="home" color={color} size={size} />
+            <Icon name="home" color={color} style={{ textAlignVertical: 'center' }} size={size} />
           ),
         }}
       />

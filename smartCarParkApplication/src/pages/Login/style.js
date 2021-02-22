@@ -15,7 +15,7 @@ export const HelloText = styled.Text`
 `
 export const HelloTextSmall = styled.Text`
   color: #292929;
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
 `
 
@@ -32,7 +32,7 @@ export const PasswordText = styled.Text`
 
 export const EmailInput = styled.TextInput`
   border: 1px;
-  border-radius: 4px;
+  border-radius: 20px;
   height: 40px;
   width: 350px;
   border-color: #61cb61;
@@ -42,7 +42,7 @@ export const EmailInput = styled.TextInput`
 
 export const PasswordInput = styled.TextInput`
   border: 1px;
-  border-radius: 4px;
+  border-radius: 20px;
   height: 40px;
   width: 350px;
   margin-top: 4px;
@@ -74,7 +74,7 @@ export const ShowRegisterButton = styled.TouchableOpacity`
 
 export const CreateAccountText = styled.Text`
   font-size: 17px;
-  color: #55bf57;
+  color: #00FFB0;
   padding-left:6px
 `
 
