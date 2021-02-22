@@ -36,11 +36,11 @@ const AppStackNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Settings"
+        name="Account"
         component={SettingsNavigation}
         options={{
           tabBarIcon: ({ color, size }) => (
-            <Icon name="settings" color={color} size={size} />
+            <Icon name="account-circle" color={color} size={size} />
           ),
         }}
       />

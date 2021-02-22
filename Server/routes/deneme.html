@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deneme</title>
+</head>
+
+<body>
+  <div>Selam! Burdan deneme datasi yollayabilirsiniz :)</div>
+  <input type="text" id="textValue">
+  <button onClick="submit()">SEND!</button>
+</body>
+
+<script type="text/javascript">
+  function submit() {
+    const text = document.getElementById("textValue").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", 'https://smartpark-server-1.herokuapp.com/api/post-test/post-deneme', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.send(JSON.stringify({
+      value: text
+    }));
+  }
+</script>
+
+</html>

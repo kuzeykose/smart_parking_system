@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
   container: {
     position: 'absolute',
-    top: Platform.select({ ios: 60, android: 40 }),
+    top: Platform.select({ ios: 100, android: 80 }),
     width: '100%'
   },
   textInputContainer: {

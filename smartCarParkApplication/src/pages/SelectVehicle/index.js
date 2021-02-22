@@ -7,6 +7,7 @@ import LogoSrc2 from '../../assets/wosvagen.png';
 
 import {
   Container,
+  Card
 } from './style'
 
 import {
@@ -19,7 +20,7 @@ const SelectVehicle = ({ route, navigation: { goBack } }) => {
   const value = useContext(FirebaseContext);
 
   const vehicles = value.userVehicle.map((inf, index) => {
-    return <TouchableOpacity key={index} onPress={() => {
+    return <Card key={index} onPress={() => {
       setSelectedCar(inf)
       goBack()
     }}>
@@ -28,7 +29,7 @@ const SelectVehicle = ({ route, navigation: { goBack } }) => {
         carName={inf.name}
         licensePlate={"34 PG 2020"}
       />
-    </TouchableOpacity>
+    </Card>
   })
 
   return (

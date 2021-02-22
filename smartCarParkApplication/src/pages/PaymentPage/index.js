@@ -130,7 +130,7 @@ const PaymentPage = ({ route, navigation: { navigate, goBack } }) => {
                 if (res === "completed") {
                   firebaseContext.setTrigeredActiveBooked(null)
                   alert("Completed!")
-                  navigation.navigate('Home')
+                  navigate('Home')
                 }
               })
             }

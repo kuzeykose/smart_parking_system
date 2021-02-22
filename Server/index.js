@@ -3,9 +3,12 @@ const app = express()
 const cors = require('cors');
 const port = process.env.PORT || 3000
 const axios = require('axios');
+const bodyParser = require('body-parser');
 
 app.use(cors());
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.send('Connection done!')
@@ -17,6 +20,7 @@ app.use('/api/ticket', require('./routes/api/tickets'))
 app.use('/api/carpark', require('./routes/api/carparks'))
 app.use('/api/car', require('./routes/api/cars'))
 app.use('/api/paymentMethod', require('./routes/api/paymentMethods'))
+app.use('/api/post-test', require('./routes/api/postTest'))
 
 app.use('/admin-api/carparks', require('./routes/adminApi/addAllCarParkInFirebase'))
 

@@ -9,7 +9,9 @@ import {
   CardText,
   DateTimeCard,
   DateTimeText,
-  CardHeader
+  CardHeader,
+  Back,
+  DeleteButton
 } from './style'
 
 import {
@@ -41,6 +43,9 @@ const TicketDetail = ({ route, navigation }) => {
         rotateEnabled={false}
         scrollEnabled={false}
       >
+        <Back onPress={() => navigation.goBack()}>
+          <Icon name="keyboard-backspace" size={32} color="#292929" />
+        </Back>
         <Marker
           coordinate={{ latitude, longitude, latitudeDelta, longitudeDelta }}
           anchor={{ x: 0, y: 0 }} >
@@ -50,6 +55,35 @@ const TicketDetail = ({ route, navigation }) => {
       <Card>
         <CardHeader>
           <CardText>{parkId}</CardText>
+          <DeleteButton title={"delete"} onPress={() => {
+            Alert.alert(
+              "Your reservation will be canceled.",
+              "Do you want to cancel your reservation?",
+              [
+                {
+                  text: "No",
+                  onPress: () => { },
+                  style: "cancel"
+                },
+                {
+                  text: "Yes", onPress: () => {
+                    FirebaseProvider.userUnbook(
+                      parkId,
+                      checkInDate,
+                      checkInTime,
+                      checkOutTime,
+                      parkSlot,
+                      docId
+                    )
+                    navigation.navigate("TicketNavigation")
+                  }
+                }
+              ],
+              { cancelable: false }
+            );
+          }} >
+            <Icon name="cancel" size={32} color="#FF3B3B" />
+          </DeleteButton>
         </CardHeader>
         <DateTimeCard>
           <View>
@@ -61,33 +95,7 @@ const TicketDetail = ({ route, navigation }) => {
             <CardText>{checkInTime + " - " + checkOutTime}</CardText>
           </View>
         </DateTimeCard>
-        <Button title={"delete"} onPress={() => {
-          Alert.alert(
-            "Your reservation will be canceled.",
-            "Do you want to cancel your reservation?",
-            [
-              {
-                text: "No",
-                onPress: () => { },
-                style: "cancel"
-              },
-              {
-                text: "Yes", onPress: () => {
-                  FirebaseProvider.userUnbook(
-                    parkId,
-                    checkInDate,
-                    checkInTime,
-                    checkOutTime,
-                    parkSlot,
-                    docId
-                  )
-                  navigation.navigate("TicketNavigation")
-                }
-              }
-            ],
-            { cancelable: false }
-          );
-        }} />
+
       </Card >
     </View>
   );

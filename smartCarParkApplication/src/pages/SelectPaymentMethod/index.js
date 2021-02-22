@@ -4,6 +4,7 @@ import PaymentCard from "../../components/PaymentCard"
 
 import {
   Container,
+  Card
 } from './style'
 
 import {
@@ -16,7 +17,7 @@ const SelectedPaymentMethod = ({ route, navigation: { goBack } }) => {
   const value = useContext(FirebaseContext);
 
   const paymentMethods = value.userPaymentMethods.map((inf, index) => {
-    return <TouchableOpacity key={index} onPress={() => {
+    return <Card key={index} onPress={() => {
       setSelectedPaymentMethod(inf)
       goBack()
     }}>
@@ -24,7 +25,7 @@ const SelectedPaymentMethod = ({ route, navigation: { goBack } }) => {
         name={inf.nameSurname}
         cardNumber={inf.cardNumber}
       />
-    </TouchableOpacity>
+    </Card>
   })
 
   return (

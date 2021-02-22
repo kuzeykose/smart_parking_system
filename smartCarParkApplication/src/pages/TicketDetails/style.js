@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native'
 
-export const Card = styled.TouchableOpacity`
+export const Card = styled.View`
   padding: 15px
   background-color: #fff
   border-style: solid
@@ -13,6 +13,7 @@ export const Card = styled.TouchableOpacity`
 export const CardHeader = styled.View`
   flex-direction: row
   justify-content: space-between
+  align-items: center
 `
 
 export const DateTimeCard = styled.View`
@@ -38,4 +39,14 @@ export const DateTimeText = styled.Text`
   font-size: 24px
   font-weight: 300 
   text-align: center;
+`
+
+export const Back = styled.TouchableOpacity`
+  position: absolute;
+  top: 25px;
+  left: 20px
+`
+export const DeleteButton = styled.TouchableOpacity`
+  margin-top:5px
+  align-items: center
 `
