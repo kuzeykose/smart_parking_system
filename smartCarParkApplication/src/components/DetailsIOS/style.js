@@ -6,7 +6,7 @@ background: #FFF
 height: 500px
 width: 90%
 position: absolute
-bottom:0
+bottom:85
 shadow-color: #000
 shadow-offset: 0 0
 shadow-opacity: 0.1

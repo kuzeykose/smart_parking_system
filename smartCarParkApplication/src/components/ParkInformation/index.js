@@ -14,15 +14,17 @@ import { View } from 'react-native';
 const ParkInformation = (props) => {
   return (
     <Container>
-      <View>
+      <View style={{ marginTop: 45, marginLeft: 20 }}>
         <ParkNameText>{props.destinationInformation.parkName}</ParkNameText>
         <TypeDescription>{props.destinationInformation.address}</TypeDescription>
         <Stars rating={props.destinationInformation.rating} />
       </View>
-      <RequestButton onPress={() => { props.bookPressed(props.destinationInformation) }}>
-        <RequestButtonText>Book</RequestButtonText>
-      </RequestButton>
-    </Container>
+      <View style={{ alignItems: 'flex-end' }}>
+        <RequestButton onPress={() => { props.bookPressed(props.destinationInformation) }}>
+          <RequestButtonText>Book</RequestButtonText>
+        </RequestButton>
+      </View>
+    </Container >
   )
 }
 
