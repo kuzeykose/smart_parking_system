@@ -44,6 +44,9 @@ const SettingsNavigation = () => {
       <Stack.Screen
         name="Settings"
         component={SettingsOptions}
+        options={{
+          headerTitle: <Icon name="settings" size={30} color="#292929" />
+        }}
       />
 
       <Stack.Screen

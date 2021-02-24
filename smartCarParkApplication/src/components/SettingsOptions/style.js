@@ -41,7 +41,7 @@ margin-top: 10px;
 `
 
 export const TouchbaleListItemText = styled.Text`
-color: #292929;
+color: #151338;
 font-size: 24px
 margin-left: 20px;
 `
@@ -54,9 +54,15 @@ margin-left: 20px;
 
 export const UserInformationText = styled.Text`
 margin-top: 2px;
-font-size: 24px;
+font-size: 36px;
 margin-left: 16px;
 color: #3b3b3b;
+`
+export const UserEmailText = styled.Text`
+margin-top: 2px;
+font-size: 24px;
+margin-left: 16px;
+color: #151338;
 `
 
 export const InitialInformationText = styled.Text`
