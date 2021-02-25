@@ -33,16 +33,6 @@ const EditProfile = () => {
       <Container>
         <Middelof>
           <TopView>
-            <ImageView>
-              <Image
-                source={imagePeople}
-                style={{
-                  width: 100,
-                  height: 100,
-                  borderRadius: 400 / 2,
-                }}
-              />
-            </ImageView>
             <View>
               <UserInformationText>{value.userInformation.name}</UserInformationText>
               <UserInformationText>{value.userInformation.email}</UserInformationText>

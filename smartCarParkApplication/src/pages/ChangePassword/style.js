@@ -39,22 +39,24 @@ padding-left: 10px;
 `
 
 export const ChangeButton = styled.TouchableOpacity`
-margin-top: 10px;
+margin-top: 20px;
 margin-bottom: 10px;
-background: #FBBC04;
-height: 50px;
-width: 350px;
+height: 40px;
+width: 120px;
 font-size: 20px;
-border-radius: 10px
+border-style: solid; 
+border-left-color: #D2007D; 
+border-left-width: 3px;
 `
 
 export const ChangeButtonText = styled.Text`
 font-size: 20px;
 text-align: center;
 margin: auto
+color: #D2007D
 `
 
 export const MailText = styled.Text`
-font-size: 16px;
+font-size: 20px;
 text-align: center;
 `
