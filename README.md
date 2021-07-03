@@ -5,7 +5,7 @@ We worked on decreasing carbon emmision in Istanbul, Turkey. The mobile applicat
 The server uses express js. Also, data is storedged in firebase firestore. Figma is used for designs and demo
 as shown in bellow link.  
 
-The requirements of this project is google api and keys. I used Maps SDK for IOS, Directions API, Geocoing API,
+The requirements of this project is google api and keys. I used Maps SDK for IOS, Maps SDK for Android, Directions API, Geocoing API,
 Places API for map. Application's essential part is map.
 
 
