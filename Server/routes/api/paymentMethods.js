@@ -5,8 +5,6 @@ const { admin } = require('../../firebaseConfig')
 const db = admin.firestore();
 
 router.post('/add-bank-card', (req, res) => {
-  console.log(req.body);
-
   db.collection("users").doc(req.body.currentUserUid).collection("paymentInformation").add({
     nameSurname: req.body.nameSurname,
     cardNumber: req.body.cardNumber,

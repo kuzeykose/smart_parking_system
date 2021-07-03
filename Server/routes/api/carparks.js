@@ -9,7 +9,6 @@ const db = admin.firestore();
 const client = new Client({});
 
 router.post('/', (req, res) => {
-  console.log(req.body);
   if (req.body.searchItem !== "") {
 
     const docRef = db.collection("car-parks").doc(req.body.searchItem).get()

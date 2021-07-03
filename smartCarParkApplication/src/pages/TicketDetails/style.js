@@ -22,6 +22,7 @@ export const DateTimeCard = styled.View`
   border-width: 1px
   border-radius: 8px
   border-color: #EDB102
+  margin-bottom: 50px
   margin-top: 5px
   flex-direction: row
   justify-content: space-between

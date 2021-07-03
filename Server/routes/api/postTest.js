@@ -20,7 +20,9 @@ router.post('/post-deneme', (req, res) => {
     humidity: req.body.humidity,
     carbonmonoxide: req.body.carbonmonoxide,
     dust: req.body.dust,
-    nitrogendioxide: req.body.nitrogendioxide
+    nitrogendioxide: req.body.nitrogendioxide,
+    pm25: req.body.pm25,
+    pm10: req.body.pm10
   })
 
   res.send('Kayıt edildi')

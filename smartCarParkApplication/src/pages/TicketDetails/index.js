@@ -95,7 +95,6 @@ const TicketDetail = ({ route, navigation }) => {
             <CardText>{checkInTime + " - " + checkOutTime}</CardText>
           </View>
         </DateTimeCard>
-
       </Card >
     </View>
   );

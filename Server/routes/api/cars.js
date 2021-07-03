@@ -21,8 +21,6 @@ router.post('/save-car', (req, res) => {
 });
 
 router.post('/delete-car', (req, res) => {
-  console.log(req.body);
-
   db.collection("users").doc(req.body.currentUserUid)
     .collection("vehicles").where("licensePlate", "==", req.body.carInfo.licensePlate).get()
     .then(querySnapshot => {

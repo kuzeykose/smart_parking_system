@@ -47,7 +47,6 @@ router.get('/setDatabaseAllParkFromIspark', (req, res) => {
           PriceList: parkInformation.Tarifeler,
           Address: parkInformation.Adres
         }
-        console.log(parkObject);
       })
       //   db.collection('car-parks').doc(parkInformation.ParkAdi).set(parkObject);
       //   for (let i = 0; i < 5; i++) {
